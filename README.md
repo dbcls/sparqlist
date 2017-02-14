@@ -29,4 +29,4 @@ Port to listen on.
 
 (default: `./repository`)
 
-Path to repository.
+Path to SPARQLet repository.
