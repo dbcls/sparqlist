@@ -1,0 +1,55 @@
+<div class="card">
+  <div class="card-header">
+    <div><strong>{{title}}</strong></div>
+    <div>{{apiPath}}</div>
+  </div>
+  <div class="card-block">
+    <h2>Request</h2>
+    <form {{action "execute" on="submit"}}>
+      {{#each params as |param|}}
+      <div class="form-group">
+        <label><code>{{param.name}}</code> {{param.description}}</label>
+        {{input value=(mut (get actualParams param.name)) class="form-control"}}
+      </div>
+      {{/each}}
+      <button class="btn btn-default">Execute</button>
+    </form>
+
+    <div>
+      {{actualPath}}
+    </div>
+
+    {{#if response}}
+    <div>
+      {{#if response.ok}}
+      <h2>Response</h2>
+      <div class="alert alert-success"><strong>{{response.status}}</strong> {{response.statusText}}</div>
+      {{else}}
+      <h2>Error</h2>
+      <div class="alert alert-danger"><strong>{{response.status}}</strong> {{response.statusText}}</div>
+      {{/if}}
+      <pre><code>{{response.results}}</code></pre>
+    </div>
+      {{#if response.traces}}
+        <h2>Traces</h2>
+        {{#each response.traces as |trace|}}
+          <div class="card" style="margin-top: 10px;">
+            <div class="card-header">
+              {{trace.step.name}} <span class="badge badge-success">{{trace.step.type}}</span>
+            </div>
+            <div class="card-block">
+              {{#each trace.logEntries as |logEntry|}}
+                <div class="badge badge-default">{{logEntry.type}}</div>
+                <pre><code>{{logEntry.message}}</code></pre>
+              {{/each}}
+              <div class="badge badge-primary">Results</div>
+              <pre><code>{{to-json trace.results}}</code></pre>
+            </div>
+          </div>
+        {{/each}}
+      {{/if}}
+    {{/if}}
+
+    {{yield}}
+  </div>
+</div>

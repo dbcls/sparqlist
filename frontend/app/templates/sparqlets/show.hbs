@@ -1,0 +1,9 @@
+{{sparqlet-runner title=model.title apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
+
+
+<div class="card" style="margin-top: 10px;">
+  <div class="card-block">
+    {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary" role="button"}}Edit{{/link-to}}
+    {{{model.html}}}
+  </div>
+</div>

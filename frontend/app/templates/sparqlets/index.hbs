@@ -1,0 +1,5 @@
+<ul>
+{{#each model as |sparqlet|}}
+<li>{{#link-to 'sparqlets.show' sparqlet.id}}{{sparqlet.title}}{{/link-to}} {{sparqlet.apiPath}}</li>
+{{/each}}
+</ul>
