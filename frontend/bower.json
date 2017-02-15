@@ -1,5 +1,6 @@
 {
   "name": "sparqlist",
   "dependencies": {
+    "codemirror": "~5.15.0"
   }
 }
