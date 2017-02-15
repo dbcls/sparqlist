@@ -3,7 +3,7 @@
 ## Prerequisites
 
 * [Node.js](https://nodejs.org/) v7.5.0
-* [yarn](https://yarnpkg.com/) v0.19.1
+* [yarn](https://yarnpkg.com/) v0.20.3
 
 ## Install
 
