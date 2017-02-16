@@ -55,7 +55,7 @@ WHERE {
     return ret;
   });
 
-  return context.gene_names = unwrapped.reduce((acc, row) => {
+  context.gene_names = unwrapped.reduce((acc, row) => {
     Object.keys(row).forEach((key) => {
       const value = row[key];
       if (acc[key] === undefined) {
@@ -133,7 +133,7 @@ ORDER BY DESC(?taxonomy_count)
     return ret;
   });
 
-  return context.summary = unwrapped.reduce((acc, row) => {
+  context.summary = unwrapped.reduce((acc, row) => {
     Object.keys(row).forEach((key) => {
       const value = row[key];
       if (acc[key] === undefined) {
