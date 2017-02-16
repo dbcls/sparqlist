@@ -11,7 +11,7 @@
 
 http://togogenome.org/sparql
 
-## `gene_names` Gene names
+## Gene names
 
 ```sparql
 PREFIX up: <http://purl.uniprot.org/core/>
@@ -43,11 +43,11 @@ WHERE {
 }
 ```
 
-## `genes` Remove redundant values
+## Remove redundant values
 
 ```javascript
-({gene_names}) => {
-  const unwrapped = gene_names.results.bindings.map((binding) => {
+(context, prev) => {
+  const unwrapped = prev.results.bindings.map((binding) => {
     const ret = {};
     Object.keys(binding).forEach(function(key) {
       ret[key] = binding[key].value;
@@ -55,7 +55,7 @@ WHERE {
     return ret;
   });
 
-  return unwrapped.reduce((acc, row) => {
+  return context.gene_names = unwrapped.reduce((acc, row) => {
     Object.keys(row).forEach((key) => {
       const value = row[key];
       if (acc[key] === undefined) {
@@ -70,7 +70,7 @@ WHERE {
 };
 ```
 
-## `protein_summary` Protein name and taxonomy
+## Protein name and taxonomy
 
 ```sparql
 PREFIX up: <http://purl.uniprot.org/core/>
@@ -121,11 +121,11 @@ GROUP BY ?recommended_name ?ec_name ?alternative_names ?organism_name ?parent_ta
 ORDER BY DESC(?taxonomy_count)
 ```
 
-## `summary` Remove redundant values
+## Remove redundant values
 
 ```javascript
-({protein_summary}) => {
-  const unwrapped = protein_summary.results.bindings.map((binding) => {
+(context, prev) => {
+  const unwrapped = prev.results.bindings.map((binding) => {
     const ret = {};
     Object.keys(binding).forEach(function(key) {
       ret[key] = binding[key].value;
@@ -133,7 +133,7 @@ ORDER BY DESC(?taxonomy_count)
     return ret;
   });
 
-  return unwrapped.reduce((acc, row) => {
+  return context.summary = unwrapped.reduce((acc, row) => {
     Object.keys(row).forEach((key) => {
       const value = row[key];
       if (acc[key] === undefined) {
@@ -151,7 +151,7 @@ ORDER BY DESC(?taxonomy_count)
 ## Merge results
 
 ```javascript
-({genes, summary}) => {
-  return Object.assign({}, genes, summary);
+({gene_names, summary}) => {
+  return Object.assign({}, gene_names, summary);
 }
 ```
