@@ -1,6 +1,6 @@
 <form {{action "save" on="submit"}}>
   <div class="form-group">
-    <button class="btn btn-primary">Save</button>
+    <button class="btn {{if isUpdated 'btn-primary' 'btn-outline-primary'}}">Save</button>
   </div>
   {{ivy-codemirror value=code valueUpdated=(action "update") options=(hash lineNumbers=true mode="markdown" theme="base16-light")}}
 </form>
