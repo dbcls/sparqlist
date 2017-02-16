@@ -15,7 +15,7 @@ export default Ember.Component.extend({
           ok: true,
           status: data.jqXHR.status,
           statusText: data.jqXHR.statusText,
-          results: JSON.stringify(data.payload.results, null, 2),
+          results: data.payload.results,
           traces: data.payload.traces
         });
       }).catch((data) => {
@@ -24,7 +24,7 @@ export default Ember.Component.extend({
           ok: false,
           status: data.jqXHR.status,
           statusText: data.jqXHR.statusText,
-          results: JSON.stringify(data.payload, null, 2),
+          results: data.payload,
           traces: data.payload.traces,
           error: data.payload.error
         });
