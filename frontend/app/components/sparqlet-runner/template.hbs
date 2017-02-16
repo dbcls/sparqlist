@@ -46,7 +46,7 @@
               {{/each}}
               {{#unless trace.error}}
                 {{#if trace.context}}
-                  <div class="badge badge-info">Context after execution</div>
+                  <div class="badge badge-info">Updated context</div>
                   <pre><code>{{to-json trace.context}}</code></pre>
                 {{/if}}
                 {{#if trace.results}}
