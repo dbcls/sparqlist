@@ -44,14 +44,15 @@
                 <div class="badge badge-default">{{logEntry.type}}</div>
                 <pre><code>{{logEntry.message}}</code></pre>
               {{/each}}
-              <div class="badge badge-info">Context after execution</div>
-              <pre><code>{{to-json trace.context}}</code></pre>
-              <div class="badge badge-primary">Results</div>
-              <pre><code>{{to-json trace.results}}</code></pre>
-              {{#if trace.error}}
+              {{#unless trace.error}}
+                <div class="badge badge-info">Context after execution</div>
+                <pre><code>{{to-json trace.context}}</code></pre>
+                <div class="badge badge-primary">Results</div>
+                <pre><code>{{to-json trace.results}}</code></pre>
+              {{else}}
                 <div class="badge badge-danger">Error</div>
                 <pre><code>{{trace.error}}</code></pre>
-              {{/if}}
+              {{/unless}}
             </div>
           </div>
         {{/each}}
