@@ -24,7 +24,9 @@ export default Ember.Component.extend({
           ok: false,
           status: data.jqXHR.status,
           statusText: data.jqXHR.statusText,
-          results: JSON.stringify(data.payload, null, 2)
+          results: JSON.stringify(data.payload, null, 2),
+          traces: data.payload.traces,
+          error: data.payload.error
         });
       });
     }
