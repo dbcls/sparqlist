@@ -7,8 +7,10 @@ export default Ember.Component.extend({
     execute() {
       const path = this.attrs.traceModeApiPath.value;
       const params = this.get('actualParams');
+      this.set('isRunning', true);
 
       this.get('ajax').raw(path, {data: params}).then((data) => {
+        this.set('isRunning', false);
         this.set('response', {
           ok: true,
           status: data.jqXHR.status,
@@ -17,6 +19,7 @@ export default Ember.Component.extend({
           traces: data.payload.traces
         });
       }).catch((data) => {
+        this.set('isRunning', false);
         this.set('response', {
           ok: false,
           status: data.jqXHR.status,
