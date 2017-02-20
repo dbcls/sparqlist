@@ -7,6 +7,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
+  this.route('login');
   this.route('sparqlets', function() {
     this.route('show', { path: '/:sparqlet_id' });
     this.route('edit', { path: '/:sparqlet_id/edit' });

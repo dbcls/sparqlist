@@ -5,8 +5,9 @@ const bodyParser = require('body-parser');
 
 const port = process.env.PORT || 3000;
 const repositoryPath = process.env.REPOSITORY_PATH || './repository';
+const adminPassword = process.env.ADMIN_PASSWORD || '';
 
-const router = require('./lib/router')(repositoryPath);
+const router = require('./lib/router')(repositoryPath, adminPassword);
 
 app.set('query parser', 'extended');
 app.set('json spaces', 2);
@@ -17,6 +18,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(morgan('dev'));
 }
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
+app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(router);
 app.use(express.static(__dirname + '/public'));

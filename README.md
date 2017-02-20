@@ -30,3 +30,9 @@ Port to listen on.
 (default: `./repository`)
 
 Path to SPARQLet repository.
+
+### `ADMIN_PASSWORD`
+
+(default: empty)
+
+Admin password. If left empty, all administrative features are disabled.
