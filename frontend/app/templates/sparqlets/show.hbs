@@ -4,7 +4,7 @@
   <div class="card-block">
     {{#if session.isAuthenticated}}
       {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary" role="button"}}Edit{{/link-to}}
-      <button {{action 'delete' model}} class="btn btn-outline-danger">Delete</button>
+      <button {{action 'delete' model}} class="btn btn-outline-danger float-right">Delete</button>
     {{/if}}
     {{{model.html}}}
   </div>
