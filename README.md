@@ -13,7 +13,7 @@
 
 ## Run
 
-    $ PORT=3000 yarn start
+    $ PORT=3000 ADMIN_PASSWORD=changeme yarn start
 
 ## Configuration
 
