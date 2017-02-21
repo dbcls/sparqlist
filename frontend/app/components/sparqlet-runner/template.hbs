@@ -45,13 +45,13 @@
                 <pre><code>{{logEntry.message}}</code></pre>
               {{/each}}
               {{#unless trace.error}}
-                {{#if trace.results}}
-                  <div class="badge badge-primary">Results</div>
-                  <pre><code>{{to-json trace.results}}</code></pre>
-                {{/if}}
                 {{#if trace.updatedContext}}
                   <div class="badge badge-info">Updated context</div>
                   <pre><code>{{to-json trace.updatedContext}}</code></pre>
+                {{/if}}
+                {{#if trace.results}}
+                  <div class="badge badge-primary">Results</div>
+                  <pre><code>{{to-json trace.results}}</code></pre>
                 {{/if}}
               {{else}}
                 <div class="badge badge-danger">Error</div>
