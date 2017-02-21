@@ -30,7 +30,7 @@
       {{else}}
         <h2>Error</h2>
         <div class="alert alert-danger"><strong>{{response.status}}</strong> {{response.statusText}}</div>
-        <div class="badge badge-primary">Error</div>
+        <div class="badge badge-danger">Error</div>
         <pre><code>{{if response.error response.error response.results}}</code></pre>
       {{/if}}
     </div>
