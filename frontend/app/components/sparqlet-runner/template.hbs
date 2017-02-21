@@ -25,10 +25,12 @@
       {{#if response.ok}}
         <h2>Response</h2>
         <div class="alert alert-success"><strong>{{response.status}}</strong> {{response.statusText}}</div>
+        <div class="badge badge-primary">Results</div>
         <pre><code>{{to-json response.results}}</code></pre>
       {{else}}
         <h2>Error</h2>
         <div class="alert alert-danger"><strong>{{response.status}}</strong> {{response.statusText}}</div>
+        <div class="badge badge-primary">Error</div>
         <pre><code>{{if response.error response.error response.results}}</code></pre>
       {{/if}}
     </div>
