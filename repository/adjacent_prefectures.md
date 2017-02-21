@@ -9,7 +9,7 @@
 
 http://ja.dbpedia.org/sparql
 
-## Query adjacent prefectures
+## `adjacent_prefectures` Query adjacent prefectures
 
 ```sparql
 PREFIX prop-ja: <http://ja.dbpedia.org/property/>
@@ -23,8 +23,8 @@ WHERE {
 ## Output
 
 ```javascript
-(context, prev) => {
-  return prev.results.bindings.map((row) => {
+({adjacent_prefectures}) => {
+  return adjacent_prefectures.results.bindings.map((row) => {
     const components = row.o.value.split('/');
     return components[components.length-1];
   });
