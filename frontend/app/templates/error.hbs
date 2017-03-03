@@ -1,7 +1,5 @@
 {{#each model.errors as |error|}}
 <div class="alert alert-danger">
-<strong>{{error.status}}
-{{error.title}}</strong>:
-{{error.detail}}
+  <strong>{{error.status}} {{error.title}}</strong>: {{error.detail}}
 </div>
 {{/each}}
