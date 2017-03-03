@@ -13,7 +13,8 @@
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "morgan": "^1.7.0",
-    "node-fetch": "^1.6.3"
+    "node-fetch": "^1.6.3",
+    "type-is": "^1.6.14"
   },
   "scripts": {
     "start": "node --harmony-async-await index.js",
