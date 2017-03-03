@@ -23,7 +23,7 @@ WHERE {
 ## Output
 
 ```javascript
-({
+{
   json({adjacent_prefectures}) {
     return adjacent_prefectures.results.bindings.map((row) => {
       const components = row.o.value.split('/');
@@ -36,5 +36,5 @@ WHERE {
       return components[components.length-1];
     }).join('\n');
   }
-})
+}
 ```
