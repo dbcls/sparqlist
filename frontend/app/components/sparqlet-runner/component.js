@@ -15,6 +15,7 @@ export default Ember.Component.extend({
           ok: true,
           status: data.jqXHR.status,
           statusText: data.jqXHR.statusText,
+          contentType: data.payload.contentType,
           results: data.payload.results,
           traces: data.payload.traces
         });

@@ -26,12 +26,13 @@
         <h2>Response</h2>
         <div class="alert alert-success"><strong>{{response.status}}</strong> {{response.statusText}}</div>
         <div class="badge badge-primary">Results</div>
+        <pre>Content-Type: {{response.contentType}}</pre>
         <pre><code>{{to-json response.results}}</code></pre>
       {{else}}
         <h2>Error</h2>
         <div class="alert alert-danger"><strong>{{response.status}}</strong> {{response.statusText}}</div>
         <div class="badge badge-danger">Error</div>
-        <pre><code>{{if response.error response.error response.results}}</code></pre>
+        <pre><code>{{if response.error (to-json response.error) response.results}}</code></pre>
       {{/if}}
     </div>
       {{#if response.traces}}
