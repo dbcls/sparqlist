@@ -12,5 +12,6 @@ export default Ember.Component.extend({
   },
   didInsertElement() {
     this.set('code', this.attrs.src.value);
+    this.set('mdPath', this.attrs.mdPath.value);
   },
 });

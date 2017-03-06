@@ -7,4 +7,5 @@ export default DS.Model.extend({
   traceModeApiPath: DS.attr('string'),
   params:           DS.attr(),
   src:              DS.attr('string'),
+  mdPath:           DS.attr('string'),
 });

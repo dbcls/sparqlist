@@ -8,7 +8,7 @@
       <p class="float-right">&nbsp;</p>
       {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary float-right" role="button"}}Edit{{/link-to}}
     {{/if}}
-    <div>...please insert filename.md here...</div>
+    <div>{{model.mdPath}}</div>
   </div>
   <div class="card-block">
     {{{model.html}}}

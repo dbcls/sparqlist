@@ -3,7 +3,7 @@
     <div class="card-header">
       <strong>API code document</strong>
       <button class="btn {{if isUpdated 'btn-primary' 'btn-outline-primary'}} float-right">Save</button>
-      <div>...please insert filename.md here...</div>
+      <div>{{mdPath}}</div>
     </div>
     <div class="card-block">
       {{ivy-codemirror value=code valueUpdated=(action "update") options=(hash lineNumbers=true mode="markdown" theme="base16-light")}}
