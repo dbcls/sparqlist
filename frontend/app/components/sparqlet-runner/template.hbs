@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header">
     <div><strong>{{title}}</strong></div>
-    <div>{{apiPath}}</div>
+    <div><a href="{{apiPath}}">{{apiPath}}</a></div>
   </div>
   <div class="card-block">
     <h2>Request</h2>
@@ -19,53 +19,69 @@
     <div>
       {{actualPath}}
     </div>
+  </div>
 
-    {{#if response}}
-    <div>
-      {{#if response.ok}}
-        <h2>Response</h2>
-        <div class="alert alert-success"><strong>{{response.status}}</strong> {{response.statusText}}</div>
-        <div class="badge badge-primary">Results</div>
-        <pre>Content-Type: {{response.contentType}}</pre>
-        <pre><code>{{to-json response.results}}</code></pre>
-      {{else}}
-        <h2>Error</h2>
-        <div class="alert alert-danger"><strong>{{response.status}}</strong> {{response.statusText}}</div>
-        <div class="badge badge-danger">Error</div>
-        <pre><code>{{if response.error (to-json response.error) response.results}}</code></pre>
-      {{/if}}
+  {{#if response}}
+  <div class="card-block">
+    {{#if response.ok}}
+    <h2>Response</h2>
+    <div class="alert alert-success"><strong>{{response.status}}</strong> {{response.statusText}}</div>
+    <div class="card" style="margin-top: 10px;">
+      <div class="card-header"><div class="badge badge-primary">Results</div> Content-Type: {{response.contentType}}</div>
+      <div class="card-block"><pre><code>{{to-json response.results}}</code></pre></div>
     </div>
-      {{#if response.traces}}
-        <h2>Traces</h2>
-        {{#each response.traces as |trace|}}
-          <div class="card {{if trace.error 'card-outline-danger'}}" style="margin-top: 10px;">
-            <div class="card-header {{if trace.error 'card-danger card-inverse'}}">
-              {{trace.step.name}} <span class="badge badge-success">{{trace.step.type}}</span>
-            </div>
-            <div class="card-block">
-              {{#each trace.logEntries as |logEntry|}}
-                <div class="badge badge-default">{{logEntry.type}}</div>
-                <pre><code>{{logEntry.message}}</code></pre>
-              {{/each}}
-              {{#unless trace.error}}
-                {{#if trace.updatedContext}}
-                  <div class="badge badge-info">Updated context</div>
-                  <pre><code>{{to-json trace.updatedContext}}</code></pre>
-                {{/if}}
-                {{#if trace.results}}
-                  <div class="badge badge-primary">Results</div>
-                  <pre><code>{{to-json trace.results}}</code></pre>
-                {{/if}}
-              {{else}}
-                <div class="badge badge-danger">Error</div>
-                <pre><code>{{trace.error.message}}</code></pre>
-              {{/unless}}
-            </div>
-          </div>
-        {{/each}}
-      {{/if}}
+    {{else}}
+    <h2>Error</h2>
+    <div class="alert alert-danger"><strong>{{response.status}}</strong> {{response.statusText}}</div>
+    <div class="card card-outline-danger" style="margin-top: 10px;">
+      <div class="card-header"><div class="badge badge-danger">Error</div></div>
+      <div class="card-block"><pre><code>{{if response.error (to-json response.error) response.results}}</code></pre></div>
+    </div>
     {{/if}}
+  </div>
+    {{#if response.traces}}
+    <div class="card-block">
+      <h2>Traces</h2>
+      <a data-toggle="collapse" href="#traces">
+        {{#if response.ok}}
+        <div class="alert alert-success"><strong>Toggle</strong> show/hide traces</div>
+        {{else}}
+        <div class="alert alert-danger"><strong>Toggle</strong> show/hide traces</div>
+        {{/if}}
+      </a>
+      <div id="traces" class="collapse">
+        {{#each response.traces as |trace|}}
+        <div class="card {{if trace.error 'card-outline-danger'}}" style="margin-top: 10px;">
+          <div class="card-header {{if trace.error 'card-danger card-inverse'}}">
+            <span class="badge badge-primary">{{trace.step.type}}</span> {{trace.step.name}}
+          </div>
+          <div class="card-block">
+            {{#each trace.logEntries as |logEntry|}}
+            <div class="badge badge-default">{{logEntry.type}}</div>
+            <pre><code>{{logEntry.message}}</code></pre>
+            {{/each}}
+            {{#unless trace.error}}
+              {{#if trace.updatedContext}}
+                <div class="badge badge-info">Updated context</div>
+                <pre><code>{{to-json trace.updatedContext}}</code></pre>
+              {{/if}}
+              {{#if trace.results}}
+                <div class="badge badge-success">Results</div>
+                <pre><code>{{to-json trace.results}}</code></pre>
+              {{/if}}
+            {{else}}
+              <div class="badge badge-danger">Error</div>
+              <pre><code>{{trace.error.message}}</code></pre>
+            {{/unless}}
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+    {{/if}}
+  {{/if}}
 
+  <div class="card-block">
     {{yield}}
   </div>
 </div>
