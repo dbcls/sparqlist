@@ -36,3 +36,21 @@ Path to SPARQLet repository.
 (default: empty)
 
 Admin password. If left empty, all administrative features are disabled.
+
+## Development
+
+### Backend
+
+    $ cd sparqlist
+    $ yarn watch
+
+Open http://localhost:3000 in your browser for backend development.
+
+### Frontend
+
+    $ cd sparqlist/frontend
+    $ ember serve --proxy http://localhost:3000
+
+Open http://localhost:4200 on your browser for frontend development.
+
+Note that some requests, such as `/api`, can't be processed on http://localhost:4200 because the `--proxy` option does not work for these paths. Try them on http://localhost:3000.
