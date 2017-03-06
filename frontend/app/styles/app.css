@@ -2,6 +2,19 @@ body {
   padding-top: 70px;
 }
 
+h1 {
+  font-weight: 200;
+  border-bottom: 1px solid #eaecef;
+  margin-bottom: 16px;
+  padding-bottom: 0.3em;
+}
+
+h2 {
+  border-bottom: 1px solid #eaecef;
+  margin-bottom: 16px;
+  padding-bottom: 0.3em;
+}
+
 .CodeMirror {
   height: 100%;
   width: 100%;

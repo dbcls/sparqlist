@@ -1,11 +1,16 @@
 {{sparqlet-runner title=model.title apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
 
 <div class="card" style="margin-top: 10px;">
-  <div class="card-block">
+  <div class="card-header">
+    <strong>API code document</strong>
     {{#if session.isAuthenticated}}
-      {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary" role="button"}}Edit{{/link-to}}
       <button {{action 'delete' model}} class="btn btn-outline-danger float-right">Delete</button>
+      <p class="float-right">&nbsp;</p>
+      {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary float-right" role="button"}}Edit{{/link-to}}
     {{/if}}
+    <div>...please insert filename.md here...</div>
+  </div>
+  <div class="card-block">
     {{{model.html}}}
   </div>
 </div>
