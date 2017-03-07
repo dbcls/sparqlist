@@ -49,7 +49,7 @@ Open http://localhost:3000 in your browser for backend development.
 ### Frontend
 
     $ cd sparqlist/frontend
-    $ ember serve --proxy http://localhost:3000
+    $ yarn start -- --proxy http://localhost:3000
 
 Open http://localhost:4200 on your browser for frontend development.
 
