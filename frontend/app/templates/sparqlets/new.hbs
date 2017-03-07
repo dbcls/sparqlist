@@ -1,1 +1,6 @@
+{{#each error.errors as |error|}}
+<div class="alert alert-danger">
+  <strong>Error</strong> {{error.detail}}
+</div>
+{{/each}}
 {{sparqlet-editor src=model.src action="save"}}

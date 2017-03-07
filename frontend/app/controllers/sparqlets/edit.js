@@ -8,7 +8,7 @@ export default Ember.Controller.extend({
       model.save().then((model) => {
         this.transitionToRoute('sparqlets.show', model);
       }).catch((err) => {
-        // TODO handle
+        this.set('error', err);
         console.error(err);
       });
     }

@@ -1,3 +1,9 @@
+{{#each error.errors as |error|}}
+<div class="alert alert-danger">
+  <strong>Error</strong> {{error.detail}}
+</div>
+{{/each}}
+
 {{sparqlet-runner title=model.title apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
 
 <div class="card" style="margin-top: 10px;">

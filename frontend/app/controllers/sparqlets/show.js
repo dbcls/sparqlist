@@ -11,7 +11,7 @@ export default Ember.Controller.extend({
       model.destroyRecord().then(() => {
         this.transitionToRoute('sparqlets');
       }).catch((err) => {
-        // TODO handle
+        this.set('error', err);
         console.error(err);
       });
     }
