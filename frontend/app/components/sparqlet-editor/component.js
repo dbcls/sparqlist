@@ -7,7 +7,7 @@ export default Ember.Component.extend({
       this.set('code', newCode);
     },
     save() {
-      this.sendAction('action', this.get('code'));
+      this.sendAction('action', this.get('code'), this.get('name'));
     }
   },
   didInsertElement() {
