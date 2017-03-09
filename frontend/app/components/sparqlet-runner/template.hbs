@@ -41,17 +41,13 @@
   </div>
     {{#if response.traces}}
     <div class="card-block">
-      <h2>Traces</h2>
-      <a data-toggle="collapse" href="#traces">
-        {{#if response.ok}}
-        <div class="alert alert-success"><strong>Toggle</strong> show/hide traces</div>
-        {{else}}
-        <div class="alert alert-danger"><strong>Toggle</strong> show/hide traces</div>
-        {{/if}}
-      </a>
-      <div id="traces" class="collapse">
+      <h2>
+      Traces
+      </h2>
+      <button class='btn my-1' {{action 'toggleTrace'}}>{{fa-icon (if showTrace 'chevron-up' 'chevron-down')}} {{if showTrace 'Hide' 'Show'}} Trace</button>
+      {{#if showTrace}}
         {{#each response.traces as |trace|}}
-        <div class="card {{if trace.error 'card-outline-danger'}}" style="margin-top: 10px;">
+        <div class="mt-1 card {{if trace.error 'card-outline-danger'}}">
           <div class="card-header {{if trace.error 'card-danger card-inverse'}}">
             <span class="badge badge-primary">{{trace.step.type}}</span> {{trace.step.name}}
           </div>
@@ -76,7 +72,7 @@
           </div>
         </div>
         {{/each}}
-      </div>
+      {{/if}}
     </div>
     {{/if}}
   {{/if}}

@@ -30,6 +30,9 @@ export default Ember.Component.extend({
           error: data.payload.error
         });
       });
+    },
+    toggleTrace() {
+      this.toggleProperty('showTrace');
     }
   },
   didInsertElement() {
