@@ -10,9 +10,11 @@
   <div class="card-header">
     <strong>API code document</strong>
     {{#if session.isAuthenticated}}
-      <button {{action 'delete' model}} class="btn btn-outline-danger float-right">Delete</button>
+      <button {{action 'delete' model}} class="btn btn-outline-danger float-right">{{fa-icon 'trash'}} Delete</button>
       <p class="float-right">&nbsp;</p>
-      {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary float-right" role="button"}}Edit{{/link-to}}
+      {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary float-right" role="button"}}{{fa-icon 'edit'}} Edit{{/link-to}}
+      <p class="float-right">&nbsp;</p>
+      <button {{action 'fork' model}} class="btn btn-outline-primary float-right">{{fa-icon 'code-fork'}} Fork</button>
     {{/if}}
     <div>{{model.mdPath}}</div>
   </div>

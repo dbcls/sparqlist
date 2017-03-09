@@ -14,6 +14,11 @@ export default Ember.Controller.extend({
         this.set('error', err);
         console.error(err);
       });
+    },
+    fork(model) {
+      this.transitionToRoute('sparqlets.new').then(newRoute => {
+        newRoute.currentModel.set('src', model.get('src'));
+      });
     }
   }
 });
