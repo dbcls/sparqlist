@@ -12,7 +12,7 @@
         {{input value=(mut (get actualParams param.name)) class="form-control"}}
       </div>
       {{/each}}
-      <button class="btn btn-default" disabled={{isRunning}}>Execute</button>
+      <button class="btn btn-default" disabled={{isRunning}}>{{fa-icon 'rocket'}} Execute</button>
       {{#if isRunning}}{{fa-icon 'spinner' pulse=true size='lg'}}{{/if}}
     </form>
 

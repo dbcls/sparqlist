@@ -2,7 +2,7 @@
   <form {{action "save" on="submit"}}>
     <div class="card-header">
       <strong>API code document</strong>
-      <button class="btn {{if isUpdated 'btn-primary' 'btn-outline-primary'}} float-right">Save</button>
+      <button class="btn {{if isUpdated 'btn-primary' 'btn-outline-primary'}} float-right">{{fa-icon 'cloud-upload'}} Save</button>
       {{#if mdPath}}
       <div>{{mdPath}}</div>
       {{else}}
