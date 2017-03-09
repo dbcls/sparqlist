@@ -6,19 +6,21 @@
   <div class="card-block">
     <h2>Request</h2>
     <form {{action "execute" on="submit"}}>
-      {{#each params as |param|}}
+      {{#each actualParams as |param|}}
       <div class="form-group">
-        <label><code>{{param.name}}</code> {{param.description}}</label>
-        {{input value=(mut (get actualParams param.name)) class="form-control"}}
+        <label><code>{{param.param.name}}</code> {{param.param.description}}</label>
+        {{input value=(mut param.value) class="form-control"}}
       </div>
       {{/each}}
+
+    <div class="mt-4 mb-3">
+      <a href="{{actualPath}}">{{actualPath}}</a>
+    </div>
+
       <button class="btn btn-default" disabled={{isRunning}}>{{fa-icon 'rocket'}} Execute</button>
       {{#if isRunning}}{{fa-icon 'spinner' pulse=true size='lg'}}{{/if}}
     </form>
 
-    <div>
-      {{actualPath}}
-    </div>
   </div>
 
   {{#if response}}

@@ -6,7 +6,8 @@ export default Ember.Component.extend({
   actions: {
     execute() {
       const path = this.attrs.traceModeApiPath.value;
-      const params = this.get('actualParams');
+      const actualParams = this.get('actualParams');
+      const params = actualParams.reduce((acc, p) => Ember.merge(acc, {[p.param.name]: p.value}), {});
       this.set('isRunning', true);
 
       this.get('ajax').raw(path, {data: params}).then((data) => {
@@ -35,8 +36,15 @@ export default Ember.Component.extend({
       this.toggleProperty('showTrace');
     }
   },
+  actualParams: [],
+  actualPath: Ember.computed('actualParams.@each.value', function() {
+    const params = this.get('actualParams').reduce((acc, p) => Ember.merge(acc, {[p.param.name]: p.value}), {});
+    return this.get('apiPath') + '?' + jQuery.param(params);
+  }),
   didInsertElement() {
-    const params = this.attrs.params.value.reduce((acc, p) => Ember.merge(acc, {[p.name]: p.default}), {});
+    const params = this.attrs.params.value.map(param => {
+      return {param, value: param.default}
+    });
 
     this.set('actualParams', params);
   },
