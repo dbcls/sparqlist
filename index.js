@@ -32,9 +32,7 @@ app.use((err, req, res, next) => {
   } else {
     console.log('ERROR', err);
 
-    res.status(500).json({
-      error: err.message
-    });
+    res.status(422).json({errors: [{status: 500, detail: err.message}]});
   }
 });
 
