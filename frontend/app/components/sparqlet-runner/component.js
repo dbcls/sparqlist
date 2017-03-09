@@ -43,7 +43,7 @@ export default Ember.Component.extend({
   }),
   didInsertElement() {
     const params = this.attrs.params.value.map(param => {
-      return {param, value: param.default}
+      return {param, value: param.default};
     });
 
     this.set('actualParams', params);
