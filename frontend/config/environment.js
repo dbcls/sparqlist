@@ -4,7 +4,7 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'sparqlist',
     environment: environment,
-    rootURL: '/',
+    rootURL: process.env.ROOT_PATH || '/',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {

@@ -7,7 +7,9 @@ const port = process.env.PORT || 3000;
 const repositoryPath = process.env.REPOSITORY_PATH || './repository';
 const adminPassword = process.env.ADMIN_PASSWORD || '';
 
-const router = require('./lib/router')(repositoryPath, adminPassword);
+const pathPrefix = process.env.ROOT_PATH || '/';
+
+const router = require('./lib/router')(repositoryPath, adminPassword, pathPrefix);
 
 app.set('query parser', 'extended');
 app.set('json spaces', 2);
@@ -20,8 +22,9 @@ if (process.env.NODE_ENV === 'production') {
 app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 app.use(bodyParser.urlencoded({extended: true}));
 
-app.use(router);
-app.use(express.static(__dirname + '/public'));
+
+app.use(pathPrefix, router);
+app.use(pathPrefix, express.static(__dirname + '/public'));
 app.get('/*', async (req, res) => {
   res.sendFile('index.html', {root: __dirname + '/public'});
 });
