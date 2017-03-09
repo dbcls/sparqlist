@@ -39,7 +39,7 @@ export default Ember.Component.extend({
   actualParams: [],
   actualPath: Ember.computed('actualParams.@each.value', function() {
     const params = this.get('actualParams').reduce((acc, p) => Ember.merge(acc, {[p.param.name]: p.value}), {});
-    return this.get('apiPath') + '?' + jQuery.param(params);
+    return this.get('apiPath') + '?' + Ember.$.param(params);
   }),
   didInsertElement() {
     const params = this.attrs.params.value.map(param => {
