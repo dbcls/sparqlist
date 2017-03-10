@@ -1,7 +1,17 @@
-<ul>
-{{#each (sort-by "id" model) as |sparqlet|}}
-<li>{{#link-to 'sparqlets.show' sparqlet.id}}{{if sparqlet.title sparqlet.title sparqlet.id}}{{/link-to}} {{sparqlet.apiPath}}</li>
-{{/each}}
-</ul>
+{{#link-to 'sparqlets.new' class='btn btn-primary mb-2'}}
+  {{fa-icon 'plus-circle'}} New SPARQLet
+{{/link-to}}
 
-{{#link-to 'sparqlets.new' class='btn btn-primary'}}{{fa-icon 'plus-circle'}} New SPARQLet{{/link-to}}
+<div class="list-group">
+  {{#each (sort-by "id" model) as |sparqlet|}}
+    {{#link-to 'sparqlets.show' sparqlet.id class='list-group-item list-group-item-action'}}
+      <div>
+        {{#if sparqlet.title}}
+          {{sparqlet.id}} <span class="text-muted">- {{sparqlet.title}}</span>
+        {{else}}
+          {{sparqlet.id}}
+        {{/if}}
+      </div>
+    {{/link-to}}
+  {{/each}}
+</div>
