@@ -11,9 +11,19 @@
     $ cd sparqlist
     $ yarn install
 
+If you want to deploy SPARQList under a subdirectory, pass the directory via `ROOT_PATH`:
+
+    $ ROOT_PATH=/foo/ yarn install
+
+(Note that `ROOT_PATH` must end with `/`.)
+
 ## Run
 
     $ PORT=3000 ADMIN_PASSWORD=changeme yarn start
+
+If you want to deploy SPARQList under a subdirectory, pass the directory via `ROOT_PATH`:
+
+    $ ROOT_PATH=/foo/ PORT=3000 ADMIN_PASSWORD=changeme yarn start
 
 ## Configuration
 
@@ -36,6 +46,12 @@ Path to SPARQLet repository.
 (default: empty)
 
 Admin password. If left empty, all administrative features are disabled.
+
+### `ROOT_PATH`
+
+(default: `/`)
+
+Path of root. If you want to deploy SPARQList under a subdirectory, specify the directory. Note that `ROOT_PATH` must end with `/`.
 
 ## Development
 
