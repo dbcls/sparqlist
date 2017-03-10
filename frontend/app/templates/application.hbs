@@ -1,14 +1,15 @@
 <nav class="navbar navbar-toggleable-xl {{if session.isAuthenticated 'navbar-inverse bg-inverse' 'navbar-light bg-faded'}} fixed-top">
-{{#link-to 'index' class='navbar-brand'}}SPARQList{{/link-to}}
-<ul class="navbar-nav">
-  <li class="nav-item">
-    {{#if session.isAuthenticated}}
-      <a {{action 'invalidateSession'}} class="nav-link">Logout</a>
-    {{else}}
-      {{#link-to 'login' class="nav-link"}}Login{{/link-to}}
-    {{/if}}
-  </li>
-</ul>
+  {{#link-to 'sparqlets' class='navbar-brand'}}SPARQList{{/link-to}}
+
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      {{#if session.isAuthenticated}}
+        <a {{action 'invalidateSession'}} href="#" class="nav-link">Logout</a>
+      {{else}}
+        {{#link-to 'login' class="nav-link"}}Login{{/link-to}}
+      {{/if}}
+    </li>
+  </ul>
 </nav>
 
 <div class="container">
