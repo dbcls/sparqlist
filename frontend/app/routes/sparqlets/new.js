@@ -6,7 +6,7 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
     return this.get('store').createRecord('sparqlet');
   },
   actions: {
-    willTransition(transition) {
+    willTransition() {
       this._super(...arguments);
       this.get('controller.model').rollbackAttributes();
       this.set('controller.error', null);

@@ -3,7 +3,7 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
-    willTransition(transition) {
+    willTransition() {
       this._super(...arguments);
       this.get('controller.model').rollbackAttributes();
       this.set('controller.error', null);
