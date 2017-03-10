@@ -6,12 +6,11 @@ export default Ember.Component.extend({
   actions: {
     execute() {
       const path = this.attrs.traceModeApiPath.value;
-      const actualParams = this.get('actualParams');
-      const params = actualParams.reduce((acc, p) => Ember.merge(acc, {[p.param.name]: p.value}), {});
+      const params = this.get('composedParams');
+
       this.set('isRunning', true);
 
       this.get('ajax').raw(path, {data: params}).then((data) => {
-        this.set('isRunning', false);
         this.set('response', {
           ok: true,
           status: data.jqXHR.status,
@@ -21,7 +20,6 @@ export default Ember.Component.extend({
           traces: data.payload.traces
         });
       }).catch((data) => {
-        this.set('isRunning', false);
         this.set('response', {
           ok: false,
           status: data.jqXHR.status,
@@ -30,21 +28,37 @@ export default Ember.Component.extend({
           traces: data.payload.traces,
           error: data.payload.error
         });
+      }).then(() => {
+        this.set('isRunning', false);
       });
     },
+
     toggleTrace() {
       this.toggleProperty('showTrace');
     }
   },
+
   actualParams: [],
-  actualPath: Ember.computed('actualParams.@each.value', function() {
-    const params = this.get('actualParams').reduce((acc, p) => Ember.merge(acc, {[p.param.name]: p.value}), {});
-    return this.get('apiPath') + '?' + Ember.$.param(params);
+
+  composedParams: Ember.computed('actualParams.@each.value', function() {
+    const params = this.get('actualParams');
+
+    return params.reduce((acc, p) => Ember.merge(acc, {[p.param.name]: p.value}), {});
   }),
+
+  actualPath: Ember.computed('composedParams', function() {
+    const params = this.get('composedParams');
+    const path = this.get('apiPath');
+
+    if (Object.keys(params).length === 0) {
+      return path;
+    } else {
+      return `${path}?${Ember.$.param(params)}`;
+    }
+  }),
+
   didInsertElement() {
-    const params = this.attrs.params.value.map(param => {
-      return {param, value: param.default};
-    });
+    const params = this.attrs.params.value.map(param => ({param, value: param.default}));
 
     this.set('actualParams', params);
   },
