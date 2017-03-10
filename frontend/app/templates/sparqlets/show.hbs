@@ -11,25 +11,28 @@
 
 {{sparqlet-runner apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
 
-<div class="card" style="margin-top: 10px;">
-  <div class="card-header">
-    <strong>API code document</strong>
+<div class="card my-3">
+  <div class="card-header d-flex align-items-center">
+    <div class="mr-auto">
+      <strong>API code document</strong>
+      <div>{{model.mdPath}} <span class="text-muted">(version: {{model.mtime}})</span></div>
+    </div>
 
     {{#if session.isAuthenticated}}
-      <button {{action 'delete' model}} class="btn btn-outline-danger float-right mx-1">
-        {{fa-icon 'trash'}} Delete
-      </button>
+      <div>
+        <button {{action 'fork' model}} class="btn btn-outline-primary">
+          {{fa-icon 'code-fork'}} Fork
+        </button>
 
-      {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary float-right mx-1" role="button"}}
-        {{fa-icon 'edit'}} Edit
-      {{/link-to}}
+        {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary" role="button"}}
+          {{fa-icon 'edit'}} Edit
+        {{/link-to}}
 
-      <button {{action 'fork' model}} class="btn btn-outline-primary float-right mx-1">
-        {{fa-icon 'code-fork'}} Fork
-      </button>
+        <button {{action 'delete' model}} class="btn btn-outline-danger">
+          {{fa-icon 'trash'}} Delete
+        </button>
+      </div>
     {{/if}}
-
-    <div>{{model.mdPath}} <span class="text-muted">(version: {{model.mtime}})</span></div>
   </div>
 
   <div class="card-block">
