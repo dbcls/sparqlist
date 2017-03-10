@@ -1,16 +1,25 @@
 <div class="card" style="margin-top: 10px;">
   <form {{action "save" on="submit"}}>
-    <div class="card-header">
-      <strong>API code document</strong>
-      <button class="btn {{if isUpdated 'btn-primary' 'btn-outline-primary'}} float-right">{{fa-icon 'cloud-upload'}} Save</button>
-      {{#if mdPath}}
-      <div>{{mdPath}}</div>
-      {{else}}
-      <div class='form-inline'>
-        {{input value=name class='form-control'}}.md
+    <div class="card-header d-flex align-items-center">
+      <div class="mr-auto">
+        <strong>API code document</strong>
+
+        {{#if mdPath}}
+          <div>{{mdPath}}</div>
+        {{else}}
+          <div class='form-inline'>
+            {{input value=name class='form-control'}}.md
+          </div>
+        {{/if}}
       </div>
-      {{/if}}
+
+      <div>
+        <button class="btn {{if isUpdated 'btn-primary' 'btn-outline-primary'}} float-right">
+          {{fa-icon 'cloud-upload'}} Save
+        </button>
+      </div>
     </div>
+
     <div class="card-block">
       {{ivy-codemirror value=code valueUpdated=(action "update") options=(hash lineNumbers=true mode="markdown" theme="base16-light")}}
     </div>
