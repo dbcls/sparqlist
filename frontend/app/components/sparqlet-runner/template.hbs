@@ -1,11 +1,6 @@
 <div class="card">
-  <div class="card-header">
-    <div><strong>{{title}}</strong></div>
-    <div><a href="{{apiPath}}">{{apiPath}}</a></div>
-  </div>
-
   <div class="card-block">
-    <h2>Request</h2>
+    <h4 class="card-title mb-3">Run</h4>
 
     <form {{action "execute" on="submit"}}>
       {{#each actualParams as |param|}}
@@ -15,11 +10,11 @@
         </div>
       {{/each}}
 
-      <div class="mt-4 mb-3">
-        <a href="{{actualPath}}">{{actualPath}}</a>
+      <div>
+        <a href="{{actualPath}}">{{path-to-url actualPath}}</a>
       </div>
 
-      <button class="btn btn-default" disabled={{isRunning}}>
+      <button class="btn btn-default mt-3" disabled={{isRunning}}>
         {{fa-icon 'rocket'}} Execute
       </button>
 
@@ -27,12 +22,12 @@
         {{fa-icon 'spinner' pulse=true size='lg'}}
       {{/if}}
     </form>
-  </div>
 
-  {{#if response}}
-    <div class="card-block">
+    {{#if response}}
+      <hr>
+
       {{#if response.ok}}
-        <h2>Response</h2>
+        <h4 class="card-title">Response</h4>
 
         <div class="alert alert-success">
           <strong>{{response.status}}</strong> {{response.statusText}}
@@ -49,7 +44,7 @@
           </div>
         </div>
       {{else}}
-        <h2>Error</h2>
+        <h4 class="card-title">Error</h4>
 
         <div class="alert alert-danger">
           <strong>{{response.status}}</strong> {{response.statusText}}
@@ -65,20 +60,20 @@
           </div>
         </div>
       {{/if}}
-    </div>
 
-    {{#if response.traces}}
-      <div class="card-block">
-        <h2>Traces</h2>
+      {{#if response.traces}}
+        <hr>
 
-        <button class='btn my-1' {{action 'toggleTrace'}}>
+        <button class='btn' {{action 'toggleTrace'}}>
           {{fa-icon (if showTrace 'chevron-up' 'chevron-down')}}
           {{if showTrace 'Hide' 'Show'}} Trace
         </button>
 
         {{#if showTrace}}
+          <h4 class="card-title mt-3">Traces</h4>
+
           {{#each response.traces as |trace|}}
-            <div class="mt-1 card {{if trace.error 'card-outline-danger'}}">
+            <div class="mt-3 card {{if trace.error 'card-outline-danger'}}">
               <div class="card-header {{if trace.error 'card-danger card-inverse'}}">
                 <span class="badge badge-primary">{{trace.step.type}}</span>
                 {{trace.step.name}}
@@ -108,11 +103,7 @@
             </div>
           {{/each}}
         {{/if}}
-      </div>
+      {{/if}}
     {{/if}}
-  {{/if}}
-
-  <div class="card-block">
-    {{yield}}
   </div>
 </div>

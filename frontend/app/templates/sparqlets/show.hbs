@@ -1,21 +1,37 @@
+<h1>{{if model.title model.title model.id}}</h1>
+<p>
+  <a href="{{model.apiPath}}">{{path-to-url model.apiPath}}</a>
+</p>
+
 {{#each error.errors as |error|}}
-<div class="alert alert-danger">
-  <strong>Error</strong> {{error.detail}}
-</div>
+  <div class="alert alert-danger">
+    <strong>Error</strong> {{error.detail}}
+  </div>
 {{/each}}
 
-{{sparqlet-runner title=model.title apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
+{{sparqlet-runner apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
 
 <div class="card" style="margin-top: 10px;">
   <div class="card-header">
     <strong>API code document</strong>
+
     {{#if session.isAuthenticated}}
-      <button {{action 'delete' model}} class="btn btn-outline-danger float-right mx-1">{{fa-icon 'trash'}} Delete</button>
-      {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary float-right mx-1" role="button"}}{{fa-icon 'edit'}} Edit{{/link-to}}
-      <button {{action 'fork' model}} class="btn btn-outline-primary float-right mx-1">{{fa-icon 'code-fork'}} Fork</button>
+      <button {{action 'delete' model}} class="btn btn-outline-danger float-right mx-1">
+        {{fa-icon 'trash'}} Delete
+      </button>
+
+      {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary float-right mx-1" role="button"}}
+        {{fa-icon 'edit'}} Edit
+      {{/link-to}}
+
+      <button {{action 'fork' model}} class="btn btn-outline-primary float-right mx-1">
+        {{fa-icon 'code-fork'}} Fork
+      </button>
     {{/if}}
+
     <div>{{model.mdPath}} <span class="text-muted">(version: {{model.mtime}})</span></div>
   </div>
+
   <div class="card-block">
     {{{model.html}}}
   </div>
