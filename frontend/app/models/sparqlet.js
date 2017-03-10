@@ -9,4 +9,5 @@ export default DS.Model.extend({
   params:           DS.attr(),
   src:              DS.attr('string'),
   mdPath:           DS.attr('string'),
+  mtime:            DS.attr('string'),
 });
