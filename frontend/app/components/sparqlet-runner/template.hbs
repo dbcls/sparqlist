@@ -88,11 +88,6 @@
                 {{/each}}
 
                 {{#unless trace.error}}
-                  {{#if trace.updatedContext}}
-                    <div class="badge badge-info">Updated context</div>
-                    <pre><code>{{to-json trace.updatedContext}}</code></pre>
-                  {{/if}}
-
                   {{#if trace.results}}
                     <div class="badge badge-success">Results</div>
                     <pre><code>{{to-json trace.results}}</code></pre>
