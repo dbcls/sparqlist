@@ -3,79 +3,112 @@
     <div><strong>{{title}}</strong></div>
     <div><a href="{{apiPath}}">{{apiPath}}</a></div>
   </div>
+
   <div class="card-block">
     <h2>Request</h2>
+
     <form {{action "execute" on="submit"}}>
       {{#each actualParams as |param|}}
-      <div class="form-group">
-        <label><code>{{param.param.name}}</code> {{param.param.description}}</label>
-        {{input value=(mut param.value) class="form-control"}}
-      </div>
+        <div class="form-group">
+          <label><code>{{param.param.name}}</code> {{param.param.description}}</label>
+          {{input value=(mut param.value) class="form-control"}}
+        </div>
       {{/each}}
 
-    <div class="mt-4 mb-3">
-      <a href="{{actualPath}}">{{actualPath}}</a>
-    </div>
+      <div class="mt-4 mb-3">
+        <a href="{{actualPath}}">{{actualPath}}</a>
+      </div>
 
-      <button class="btn btn-default" disabled={{isRunning}}>{{fa-icon 'rocket'}} Execute</button>
-      {{#if isRunning}}{{fa-icon 'spinner' pulse=true size='lg'}}{{/if}}
+      <button class="btn btn-default" disabled={{isRunning}}>
+        {{fa-icon 'rocket'}} Execute
+      </button>
+
+      {{#if isRunning}}
+        {{fa-icon 'spinner' pulse=true size='lg'}}
+      {{/if}}
     </form>
-
   </div>
 
   {{#if response}}
-  <div class="card-block">
-    {{#if response.ok}}
-    <h2>Response</h2>
-    <div class="alert alert-success"><strong>{{response.status}}</strong> {{response.statusText}}</div>
-    <div class="card" style="margin-top: 10px;">
-      <div class="card-header"><div class="badge badge-primary">Results</div> Content-Type: {{response.contentType}}</div>
-      <div class="card-block"><pre><code>{{to-json response.results}}</code></pre></div>
-    </div>
-    {{else}}
-    <h2>Error</h2>
-    <div class="alert alert-danger"><strong>{{response.status}}</strong> {{response.statusText}}</div>
-    <div class="card card-outline-danger" style="margin-top: 10px;">
-      <div class="card-header"><div class="badge badge-danger">Error</div></div>
-      <div class="card-block"><pre><code>{{if response.error (to-json response.error) response.results}}</code></pre></div>
-    </div>
-    {{/if}}
-  </div>
-    {{#if response.traces}}
     <div class="card-block">
-      <h2>
-      Traces
-      </h2>
-      <button class='btn my-1' {{action 'toggleTrace'}}>{{fa-icon (if showTrace 'chevron-up' 'chevron-down')}} {{if showTrace 'Hide' 'Show'}} Trace</button>
-      {{#if showTrace}}
-        {{#each response.traces as |trace|}}
-        <div class="mt-1 card {{if trace.error 'card-outline-danger'}}">
-          <div class="card-header {{if trace.error 'card-danger card-inverse'}}">
-            <span class="badge badge-primary">{{trace.step.type}}</span> {{trace.step.name}}
+      {{#if response.ok}}
+        <h2>Response</h2>
+
+        <div class="alert alert-success">
+          <strong>{{response.status}}</strong> {{response.statusText}}
+        </div>
+
+        <div class="card mt-1">
+          <div class="card-header">
+            <div class="badge badge-primary">Results</div>
+            Content-Type: {{response.contentType}}
           </div>
+
           <div class="card-block">
-            {{#each trace.logEntries as |logEntry|}}
-            <div class="badge badge-default">{{logEntry.type}}</div>
-            <pre><code>{{logEntry.message}}</code></pre>
-            {{/each}}
-            {{#unless trace.error}}
-              {{#if trace.updatedContext}}
-                <div class="badge badge-info">Updated context</div>
-                <pre><code>{{to-json trace.updatedContext}}</code></pre>
-              {{/if}}
-              {{#if trace.results}}
-                <div class="badge badge-success">Results</div>
-                <pre><code>{{to-json trace.results}}</code></pre>
-              {{/if}}
-            {{else}}
-              <div class="badge badge-danger">Error</div>
-              <pre><code>{{trace.error.message}}</code></pre>
-            {{/unless}}
+            <pre><code>{{to-json response.results}}</code></pre>
           </div>
         </div>
-        {{/each}}
+      {{else}}
+        <h2>Error</h2>
+
+        <div class="alert alert-danger">
+          <strong>{{response.status}}</strong> {{response.statusText}}
+        </div>
+
+        <div class="card card-outline-danger mt-1">
+          <div class="card-header">
+            <div class="badge badge-danger">Error</div>
+          </div>
+
+          <div class="card-block">
+            <pre><code>{{if response.error (to-json response.error) response.results}}</code></pre>
+          </div>
+        </div>
       {{/if}}
     </div>
+
+    {{#if response.traces}}
+      <div class="card-block">
+        <h2>Traces</h2>
+
+        <button class='btn my-1' {{action 'toggleTrace'}}>
+          {{fa-icon (if showTrace 'chevron-up' 'chevron-down')}}
+          {{if showTrace 'Hide' 'Show'}} Trace
+        </button>
+
+        {{#if showTrace}}
+          {{#each response.traces as |trace|}}
+            <div class="mt-1 card {{if trace.error 'card-outline-danger'}}">
+              <div class="card-header {{if trace.error 'card-danger card-inverse'}}">
+                <span class="badge badge-primary">{{trace.step.type}}</span>
+                {{trace.step.name}}
+              </div>
+
+              <div class="card-block">
+                {{#each trace.logEntries as |logEntry|}}
+                  <div class="badge badge-default">{{logEntry.type}}</div>
+                  <pre><code>{{logEntry.message}}</code></pre>
+                {{/each}}
+
+                {{#unless trace.error}}
+                  {{#if trace.updatedContext}}
+                    <div class="badge badge-info">Updated context</div>
+                    <pre><code>{{to-json trace.updatedContext}}</code></pre>
+                  {{/if}}
+
+                  {{#if trace.results}}
+                    <div class="badge badge-success">Results</div>
+                    <pre><code>{{to-json trace.results}}</code></pre>
+                  {{/if}}
+                {{else}}
+                  <div class="badge badge-danger">Error</div>
+                  <pre><code>{{trace.error.message}}</code></pre>
+                {{/unless}}
+              </div>
+            </div>
+          {{/each}}
+        {{/if}}
+      </div>
     {{/if}}
   {{/if}}
 
