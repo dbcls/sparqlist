@@ -66,7 +66,7 @@
       {{#if response.traces}}
         <hr>
 
-        <button class='btn btn-info' {{action 'toggleTrace'}}>
+        <button class='btn btn-info' {{action (toggle 'showTrace' this)}}>
           {{fa-icon (if showTrace 'chevron-up' 'chevron-down')}}
           {{if showTrace 'Hide' 'Show'}} Trace
         </button>

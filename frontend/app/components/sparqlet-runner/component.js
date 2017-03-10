@@ -31,10 +31,6 @@ export default Ember.Component.extend({
       }).then(() => {
         this.set('isRunning', false);
       });
-    },
-
-    toggleTrace() {
-      this.toggleProperty('showTrace');
     }
   },
 
