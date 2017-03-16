@@ -7,7 +7,7 @@
 
 ## Install
 
-    $ git clone git@github.com:enishitech/sparqlist.git
+    $ git clone git@github.com:dbcls/sparqlist.git
     $ cd sparqlist
     $ yarn install
 
