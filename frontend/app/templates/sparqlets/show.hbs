@@ -12,30 +12,46 @@
 {{sparqlet-runner apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
 
 <div class="card my-3">
-  <div class="card-header d-flex align-items-center">
-    <div class="mr-auto">
-      <strong>API code document</strong>
-      <div>{{model.mdPath}} <span class="text-muted">(version: {{model.mtime}})</span></div>
+  <div class="card-header">
+    <div class="d-flex align-items-center">
+      <div class="mr-auto">
+        <strong>API code document</strong>
+        <div>{{model.mdPath}} <span class="text-muted">(version: {{model.mtime}})</span></div>
+      </div>
+
+      {{#if session.isAuthenticated}}
+        <div>
+          <button {{action 'fork' model}} class="btn btn-outline-primary">
+            {{fa-icon 'code-fork'}} Fork
+          </button>
+
+          {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary" role="button"}}
+            {{fa-icon 'edit'}} Edit
+          {{/link-to}}
+
+          <button {{action 'delete' model}} class="btn btn-outline-danger">
+            {{fa-icon 'trash'}} Delete
+          </button>
+        </div>
+      {{/if}}
     </div>
 
-    {{#if session.isAuthenticated}}
-      <div>
-        <button {{action 'fork' model}} class="btn btn-outline-primary">
-          {{fa-icon 'code-fork'}} Fork
-        </button>
-
-        {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary" role="button"}}
-          {{fa-icon 'edit'}} Edit
-        {{/link-to}}
-
-        <button {{action 'delete' model}} class="btn btn-outline-danger">
-          {{fa-icon 'trash'}} Delete
-        </button>
-      </div>
-    {{/if}}
+    <ul class="nav nav-tabs card-header-tabs mt-2">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#html">HTML</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#markdown">Markdown</a>
+      </li>
+    </ul>
   </div>
 
-  <div class="card-block">
-    {{{model.html}}}
+  <div class="card-block tab-content">
+    <div class="tab-pane active" id="html">
+      {{{model.html}}}
+    </div>
+    <div class="tab-pane" id="markdown">
+      <pre><code>{{model.src}}</code></pre>
+    </div>
   </div>
 </div>
