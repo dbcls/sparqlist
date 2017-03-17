@@ -50,7 +50,7 @@ Specify the new ID for the new SPARQLet and click "Save" button.
 ## Deleting a SPARQLet
 
 Click "Delete" button in order to delete the SPARQLet.
-Please be careful, the is no undo available.
+Please be careful, there is no undo available.
 
 ## Edit SPARQLets directory
 
