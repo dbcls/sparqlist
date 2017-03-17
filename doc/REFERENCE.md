@@ -3,10 +3,12 @@
 ## Overview
 
 A SPARQLet is defined as a [Markdown](https://guides.github.com/features/mastering-markdown/) document with several extensions.
-SPARQLet can be called as a HTTP API `/api/:sparqlet_id?key1=value1&key2=value&...`.
+SPARQLet can be called as a HTTP API
+`/api/:sparqlet_id?key1=value1&key2=value&...`.
 
 SPARQLet can consider `Accept` header in the request.
-You can also specify the type adding the suffix you want: `/api/:sparqlet_id.json?key1=value1&key2=value&...` or something.
+You can also specify the type adding the suffix you want:
+`/api/:sparqlet_id.json?key1=value1&key2=value&...` or something.
 See Code blocks section for detail.
 
 ## Title
@@ -126,7 +128,11 @@ The following example show how to select data with SPARQL query and extract valu
     ## `modified_results` Modify
 
     ```javascript
-    ({results}) => results.results.bindings.map(binding => Object.keys(binding).map(k => ({[k]: binding[k].value})));
+    ({results}) => results.results.bindings.map(
+      binding => Object.keys(binding).map(
+        k => ({[k]: binding[k].value})
+      )
+    );
     ```
 
 The context object is passed as the first argument of the JavaScript function.
