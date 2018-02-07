@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-block">
+  <div class="card-body">
     <h4 class="card-title mb-3">Run</h4>
 
     <form {{action "execute" on="submit"}}>
@@ -41,7 +41,7 @@
             Content-Type: {{response.contentType}}
           </div>
 
-          <div class="card-block">
+          <div class="card-body">
             <pre><code>{{to-json response.results}}</code></pre>
           </div>
         </div>
@@ -57,7 +57,7 @@
             <div class="badge badge-danger">Error</div>
           </div>
 
-          <div class="card-block">
+          <div class="card-body">
             <pre><code>{{if response.error (to-json response.error) response.results}}</code></pre>
           </div>
         </div>
@@ -81,7 +81,7 @@
                 {{trace.step.name}}
               </div>
 
-              <div class="card-block">
+              <div class="card-body">
                 {{#each trace.logEntries as |logEntry|}}
                   <div class="badge badge-default">{{logEntry.type}}</div>
                   <pre><code>{{logEntry.message}}</code></pre>
