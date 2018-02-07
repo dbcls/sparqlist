@@ -24,7 +24,7 @@
     "watch": "nodemon --exec yarn start --ignore frontend/"
   },
   "engines": {
-    "node": "7.6.0"
+    "node": ">= 7.6.0"
   },
   "private": true,
   "devDependencies": {
