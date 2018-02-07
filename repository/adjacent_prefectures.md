@@ -16,7 +16,7 @@ PREFIX prop-ja: <http://ja.dbpedia.org/property/>
 PREFIX resource-ja: <http://ja.dbpedia.org/resource/>
 SELECT DISTINCT *
 WHERE {
-    resource-ja:{{params.of}} prop-ja:隣接都道府県 ?o .
+    resource-ja:{{of}} prop-ja:隣接都道府県 ?o .
 }
 ```
 

@@ -107,7 +107,7 @@ The following example shows how to embed the `limit` value passed to the SPARQLe
     ## `result` Select all
 
     ```sparql
-    SELECT * WHERE { ?s ?p ?o . }  LIMIT {{{params.limit}}}
+    SELECT * WHERE { ?s ?p ?o . }  LIMIT {{{limit}}}
     ```
 
 SPARQL queries are issued with `application/sparql-results+json` header except it is not the final block.

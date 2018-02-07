@@ -25,7 +25,7 @@ WHERE {
   {
     SELECT ?tg ?rs
     {
-      VALUES ?tg { <http://togogenome.org/gene/{{params.tax_id}}:{{params.gene_id}}> }
+      VALUES ?tg { <http://togogenome.org/gene/{{tax_id}}:{{gene_id}}> }
       ?tg skos:exactMatch ?rs .
     } ORDER BY ?rs LIMIT 1
   }
