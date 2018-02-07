@@ -17,6 +17,20 @@ h2 {
   padding-bottom: 0.3em;
 }
 
+.card-header input[type=search] {
+  border: none;
+  border-bottom: 1px solid #999;
+  background-color: transparent;
+  padding: 6px;
+  max-width: 200px;
+  box-shadow: none;
+  border-radius: 0;
+
+  &:focus {
+    border-color: #66afe9;
+  }
+}
+
 .CodeMirror {
   height: 100%;
   width: 100%;
