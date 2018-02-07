@@ -10,7 +10,7 @@
   },
   "repository": "",
   "scripts": {
-    "build": "ember build",
+    "build": "./node_modules/ember-cli/bin/ember build",
     "start": "ember server",
     "test": "ember test"
   },
