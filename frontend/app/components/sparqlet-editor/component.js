@@ -1,16 +1,16 @@
-import Ember from 'ember';
+import Component from '@ember/component';
 
-export default Ember.Component.extend({
+export default Component.extend({
   actions: {
     update(newCode) {
-      this.set('isUpdated', newCode !== this.attrs.src.value);
+      this.set('isUpdated', newCode !== this.get('src'));
       this.set('code', newCode);
     },
     save() {
-      this.sendAction('action', this.get('code'), this.get('name'));
+      this.get('action')(this.get('code'), this.get('name'));
     }
   },
   didInsertElement() {
-    this.set('code', this.attrs.src.value);
+    this.set('code', this.get('src'));
   },
 });

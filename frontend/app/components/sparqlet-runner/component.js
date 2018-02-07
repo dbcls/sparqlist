@@ -1,11 +1,15 @@
-import Ember from 'ember';
+import $ from 'jquery';
+import Component from '@ember/component';
+import { computed } from '@ember/object';
+import { inject as service } from '@ember/service';
+import { merge } from '@ember/polyfills';
 
-export default Ember.Component.extend({
-  ajax: Ember.inject.service(),
+export default Component.extend({
+  ajax: service(),
 
   actions: {
     execute() {
-      const path = this.attrs.traceModeApiPath.value;
+      const path = this.get('traceModeApiPath');
       const params = this.get('composedParams');
 
       this.set('isRunning', true);
@@ -34,27 +38,31 @@ export default Ember.Component.extend({
     }
   },
 
-  actualParams: [],
+  init() {
+    this._super(...arguments);
 
-  composedParams: Ember.computed('actualParams.@each.value', function() {
+    this.set('actualParams', []);
+  },
+
+  composedParams: computed('actualParams.@each.value', function() {
     const params = this.get('actualParams');
 
-    return params.reduce((acc, p) => Ember.merge(acc, {[p.param.name]: p.value}), {});
+    return params.reduce((acc, p) => merge(acc, {[p.param.name]: p.value}), {});
   }),
 
-  actualPath: Ember.computed('composedParams', function() {
+  actualPath: computed('composedParams', function() {
     const params = this.get('composedParams');
     const path = this.get('apiPath');
 
     if (Object.keys(params).length === 0) {
       return path;
     } else {
-      return `${path}?${Ember.$.param(params)}`;
+      return `${path}?${$.param(params)}`;
     }
   }),
 
   didInsertElement() {
-    const params = this.attrs.params.value.map(param => ({param, value: param.default}));
+    const params = this.get('params').map(param => ({param, value: param.default}));
 
     this.set('actualParams', params);
   },

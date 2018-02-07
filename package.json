@@ -18,8 +18,8 @@
     "type-is": "^1.6.14"
   },
   "scripts": {
-    "start": "node --harmony-async-await index.js",
-    "build": "cd frontend && NPM_CONFIG_PRODUCTION=false yarn install --prefer-offline && $(yarn bin)/bower install && yarn build --environment=production --output-path=../public",
+    "start": "node index.js",
+    "build": "cd frontend && yarn install --production=false && yarn build --environment=production --output-path=../public",
     "postinstall": "yarn build",
     "watch": "nodemon --exec yarn start --ignore frontend/"
   },

@@ -1,7 +1,7 @@
-import Ember from 'ember';
+import { helper } from '@ember/component/helper';
 
 export function pathToUrl([path]) {
   return location.origin + path;
 }
 
-export default Ember.Helper.helper(pathToUrl);
+export default helper(pathToUrl);
