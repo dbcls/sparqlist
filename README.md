@@ -1,5 +1,9 @@
 # SPARQList
 
+## Docker
+
+    $ docker run dbcls/sparqlist
+
 ## Prerequisites
 
 * [Node.js](https://nodejs.org/) v7.6.0
