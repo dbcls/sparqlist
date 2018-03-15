@@ -1,21 +1,23 @@
 <div class="card">
-  <div class="card-header d-flex">
-    {{#link-to 'sparqlets.new' class='btn btn-primary mr-auto'}}
-      {{fa-icon 'plus-circle'}} New SPARQLet
-    {{/link-to}}
-
-    {{input value=query type='search' placeholder='Search' class='form-control'}}
-  </div>
-
-  <div class="list-group list-group-flush">
-    {{#each (sort-by 'id' (filter-by 'id' search model)) as |sparqlet|}}
-      {{#link-to 'sparqlets.show' sparqlet.id class='list-group-item list-group-item-action'}}
-        {{#if sparqlet.title}}
-          {{sparqlet.id}} <span class="text-muted">- {{sparqlet.title}}</span>
-        {{else}}
-          {{sparqlet.id}}
-        {{/if}}
+  {{#collection-search collection=model keys=(array 'id' 'src') as |search|}}
+    <div class="card-header d-flex">
+      {{#link-to 'sparqlets.new' class='btn btn-primary mr-auto'}}
+        {{fa-icon 'plus-circle'}} New SPARQLet
       {{/link-to}}
-    {{/each}}
-  </div>
+
+      <input type='search' oninput={{action search.update value='target.value'}} placeholder='Search' class='form-control'>
+    </div>
+
+    <div class="list-group list-group-flush">
+      {{#each (sort-by 'id' search.result) as |sparqlet|}}
+        {{#link-to 'sparqlets.show' sparqlet.id class='list-group-item list-group-item-action'}}
+          {{#if sparqlet.title}}
+            {{sparqlet.id}} <span class="text-muted">- {{sparqlet.title}}</span>
+          {{else}}
+            {{sparqlet.id}}
+          {{/if}}
+        {{/link-to}}
+      {{/each}}
+    </div>
+  {{/collection-search}}
 </div>
