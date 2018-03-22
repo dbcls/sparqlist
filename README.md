@@ -6,8 +6,8 @@
 
 ## Prerequisites
 
-* [Node.js](https://nodejs.org/) v7.6.0
-* [yarn](https://yarnpkg.com/) v0.20.3
+* [Node.js](https://nodejs.org/) v8.10.0
+* [yarn](https://yarnpkg.com/) v1.5.1
 
 ## Install
 
@@ -69,7 +69,7 @@ Open http://localhost:3000 in your browser for backend development.
 ### Frontend
 
     $ cd sparqlist/frontend
-    $ yarn start -- --proxy http://localhost:3000
+    $ yarn start --proxy http://localhost:3000
 
 Open http://localhost:4200 on your browser for frontend development.
 
