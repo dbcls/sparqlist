@@ -167,6 +167,10 @@ You can also use MIME types to specify the formats:
 })
 ```
 
+#### Fetch API
+
+You can use fetch API in JavaScript code blocks. See [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for details.
+
 ### Formats and MIME types
 
 Format identifier definitions follow [mime-db](https://github.com/jshttp/mime-db).
