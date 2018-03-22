@@ -152,7 +152,7 @@ In addition, you can handle multiple formats by using the following special nota
 })
 ```
 
-where json() works if the request has `Accept: applicaton/json` header or with `.json` suffix, and text() works for `Accept: text/plain` or `.text`, `.txt` suffixes.
+where json() works if the request has `Accept: application/json` header or with `.json` suffix, and text() works for `Accept: text/plain` or `.text`, `.txt` suffixes.
 
 You can also use MIME types to specify the formats:
 
