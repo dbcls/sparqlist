@@ -171,6 +171,22 @@ You can also use MIME types to specify the formats:
 
 You can use fetch API in JavaScript code blocks. See [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for details.
 
+Example:
+
+Fetch http://example.com and return the response body wrapped in an object.
+
+    ```javascript
+    ({
+      json() {
+        return fetch('http://example.com')
+          .then(resp => resp.text())
+          .then(body => {
+            return {body};
+          });
+      }
+    })
+    ```
+
 ### Formats and MIME types
 
 Format identifier definitions follow [mime-db](https://github.com/jshttp/mime-db).
