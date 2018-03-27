@@ -171,7 +171,7 @@ You can also use MIME types to specify the formats:
 
 You can use fetch API in JavaScript code blocks. See [Fetch API documentation](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) for details.
 
-Example:
+Example 1:
 
 Fetch http://example.com and return the response body wrapped in an object.
 
@@ -179,6 +179,39 @@ Fetch http://example.com and return the response body wrapped in an object.
     async () => {
       const response = await fetch('http://example.com');
       return {body: await response.text()};
+    }
+    ```
+
+Example 2:
+
+Fetch http://example.com/some/api.json with a query parameter, interpret the response as a JSON and return the object.
+
+    ```javascript
+    async () => {
+      const value = 'some value';
+      const query = 'key=' + encodeURIComponent(value);
+      const response = await fetch('http://example.com/some/api.json?' + query, options);
+      return response.json();
+    }
+    ```
+
+Example 3:
+
+Post data to http://example.com/post.json with the specified headers and return the JSON response as an object.
+
+    ```javascript
+    async () => {
+      const value = 'some value';
+      const options = {
+        method: 'POST',
+        body: 'key=' + encodeURIComponent(value),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/x-www-form-urlencoded',
+        }
+      };
+      const response = await fetch('http://example.com/post.json', options);
+      return response.json();
     }
     ```
 
