@@ -176,15 +176,10 @@ Example:
 Fetch http://example.com and return the response body wrapped in an object.
 
     ```javascript
-    ({
-      json() {
-        return fetch('http://example.com')
-          .then(resp => resp.text())
-          .then(body => {
-            return {body};
-          });
-      }
-    })
+    async () => {
+      const response = await fetch('http://example.com');
+      return {body: await response.text()};
+    }
     ```
 
 ### Formats and MIME types
