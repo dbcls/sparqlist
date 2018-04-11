@@ -1,6 +1,6 @@
 # SPARQList
 
-SPARQList is a REST API server which executes a SPARQL query, transform the result into formatted data if defined, and then send it back to a web client application. The configuration of API is written in the Markdown format in which parameters of the API, SPARQL endpoints and SPARQL queries, and JavaScript functions for data transformation are defined along with a free text documentation. Each SPARQList server instance can host multiple API configurations, therefore, each service can also be considered as a repository of reusable SPARQL queries with documentation. Find more information in [GUIDE](doc/GUIDE.md) and [REFERENCE](doc/REFERENCE.md).
+SPARQList is a REST API server which executes a SPARQL query, transform the result into formatted data if defined, and then send it back to a web client application. The configuration of API is written in the Markdown format in which parameters of the API, SPARQL endpoints and SPARQL queries, and JavaScript functions for data transformation are defined along with a free text documentation. Each SPARQList server instance can host multiple API configurations, therefore, each service can also be considered as a repository of reusable SPARQL queries with documentation. Find more information in [GUIDE](doc/GUIDE.md), [REFERENCE](doc/REFERENCE.md) and a [SWAT4HCLS 2017 abstract](http://ceur-ws.org/Vol-2042/paper47.pdf).
 
 ## Docker
 
