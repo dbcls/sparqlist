@@ -1,6 +1,6 @@
 <h1>{{if model.title model.title model.id}}</h1>
 <p>
-  <a href="{{model.apiPath}}">{{path-to-url model.apiPath}}</a>
+  <a href={{model.apiPath}}>{{path-to-url model.apiPath}}</a>
 </p>
 
 {{#each error.errors as |error|}}
