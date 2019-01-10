@@ -21,16 +21,16 @@
 
       {{#if session.isAuthenticated}}
         <div>
-          <button {{action 'fork' model}} class="btn btn-outline-primary">
-            {{fa-icon 'code-fork'}} Fork
+          <button {{action "fork" model}} class="btn btn-outline-primary">
+            {{fa-icon "code-fork"}} Fork
           </button>
 
-          {{#link-to 'sparqlets.edit' model class="btn btn-outline-primary" role="button"}}
-            {{fa-icon 'edit'}} Edit
+          {{#link-to "sparqlets.edit" model class="btn btn-outline-primary" role="button"}}
+            {{fa-icon "edit"}} Edit
           {{/link-to}}
 
-          <button {{action 'delete' model}} class="btn btn-outline-danger">
-            {{fa-icon 'trash'}} Delete
+          <button {{action "delete" model}} class="btn btn-outline-danger">
+            {{fa-icon "trash"}} Delete
           </button>
         </div>
       {{/if}}

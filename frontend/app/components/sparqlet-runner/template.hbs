@@ -16,11 +16,11 @@
 
       <div class="d-flex align-items-center mt-3">
         <button class="btn btn-primary mr-2" disabled={{isRunning}}>
-          {{fa-icon 'rocket'}} Execute
+          {{fa-icon "rocket"}} Execute
         </button>
 
         {{#if isRunning}}
-          {{fa-icon 'spinner' pulse=true size='lg'}}
+          {{fa-icon "spinner" pulse=true size="lg"}}
         {{/if}}
       </div>
     </form>
@@ -66,17 +66,17 @@
       {{#if response.traces}}
         <hr>
 
-        <button class='btn btn-info' {{action (toggle 'showTrace' this)}}>
-          {{fa-icon (if showTrace 'chevron-up' 'chevron-down')}}
-          {{if showTrace 'Hide' 'Show'}} Trace
+        <button class="btn btn-info" {{action (toggle "showTrace" this)}}>
+          {{fa-icon (if showTrace "chevron-up" "chevron-down")}}
+          {{if showTrace "Hide" "Show"}} Trace
         </button>
 
         {{#if showTrace}}
           <h4 class="card-title mt-3">Traces</h4>
 
           {{#each response.traces as |trace|}}
-            <div class="mt-3 card {{if trace.error 'card-outline-danger'}}">
-              <div class="card-header {{if trace.error 'card-danger card-inverse'}}">
+            <div class="mt-3 card {{if trace.error "card-outline-danger"}}">
+              <div class="card-header {{if trace.error "card-danger card-inverse"}}">
                 <span class="badge badge-primary">{{trace.step.type}}</span>
                 {{trace.step.name}}
               </div>
