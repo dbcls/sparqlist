@@ -8,8 +8,8 @@ SPARQList is a REST API server which executes a SPARQL query, transform the resu
 
 ## Prerequisites
 
-* [Node.js](https://nodejs.org/) v8.x
-* [yarn](https://yarnpkg.com/) v1.5.1
+* [Node.js](https://nodejs.org/) v10.x
+* [yarn](https://yarnpkg.com/) v1.12.3
 
 ## Install
 

@@ -2,7 +2,7 @@
 
 FROM ubuntu:16.04
 
-ARG node_version=v8.10.0
+ARG node_version=v10.15.0
 
 RUN apt-get -qq update && apt-get -qq install -y \
     pkg-config \
