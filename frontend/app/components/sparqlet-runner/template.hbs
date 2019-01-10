@@ -87,15 +87,15 @@
                   <pre><code>{{logEntry.message}}</code></pre>
                 {{/each}}
 
-                {{#unless trace.error}}
+                {{#if trace.error}}
+                  <div class="badge badge-danger">Error</div>
+                  <pre><code>{{trace.error.message}}</code></pre>
+                {{else}}
                   {{#if trace.results}}
                     <div class="badge badge-success">Results</div>
                     <pre><code>{{to-json trace.results}}</code></pre>
                   {{/if}}
-                {{else}}
-                  <div class="badge badge-danger">Error</div>
-                  <pre><code>{{trace.error.message}}</code></pre>
-                {{/unless}}
+                {{/if}}
               </div>
             </div>
           {{/each}}
