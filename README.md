@@ -9,27 +9,26 @@ SPARQList is a REST API server which executes a SPARQL query, transform the resu
 ## Prerequisites
 
 * [Node.js](https://nodejs.org/) v10.x
-* [yarn](https://yarnpkg.com/) v1.12.3
 
 ## Install
 
     $ git clone git@github.com:dbcls/sparqlist.git
     $ cd sparqlist
-    $ yarn install
+    $ npm install
 
 If you want to deploy SPARQList under a subdirectory, pass the directory via `ROOT_PATH`:
 
-    $ ROOT_PATH=/foo/ yarn install
+    $ ROOT_PATH=/foo/ npm install
 
 (Note that `ROOT_PATH` must end with `/`.)
 
 ## Run
 
-    $ PORT=3000 ADMIN_PASSWORD=changeme yarn start
+    $ PORT=3000 ADMIN_PASSWORD=changeme npm start
 
 If you want to deploy SPARQList under a subdirectory, pass the directory via `ROOT_PATH`:
 
-    $ ROOT_PATH=/foo/ PORT=3000 ADMIN_PASSWORD=changeme yarn start
+    $ ROOT_PATH=/foo/ PORT=3000 ADMIN_PASSWORD=changeme npm start
 
 ## Configuration
 
@@ -64,14 +63,14 @@ Path of root. If you want to deploy SPARQList under a subdirectory, specify the 
 ### Backend
 
     $ cd sparqlist
-    $ yarn watch
+    $ npm run watch
 
 Open http://localhost:3000 in your browser for backend development.
 
 ### Frontend
 
     $ cd sparqlist/frontend
-    $ yarn start --proxy http://localhost:3000
+    $ npm start --proxy http://localhost:3000
 
 Open http://localhost:4200 on your browser for frontend development.
 
