@@ -19,7 +19,7 @@
   },
   "scripts": {
     "start": "node index.js",
-    "build": "cd frontend && npm install --production=false && npm run build --environment=production --output-path=../public",
+    "build": "cd frontend && npm install --production=false && npm run build -- --environment=production --output-path=../public",
     "postinstall": "npm run build",
     "watch": "nodemon --exec npm start --ignore frontend/"
   },
