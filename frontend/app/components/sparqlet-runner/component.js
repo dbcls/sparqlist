@@ -14,14 +14,15 @@ export default Component.extend({
 
       this.set('isRunning', true);
 
-      this.get('ajax').raw(path, {data: params}).then((data) => {
+      this.get('ajax').raw(path, { data: params }).then((data) => {
         this.set('response', {
           ok: true,
           status: data.jqXHR.status,
           statusText: data.jqXHR.statusText,
           contentType: data.payload.contentType,
           results: data.payload.results,
-          traces: data.payload.traces
+          traces: data.payload.traces,
+          elapsed: data.payload.elapsed,
         });
       }).catch((data) => {
         this.set('response', {
@@ -30,7 +31,8 @@ export default Component.extend({
           statusText: data.jqXHR.statusText,
           results: data.payload,
           traces: data.payload.traces,
-          error: data.payload.error
+          error: data.payload.error,
+          elapsed: data.payload.elapsed,
         });
       }).then(() => {
         this.set('isRunning', false);
@@ -44,13 +46,13 @@ export default Component.extend({
     this.set('actualParams', []);
   },
 
-  composedParams: computed('actualParams.@each.value', function() {
+  composedParams: computed('actualParams.@each.value', function () {
     const params = this.get('actualParams');
 
-    return params.reduce((acc, p) => merge(acc, {[p.param.name]: p.value}), {});
+    return params.reduce((acc, p) => merge(acc, { [p.param.name]: p.value }), {});
   }),
 
-  actualPath: computed('composedParams', function() {
+  actualPath: computed('composedParams', function () {
     const params = this.get('composedParams');
     const path = this.get('apiPath');
 
@@ -62,7 +64,7 @@ export default Component.extend({
   }),
 
   didInsertElement() {
-    const params = this.get('params').map(param => ({param, value: param.default}));
+    const params = this.get('params').map(param => ({ param, value: param.default }));
 
     this.set('actualParams', params);
   },

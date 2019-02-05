@@ -73,12 +73,19 @@
 
         {{#if showTrace}}
           <h4 class="card-title mt-3">Traces</h4>
+          <span class="small">
+            {{fa-icon "clock-o"}} {{response.elapsed}} ms
+          </span>
 
           {{#each response.traces as |trace|}}
             <div class="mt-3 card {{if trace.error "card-outline-danger"}}">
               <div class="card-header {{if trace.error "card-danger card-inverse"}}">
                 <span class="badge badge-primary">{{trace.step.type}}</span>
                 {{trace.step.name}}
+                <span class="small float-right">
+                  {{fa-icon "clock-o"}}
+                  {{trace.elapsed}} ms
+                </span>
               </div>
 
               <div class="card-body">
