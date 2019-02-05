@@ -70,7 +70,7 @@ Open http://localhost:3000 in your browser for backend development.
 ### Frontend
 
     $ cd sparqlist/frontend
-    $ npm start --proxy http://localhost:3000
+    $ npm start -- --proxy http://localhost:3000
 
 Open http://localhost:4200 on your browser for frontend development.
 
