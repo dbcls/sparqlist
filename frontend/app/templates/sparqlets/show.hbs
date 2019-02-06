@@ -47,10 +47,8 @@
   </div>
 
   <div class="card-body tab-content">
-    <div class="tab-pane active" id="html">
-      {{! template-lint-disable no-triple-curlies }}
-      {{{model.html}}}
-    </div>
+    {{scriptable-html-embedding html=model.html class="tab-pane active" id="html"}}
+
     <div class="tab-pane" id="markdown">
       <pre><code>{{model.src}}</code></pre>
     </div>
