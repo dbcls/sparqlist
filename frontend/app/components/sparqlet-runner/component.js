@@ -2,7 +2,6 @@ import $ from 'jquery';
 import Component from '@ember/component';
 import { computed } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { merge } from '@ember/polyfills';
 
 export default Component.extend({
   ajax: service(),
@@ -49,7 +48,7 @@ export default Component.extend({
   composedParams: computed('actualParams.@each.value', function () {
     const params = this.get('actualParams');
 
-    return params.reduce((acc, p) => merge(acc, { [p.param.name]: p.value }), {});
+    return params.reduce((acc, p) => Object.assign(acc, { [p.param.name]: p.value }), {});
   }),
 
   actualPath: computed('composedParams', function () {
