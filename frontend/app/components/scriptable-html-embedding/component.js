@@ -6,8 +6,13 @@ export default Component.extend({
 
     this.element.querySelectorAll('script').forEach((orig) => {
       const el = document.createElement('script');
-      el.setAttribute('src', orig.getAttribute('src'));
+
       el.textContent = orig.textContent;
+
+      Array.from(orig.attributes).forEach((attr) => {
+        el.setAttribute(attr.nodeName, attr.textContent);
+      });
+
       orig.replaceWith(el);
     });
   }
