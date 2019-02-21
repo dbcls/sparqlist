@@ -20,12 +20,12 @@
   "devDependencies": {
     "@ember/jquery": "^0.5.2",
     "@ember/optional-features": "^0.6.3",
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^3.1.0",
     "ember-cli": "~3.7.1",
     "ember-cli-app-version": "^3.2.0",
-    "ember-cli-babel": "^7.4.1",
+    "ember-cli-babel": "^7.4.3",
     "ember-cli-dependency-checker": "^3.0.0",
     "ember-cli-eslint": "^4.2.3",
     "ember-cli-htmlbars": "^3.0.0",
@@ -42,14 +42,14 @@
     "ember-load-initializers": "^1.1.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^3.4.1",
-    "ember-resolver": "^5.0.1",
+    "ember-resolver": "^5.1.1",
     "ember-simple-auth": "^1.8.1",
-    "ember-source": "^3.7.3",
+    "ember-source": "~3.7.0",
     "eslint-plugin-ember": "^5.2.0",
     "ivy-codemirror": "^2.0.3",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
-    "sass": "^1.17.0"
+    "sass": "^1.17.1"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
