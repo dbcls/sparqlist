@@ -13,6 +13,7 @@ export default Controller.extend({
         this.transitionToRoute('sparqlets');
       }).catch((err) => {
         this.set('error', err);
+        // eslint-disable-next-line no-console
         console.error(err);
       });
     },

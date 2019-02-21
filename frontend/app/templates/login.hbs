@@ -7,6 +7,7 @@
 </form>
 
 {{#if errorMessage}}
+  {{! template-lint-disable no-inline-styles }}
   <div class="alert alert-danger" role="alert" style="margin-top: 20px;">
     {{errorMessage}}
   </div>
