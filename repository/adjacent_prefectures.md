@@ -20,27 +20,35 @@ WHERE {
 }
 ```
 
+## `prefs` Prefecture names
+
+```javascript
+({adjacent_prefectures}) => {
+  return adjacent_prefectures.results.bindings.map((row) => {
+    const components = row.o.value.split('/');
+    return components[components.length-1];
+  });
+}
+```
+
 ## Output
 
 ```javascript
 ({
-  json({adjacent_prefectures}) {
-    return adjacent_prefectures.results.bindings.map((row) => {
-      const components = row.o.value.split('/');
-      return components[components.length-1];
-    });
+  json({prefs}) {
+    return prefs;
   },
-  text({adjacent_prefectures}) {
-    return adjacent_prefectures.results.bindings.map((row) => {
-      const components = row.o.value.split('/');
-      return components[components.length-1];
-    }).join('\n');
+
+  text({prefs}) {
+    return prefs.join('\n');
   },
-  html({adjacent_prefectures}) {
-    return '<ul>' + adjacent_prefectures.results.bindings.map((row) => {
-      const components = row.o.value.split('/');
-      return `<li>${components[components.length-1]}</li>`;
-    }).join('\n') + '</ul>';
-  }
+
+  html: hbs(`
+    <ul>
+      {{#each prefs as |pref|}}
+        <li>{{pref}}</li>
+      {{/each}}
+    </ul>
+  `)
 })
 ```
