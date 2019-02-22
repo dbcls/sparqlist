@@ -35,6 +35,12 @@ WHERE {
       const components = row.o.value.split('/');
       return components[components.length-1];
     }).join('\n');
+  },
+  html({adjacent_prefectures}) {
+    return '<ul>' + adjacent_prefectures.results.bindings.map((row) => {
+      const components = row.o.value.split('/');
+      return `<li>${components[components.length-1]}</li>`;
+    }).join('\n') + '</ul>';
   }
 })
 ```

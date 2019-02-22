@@ -8,12 +8,14 @@ export default Component.extend({
 
   actions: {
     execute() {
-      const path = this.get('traceModeApiPath');
-      const params = this.get('composedParams');
-
       this.set('isRunning', true);
 
-      this.get('ajax').raw(path, { data: params }).then((data) => {
+      this.ajax.raw(this.traceModeApiPath, {
+        headers: {
+          'Accept': 'text/html, application/json, */*; q=0.01'
+        },
+        data: this.composedParams
+      }).then((data) => {
         this.set('response', {
           ok: true,
           status: data.jqXHR.status,

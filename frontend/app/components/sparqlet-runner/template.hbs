@@ -42,7 +42,12 @@
           </div>
 
           <div class="card-body">
-            <pre><code>{{to-json response.results}}</code></pre>
+            {{#if (eq response.contentType "text/html")}}
+              {{! template-lint-disable no-triple-curlies }}
+              {{{response.results}}}
+            {{else}}
+              <pre><code>{{to-json response.results}}</code></pre>
+            {{/if}}
           </div>
         </div>
       {{else}}
