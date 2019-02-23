@@ -25,8 +25,7 @@ WHERE {
 ```javascript
 ({adjacent_prefectures}) => {
   return adjacent_prefectures.results.bindings.map((row) => {
-    const components = row.o.value.split('/');
-    return components[components.length-1];
+    return row.o.value.split('/').slice(-1)[0];
   });
 }
 ```
