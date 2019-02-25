@@ -138,6 +138,8 @@ The following example show how to select data with SPARQL query and extract valu
 The context object is passed as the first argument of the JavaScript function.
 Returned value of the function is stored to the context `modified_results`.
 
+#### Multiple format support
+
 If the final block is in JavaScript, the returned value of the code is sent in JSON as the overall response of the SPARQLet.
 In addition, you can handle multiple formats by using the following special notation:
 
@@ -166,6 +168,41 @@ You can also use MIME types to specify the formats:
   }
 })
 ```
+
+
+#### Formats and MIME types
+
+Format identifier definitions follow [mime-db](https://github.com/jshttp/mime-db).
+
+Here are some commonly used MIME types and their aliases (used as suffixes to specify formats or properties in the final JavaScript code block):
+
+* `text/html`: `html`
+* `text/plain`: `text`, `txt`
+* `text/csv`: `csv`
+* `text/turtle`: `ttl`
+* `text/n3`: `n3`
+* `application/json`: `json`
+* `application/n-triples`
+* `application/xml`: `xml`
+* `application/rdf+xml`: `rdf`
+
+
+#### `hbs` helper
+
+You can use `hbs()` helper to render Handlebars templates. Example:
+
+```javascript
+({
+  html: hbs(`
+    <ul>
+      {{#each items as |item|}}
+        <li>{{item}}</li>
+      {{/each}}
+    </ul>
+  `)
+})
+```
+
 
 #### Fetch API
 
@@ -214,19 +251,3 @@ Post data to http://example.com/post.json with the specified headers and return 
       return response.json();
     }
     ```
-
-### Formats and MIME types
-
-Format identifier definitions follow [mime-db](https://github.com/jshttp/mime-db).
-
-Here are some commonly used MIME types and their aliases (used as suffixes to specify formats or properties in the final JavaScript code block):
-
-* `text/html`: `html`
-* `text/plain`: `text`, `txt`
-* `text/csv`: `csv`
-* `text/turtle`: `ttl`
-* `text/n3`: `n3`
-* `application/json`: `json`
-* `application/n-triples`
-* `application/xml`: `xml`
-* `application/rdf+xml`: `rdf`
