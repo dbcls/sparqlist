@@ -28,7 +28,18 @@ module.exports = function(environment) {
 
     fontawesome: {
       icons: {
-        'free-solid-svg-icons': 'all'
+        'free-solid-svg-icons': [
+          'chevron-down',
+          'chevron-right',
+          'clock',
+          'code-branch',
+          'edit',
+          'plus-circle',
+          'rocket',
+          'save',
+          'spinner',
+          'trash',
+        ]
       }
     }
   };
