@@ -78,8 +78,9 @@
 
         {{#if showTrace}}
           <h4 class="card-title mt-3">Traces</h4>
+
           <span class="small">
-            {{fa-icon "clock-o"}} {{response.elapsed}} ms
+            {{fa-icon "clock"}} Total: {{response.elapsed}} ms
           </span>
 
           {{#each response.traces as |trace|}}
@@ -88,8 +89,7 @@
                 <span class="badge badge-primary">{{trace.step.type}}</span>
                 {{trace.step.name}}
                 <span class="small float-right">
-                  {{fa-icon "clock-o"}}
-                  {{trace.elapsed}} ms
+                  {{fa-icon "clock"}} {{trace.elapsed}} ms
                 </span>
               </div>
 
