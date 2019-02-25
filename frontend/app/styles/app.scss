@@ -36,6 +36,12 @@ h2 {
   width: 100%;
 }
 
+.card-body {
+  *:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .traces {
   .card-header {
     cursor: pointer;

@@ -29,16 +29,15 @@
       <hr>
 
       {{#if response.ok}}
-        <h4 class="card-title">Response</h4>
+        <h4>
+          Response
+          <span class="badge badge-success align-top">{{response.status}} {{response.statusText}}</span>
+        </h4>
 
-        <div class="alert alert-success">
-          <strong>{{response.status}}</strong> {{response.statusText}}
-        </div>
-
-        <div class="card mt-1">
+        <div class="card mt-3">
           <div class="card-header">
-            <div class="badge badge-primary">Results</div>
-            Content-Type: {{response.contentType}}
+            Output
+            <span class="text-muted">({{or response.contentType "Content-Type is unspecified"}})</span>
           </div>
 
           <div class="card-body">
@@ -51,15 +50,14 @@
           </div>
         </div>
       {{else}}
-        <h4 class="card-title">Error</h4>
+        <h4>
+          Response
+          <span class="badge badge-danger align-top">{{response.status}} {{response.statusText}}</span>
+        </h4>
 
-        <div class="alert alert-danger">
-          <strong>{{response.status}}</strong> {{response.statusText}}
-        </div>
-
-        <div class="card card-outline-danger mt-1">
+        <div class="card border-danger mt-3">
           <div class="card-header">
-            <div class="badge badge-danger">Error</div>
+            Error
           </div>
 
           <div class="card-body">
