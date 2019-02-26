@@ -61,7 +61,7 @@
           </div>
 
           <div class="card-body">
-            <pre><code>{{if response.error (to-json response.error) response.results}}</code></pre>
+            <pre><code>{{or response.error response.results}}</code></pre>
           </div>
         </div>
       {{/if}}
@@ -104,12 +104,10 @@
 
                   {{#if trace.error}}
                     <div class="badge badge-danger">Error</div>
-                    <pre><code>{{trace.error.message}}</code></pre>
-                  {{else}}
-                    {{#if trace.results}}
-                      <div class="badge badge-success">Results</div>
-                      <pre><code>{{to-json trace.results}}</code></pre>
-                    {{/if}}
+                    <pre><code>{{trace.error}}</code></pre>
+                  {{else if trace.results}}
+                    <div class="badge badge-success">Results</div>
+                    <pre><code>{{to-json trace.results}}</code></pre>
                   {{/if}}
                 </div>
               </div>
