@@ -13,5 +13,5 @@ USER app
 WORKDIR /app
 
 RUN git clone https://github.com/dbcls/sparqlist.git .
-RUN npm install
+RUN npm install && npm run build
 CMD npm start
