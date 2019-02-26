@@ -29,6 +29,7 @@ module.exports = function(environment) {
     fontawesome: {
       icons: {
         'free-solid-svg-icons': [
+          'arrow-right',
           'chevron-down',
           'chevron-right',
           'clock',

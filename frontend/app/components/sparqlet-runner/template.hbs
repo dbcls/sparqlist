@@ -80,20 +80,21 @@
         <div class="traces">
           {{#each response.traces as |trace i|}}
             <div class="card mt-1 {{if trace.error "card-outline-danger"}}">
-              <a data-target="#trace_{{i}}" data-toggle="collapse" class="card-header d-flex align-items-center collapsed {{if trace.error "card-danger card-inverse"}}">
-                <div class="chevron mr-2">
-                  {{fa-icon "chevron-right"}}
-                  {{fa-icon "chevron-down"}}
+              <a data-target="#trace_{{i}}" data-toggle="collapse" class="card-header pl-3 d-flex align-items-center collapsed {{if trace.error "card-danger card-inverse"}}">
+                <div class="mr-2">
+                  {{fa-icon "chevron-right" fixedWidth=true}}
+                  {{fa-icon "chevron-down" fixedWidth=true}}
                 </div>
 
                 <div class="mr-auto">
                   <span class="badge badge-primary mr-1">{{trace.step.type}}</span>
 
-                  {{#if trace.step.bindingName}}
-                    <code class="mr-1">{{trace.step.bindingName}}</code>
-                  {{/if}}
-
                   {{trace.step.name}}
+
+                  {{#if trace.step.bindingName}}
+                    {{fa-icon "arrow-right" size="xs" class="mx-1"}}
+                    <code>{{trace.step.bindingName}}</code>
+                  {{/if}}
                 </div>
 
                 <div class="ml-2">
