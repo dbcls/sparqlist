@@ -41,11 +41,13 @@
           </div>
 
           <div class="card-body">
-            {{#if (eq response.contentType "text/html")}}
+            {{#if (type-is response.contentType "text/html")}}
               {{! template-lint-disable no-triple-curlies }}
               {{{response.results}}}
-            {{else}}
+            {{else if (type-is response.contentType (array "json" "+json"))}}
               <pre><code>{{to-json response.results}}</code></pre>
+            {{else}}
+              <pre><code>{{response.results}}</code></pre>
             {{/if}}
           </div>
         </div>
@@ -114,7 +116,12 @@
                     <pre><code>{{trace.error}}</code></pre>
                   {{else if trace.results}}
                     <div class="badge badge-success">Results</div>
-                    <pre><code>{{to-json trace.results}}</code></pre>
+
+                    {{#if (type-is trace.contentType (array "json" "+json"))}}
+                      <pre><code>{{to-json trace.results}}</code></pre>
+                    {{else}}
+                      <pre><code>{{trace.results}}</code></pre>
+                    {{/if}}
                   {{/if}}
                 </div>
               </div>
