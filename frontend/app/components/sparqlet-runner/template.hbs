@@ -87,7 +87,13 @@
                 </div>
 
                 <div class="mr-auto">
-                  <span class="badge badge-primary">{{trace.step.type}}</span> {{trace.step.name}}
+                  <span class="badge badge-primary mr-1">{{trace.step.type}}</span>
+
+                  {{#if trace.step.bindingName}}
+                    <code class="mr-1">{{trace.step.bindingName}}</code>
+                  {{/if}}
+
+                  {{trace.step.name}}
                 </div>
 
                 <div class="ml-2">
