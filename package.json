@@ -11,7 +11,7 @@
     "form-data": "^2.1.2",
     "fs-extra": "^7.0.1",
     "handlebars": "^4.1.0",
-    "lodash": "^4.17.4",
+    "lodash.isequal": "^4.5.0",
     "marked": "0.3.12",
     "morgan": "^1.7.0",
     "node-fetch": "^2.0.0",
