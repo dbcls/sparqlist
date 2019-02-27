@@ -2,17 +2,19 @@ import Controller from '@ember/controller';
 
 export default Controller.extend({
   actions: {
-    save(code, name) {
-      const model = this.get('model');
-      model.set('name', name);
-      model.set('src', code);
-      model.save().then((model) => {
-        this.transitionToRoute('sparqlets.show', model);
-      }).catch((err) => {
-        this.set('error', err);
+    async save(code, name) {
+      this.model.set('name', name);
+      this.model.set('src', code);
+
+      try {
+        await this.model.save();
+
+        this.transitionToRoute('sparqlets.show', this.model);
+      } catch (e) {
+        this.set('error', e);
         // eslint-disable-next-line no-console
-        console.error(err);
-      });
+        console.error(e);
+      }
     }
   }
 });

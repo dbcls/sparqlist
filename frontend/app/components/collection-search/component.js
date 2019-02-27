@@ -5,7 +5,7 @@ export default Component.extend({
 
   actions: {
     update(query) {
-      const {collection, keys} = this.getProperties('collection', 'keys');
+      const {collection, keys} = this;
 
       this.set('result', query ? collection.filter((obj) => keys.some((key) => obj.get(key).includes(query))) : collection);
     }
@@ -14,6 +14,6 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    this.set('result', this.get('collection'));
+    this.set('result', this.collection);
   }
 });

@@ -3,8 +3,9 @@ import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-rout
 
 export default Route.extend(AuthenticatedRouteMixin, {
   model() {
-    return this.get('store').createRecord('sparqlet');
+    return this.store.createRecord('sparqlet');
   },
+
   actions: {
     willTransition() {
       this._super(...arguments);

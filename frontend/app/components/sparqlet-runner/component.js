@@ -7,35 +7,34 @@ export default Component.extend({
   ajax: service(),
 
   actions: {
-    execute() {
-      const path = this.get('traceModeApiPath');
-      const params = this.get('composedParams');
-
+    async execute() {
       this.set('isRunning', true);
 
-      this.get('ajax').raw(path, { data: params }).then((data) => {
+      try {
+        const {jqXHR, payload} = await this.ajax.raw(this.traceModeApiPath, {data: this.composedParams});
+
         this.set('response', {
-          ok: true,
-          status: data.jqXHR.status,
-          statusText: data.jqXHR.statusText,
-          contentType: data.payload.contentType,
-          results: data.payload.results,
-          traces: data.payload.traces,
-          elapsed: data.payload.elapsed,
+          ok:          true,
+          status:      jqXHR.status,
+          statusText:  jqXHR.statusText,
+          contentType: payload.contentType,
+          results:     payload.results,
+          traces:      payload.traces,
+          elapsed:     payload.elapsed,
         });
-      }).catch((data) => {
+      } catch ({jqXHR, payload}) {
         this.set('response', {
-          ok: false,
-          status: data.jqXHR.status,
-          statusText: data.jqXHR.statusText,
-          results: data.payload,
-          traces: data.payload.traces,
-          error: data.payload.error,
-          elapsed: data.payload.elapsed,
+          ok:         false,
+          status:     jqXHR.status,
+          statusText: jqXHR.statusText,
+          results:    payload,
+          traces:     payload.traces,
+          error:      payload.error,
+          elapsed:    payload.elapsed,
         });
-      }).then(() => {
+      } finally {
         this.set('isRunning', false);
-      });
+      }
     }
   },
 
@@ -45,25 +44,24 @@ export default Component.extend({
     this.set('actualParams', []);
   },
 
-  composedParams: computed('actualParams.@each.value', function () {
-    const params = this.get('actualParams');
-
-    return params.reduce((acc, p) => Object.assign(acc, { [p.param.name]: p.value }), {});
+  composedParams: computed('actualParams.@each.value', {
+    get() {
+      return this.actualParams.reduce((acc, p) => Object.assign(acc, {[p.param.name]: p.value}), {});
+    }
   }),
 
-  actualPath: computed('composedParams', function () {
-    const params = this.get('composedParams');
-    const path = this.get('apiPath');
-
-    if (Object.keys(params).length === 0) {
-      return path;
-    } else {
-      return `${path}?${$.param(params)}`;
+  actualPath: computed('composedParams', 'apiPath', {
+    get() {
+      if (Object.keys(this.composedParams).length === 0) {
+        return this.apiPath;
+      } else {
+        return `${this.apiPath}?${$.param(this.composedParams)}`;
+      }
     }
   }),
 
   didInsertElement() {
-    const params = this.get('params').map(param => ({ param, value: param.default }));
+    const params = this.params.map(param => ({param, value: param.default}));
 
     this.set('actualParams', params);
   },
