@@ -10,26 +10,27 @@ SPARQList is a REST API server which executes a SPARQL query, transform the resu
 
 * [Node.js](https://nodejs.org/) v10.x
 
-## Install
+## Install and Run
 
     $ git clone https://github.com/dbcls/sparqlist.git
     $ cd sparqlist
     $ npm install
     $ npm run build
 
-If you want to deploy SPARQList under a subdirectory, pass the directory via `ROOT_PATH`:
-
-    $ ROOT_PATH=/foo/ npm run build
-
-(Note that `ROOT_PATH` must end with `/`.)
-
-## Run
+Then, start SPARQList:
 
     $ PORT=3000 ADMIN_PASSWORD=changeme npm start
 
-If you want to deploy SPARQList under a subdirectory, pass the directory via `ROOT_PATH`:
 
+### Deploy under a subdirectory
+
+If you want to deploy SPARQList under a subdirectory (say, `/foo/`), pass the directory via `ROOT_PATH` to `npm run build` and `npm start`:
+
+    $ ROOT_PATH=/foo/ npm run build
     $ ROOT_PATH=/foo/ PORT=3000 ADMIN_PASSWORD=changeme npm start
+
+(Note that `ROOT_PATH` must end with `/`.)
+
 
 ## Configuration
 
