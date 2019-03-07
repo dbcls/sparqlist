@@ -92,7 +92,11 @@
                 </div>
 
                 <div class="mr-auto px-2">
-                  {{trace.step.name}}
+                  {{#if trace.step.name}}
+                    {{trace.step.name}}
+                  {{else}}
+                    <span class="font-italic">(no title)</span>
+                  {{/if}}
 
                   <span class="text-muted">
                     <span class="mx-1">:</span>
