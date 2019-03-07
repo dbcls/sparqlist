@@ -1,2 +1,4 @@
-/node_modules
-/public
+/cypress/screenshots/
+/cypress/videos/
+/node_modules/
+/public/
