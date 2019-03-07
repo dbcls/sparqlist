@@ -47,9 +47,8 @@
           </div>
 
           <div class="card-body">
-            {{#if (type-is response.contentType "text/html")}}
-              {{! template-lint-disable no-triple-curlies }}
-              {{{response.results}}}
+            {{#if (type-is response.contentType (array "text/html"))}}
+              {{scriptable-html-embedding html=response.results}}
             {{else if (type-is response.contentType (array "json" "+json"))}}
               <pre><code>{{to-json response.results}}</code></pre>
             {{else}}
