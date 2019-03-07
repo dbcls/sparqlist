@@ -11,7 +11,12 @@ export default Component.extend({
       this.set('isRunning', true);
 
       try {
-        const {jqXHR, payload} = await this.ajax.raw(this.traceModeApiPath, {data: this.composedParams});
+        const {jqXHR, payload} = await this.ajax.raw(this.traceModeApiPath, {
+          headers: {
+            'Accept': 'text/html, application/json, */*; q=0.01'
+          },
+          data: this.composedParams
+        });
 
         this.set('response', {
           ok:          true,
