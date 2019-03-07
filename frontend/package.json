@@ -25,6 +25,7 @@
     "bootstrap": "^4.3.1",
     "broccoli-asset-rev": "^2.7.0",
     "ember-ajax": "^4.0.1",
+    "ember-auto-import": "^1.2.21",
     "ember-cli": "~3.8.1",
     "ember-cli-app-version": "^3.2.0",
     "ember-cli-babel": "^7.4.3",
@@ -51,7 +52,8 @@
     "ivy-codemirror": "^2.0.3",
     "loader.js": "^4.7.0",
     "qunit-dom": "^0.8.0",
-    "sass": "^1.17.1"
+    "sass": "^1.17.1",
+    "type-is": "^1.6.16"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"

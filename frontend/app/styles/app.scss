@@ -35,3 +35,33 @@ h2 {
   height: 100%;
   width: 100%;
 }
+
+.card-body {
+  *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.traces {
+  .card-header {
+    cursor: pointer;
+
+    .fa-chevron-right {
+      display: none;
+    }
+
+    .fa-chevron-down {
+      display: initial;
+    }
+
+    &.collapsed {
+      .fa-chevron-right {
+        display: initial;
+      }
+
+      .fa-chevron-down {
+        display: none;
+      }
+    }
+  }
+}
