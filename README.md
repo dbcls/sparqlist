@@ -12,7 +12,7 @@ SPARQList is a REST API server which executes a SPARQL query, transform the resu
 
 ## Install
 
-    $ git clone git@github.com:dbcls/sparqlist.git
+    $ git clone https://github.com/dbcls/sparqlist.git
     $ cd sparqlist
     $ npm install
     $ npm run build
