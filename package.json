@@ -27,6 +27,7 @@
   "private": true,
   "devDependencies": {
     "cypress": "^3.1.5",
+    "jest": "^24.5.0",
     "nodemon": "^1.18.10"
   },
   "heroku-run-build-script": true
