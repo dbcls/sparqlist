@@ -15,8 +15,10 @@
     "handlebars": "^4.1.0",
     "morgan": "^1.7.0",
     "node-fetch": "^2.0.0",
+    "parse5": "^5.1.0",
     "slimdom-sax-parser": "^1.1.3",
-    "type-is": "^1.6.14"
+    "type-is": "^1.6.14",
+    "xmlserializer": "^0.6.1"
   },
   "scripts": {
     "start": "node index.js",
