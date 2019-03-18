@@ -21,7 +21,8 @@
   "scripts": {
     "start": "node index.js",
     "build": "cd frontend && npm install --production=false && npm run build -- --environment=production --output-path=../public",
-    "watch": "nodemon --exec npm start --ignore frontend/"
+    "watch": "nodemon --exec npm start --ignore frontend/",
+    "test": "jest"
   },
   "engines": {
     "node": "10.x"
