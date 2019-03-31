@@ -6,7 +6,9 @@
       {{#each actualParams as |param|}}
         <div class="form-group">
           <label><code>{{param.param.name}}</code> {{param.param.description}}</label>
-          {{input value=(mut param.value) class="form-control"}}
+          {{#let param.param.example as |example|}}
+            {{input value=(mut param.value) placeholder=(if example (concat "example: " example) "") class="form-control"}}
+          {{/let}}
         </div>
       {{/each}}
 
