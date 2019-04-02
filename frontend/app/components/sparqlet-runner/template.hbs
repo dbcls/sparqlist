@@ -7,6 +7,10 @@
         <div class="form-group">
           <label><code>{{param.param.name}}</code> {{param.param.description}}</label>
           {{input value=(mut param.value) class="form-control"}}
+
+          {{#with param.param.example as |example|}}
+            <small class="form-text text-muted">example: {{example}}</small>
+          {{/with}}
         </div>
       {{/each}}
 
