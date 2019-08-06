@@ -12,7 +12,7 @@
     "fontoxpath": "^3.4.0",
     "form-data": "^2.1.2",
     "fs-extra": "^7.0.1",
-    "handlebars": "^4.1.0",
+    "handlebars": "^4.1.2",
     "morgan": "^1.7.0",
     "node-fetch": "^2.0.0",
     "parse5": "^5.1.0",
