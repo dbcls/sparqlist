@@ -12,6 +12,13 @@ module.exports = function(defaults) {
     codemirror: {
       modes: ['markdown'],
       themes: ['base16-light'],
+    },
+    autoImport: {
+      webpack: {
+        node: {
+          path: true // https://github.com/ef4/ember-auto-import/issues/224
+        }
+      }
     }
   });
 
