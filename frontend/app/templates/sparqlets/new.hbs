@@ -3,4 +3,5 @@
     <strong>Error</strong> {{error.detail}}
   </div>
 {{/each}}
-<SparqletEditor @src={{model.src}} @action={{action "save"}} />
+
+<SparqletEditor @src={{this.src}} @action={{this.save}} />

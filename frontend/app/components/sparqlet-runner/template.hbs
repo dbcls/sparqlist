@@ -2,7 +2,7 @@
   <div class="card-body">
     <h4 class="card-title mb-3">Run</h4>
 
-    <form {{action "execute" on="submit"}}>
+    <form {{on "submit" (prevent-default this.execute)}}>
       {{#each actualParams as |param|}}
         <div class="form-group">
           <label><code>{{param.param.name}}</code> {{param.param.description}}</label>

@@ -1,10 +1,11 @@
 import Route from '@ember/routing/route';
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
 
-export default Route.extend({
-  actions: {
-    willTransition() {
-      this._super(...arguments);
-      this.set('controller.error', null);
-    }
+@classic
+export default class ShowRoute extends Route {
+  @action
+  willTransition() {
+    this.controller.set('error', null);
   }
-});
+}

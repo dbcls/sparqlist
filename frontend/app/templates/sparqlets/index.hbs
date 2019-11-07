@@ -5,7 +5,7 @@
         {{fa-icon "plus-circle"}} New SPARQLet
       </LinkTo>
 
-      <input type="search" oninput={{action search.update value="target.value"}} placeholder="Search" class="form-control">
+      <input {{on "input" (action search.update value="target.value")}} type="search" placeholder="Search" class="form-control">
     </div>
 
     <div class="list-group list-group-flush">

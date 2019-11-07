@@ -21,7 +21,7 @@
 
       {{#if session.isAuthenticated}}
         <div>
-          <button {{action "fork" model}} class="btn btn-outline-primary">
+          <button {{on "click" (fn this.fork model)}} class="btn btn-outline-primary">
             {{fa-icon "code-branch"}} Fork
           </button>
 
@@ -29,7 +29,7 @@
             {{fa-icon "edit"}} Edit
           </LinkTo>
 
-          <button {{action "delete" model}} class="btn btn-outline-danger">
+          <button {{on "click" (fn this.delete model)}} class="btn btn-outline-danger">
             {{fa-icon "trash"}} Delete
           </button>
         </div>

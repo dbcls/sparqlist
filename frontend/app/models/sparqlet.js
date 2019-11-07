@@ -1,13 +1,15 @@
 import Model, { attr } from '@ember-data/model';
+import classic from 'ember-classic-decorator';
 
-export default Model.extend({
-  name:             attr('string'),
-  title:            attr('string'),
-  html:             attr('string'),
-  apiPath:          attr('string'),
-  traceModeApiPath: attr('string'),
-  params:           attr(),
-  src:              attr('string'),
-  mdPath:           attr('string'),
-  mtime:            attr('string'),
-});
+@classic
+export default class Sparqlet extends Model {
+  @attr('string') name;
+  @attr('string') title;
+  @attr('string') html;
+  @attr('string') apiPath;
+  @attr('string') traceModeApiPath;
+  @attr()         params;
+  @attr('string') src;
+  @attr('string') mdPath;
+  @attr('string') mtime;
+}

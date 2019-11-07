@@ -1,26 +1,31 @@
+import Controller, { inject as controller } from '@ember/controller';
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import Controller from '@ember/controller';
 
-export default Controller.extend({
-  session: service('session'),
+@classic
+export default class ShowController extends Controller {
+  @service session;
+  @controller('sparqlets.new') newSparqlet;
 
-  actions: {
-    delete(model) {
-      if (!confirm('Are you sure?')) {
-        return;
-      }
-      model.destroyRecord().then(() => {
-        this.transitionToRoute('sparqlets');
-      }).catch((err) => {
-        this.set('error', err);
-        // eslint-disable-next-line no-console
-        console.error(err);
-      });
-    },
-    fork(model) {
-      this.transitionToRoute('sparqlets.new').then(newRoute => {
-        newRoute.currentModel.set('src', model.get('src'));
-      });
+  @action
+  async delete(model) {
+    if (!confirm('Are you sure?')) { return; }
+
+    try {
+      await model.destroyRecord();
+
+      this.transitionToRoute('sparqlets');
+    } catch (err) {
+      this.set('error', err);
+      // eslint-disable-next-line no-console
+      console.error(err);
     }
   }
-});
+
+  @action
+  fork(model) {
+    this.newSparqlet.set('src', model.src);
+    this.transitionToRoute('sparqlets.new');
+  }
+}

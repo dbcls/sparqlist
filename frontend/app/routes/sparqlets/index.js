@@ -1,7 +1,9 @@
 import Route from '@ember/routing/route';
+import classic from 'ember-classic-decorator';
 
-export default Route.extend({
+@classic
+export default class IndexRoute extends Route {
   model() {
     return this.store.findAll('sparqlet');
   }
-});
+}

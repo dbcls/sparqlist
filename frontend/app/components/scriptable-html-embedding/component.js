@@ -1,9 +1,11 @@
 import Component from '@ember/component';
+import classic from 'ember-classic-decorator';
+import { action } from '@ember/object';
 
-export default Component.extend({
-  didRender() {
-    this._super(...arguments);
-
+@classic
+export default class ScriptableHtmlEmbedding extends Component {
+  @action
+  evaluateScripts() {
     this.element.querySelectorAll('script').forEach((orig) => {
       const el = document.createElement('script');
 
@@ -16,4 +18,4 @@ export default Component.extend({
       orig.replaceWith(el);
     });
   }
-});
+}
