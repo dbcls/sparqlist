@@ -20,11 +20,11 @@
 
       <div class="d-flex align-items-center mt-3">
         <button class="btn btn-primary mr-2" disabled={{isRunning}}>
-          {{fa-icon "rocket"}} Execute
+          <FaIcon @icon="rocket" /> Execute
         </button>
 
         {{#if isRunning}}
-          {{fa-icon "spinner" pulse=true size="lg"}}
+          <FaIcon @icon="spinner" @pulse={{true}} @size="lg" />
         {{/if}}
       </div>
     </form>
@@ -85,7 +85,7 @@
 
         <div class="d-flex align-items-center mt-3 mb-1">
           <h4 class="card-title mr-auto">Traces</h4>
-          <small>{{fa-icon "clock"}} Total: {{response.elapsed}} ms</small>
+          <small><FaIcon @icon="clock" /> Total: {{response.elapsed}} ms</small>
         </div>
 
         <div class="traces">
@@ -93,8 +93,8 @@
             <div class="card mt-1 {{if trace.error "card-outline-danger"}}">
               <a data-target="#trace_{{i}}" data-toggle="collapse" class="card-header pl-3 d-flex align-items-center collapsed {{if trace.error "card-danger card-inverse"}}">
                 <div>
-                  {{fa-icon "chevron-right" fixedWidth=true}}
-                  {{fa-icon "chevron-down" fixedWidth=true}}
+                  <FaIcon @icon="chevron-right" @fixedWidth={{true}} />
+                  <FaIcon @icon="chevron-down" @fixedWidth={{true}} />
                 </div>
 
                 <div class="mr-auto px-2">
@@ -110,13 +110,12 @@
                   </span>
 
                   {{#if trace.step.bindingName}}
-                    {{fa-icon "arrow-right" size="xs" class="mx-1"}}
-                    <code>{{trace.step.bindingName}}</code>
+                    <FaIcon @icon="arrow-right" @size="xs" class="mx-1" /> <code>{{trace.step.bindingName}}</code>
                   {{/if}}
                 </div>
 
                 <div>
-                  <small>{{fa-icon "clock"}} {{trace.elapsed}} ms</small>
+                  <small><FaIcon @icon="clock" /> {{trace.elapsed}} ms</small>
                 </div>
               </a>
 

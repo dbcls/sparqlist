@@ -2,7 +2,7 @@
   <CollectionSearch @collection={{model}} @keys={{array "id" "src"}} as |search|>
     <div class="card-header d-flex">
       <LinkTo @route="sparqlets.new" class="btn btn-primary mr-auto">
-        {{fa-icon "plus-circle"}} New SPARQLet
+        <FaIcon @icon="plus-circle" /> New SPARQLet
       </LinkTo>
 
       <input {{on "input" (action search.update value="target.value")}} type="search" placeholder="Search" class="form-control">

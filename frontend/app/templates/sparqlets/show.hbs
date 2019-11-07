@@ -22,15 +22,15 @@
       {{#if session.isAuthenticated}}
         <div>
           <button {{on "click" (fn this.fork model)}} class="btn btn-outline-primary">
-            {{fa-icon "code-branch"}} Fork
+            <FaIcon @icon="code-branch" /> Fork
           </button>
 
           <LinkTo @route="sparqlets.edit" @model={{model}} class="btn btn-outline-primary" @role="button">
-            {{fa-icon "edit"}} Edit
+            <FaIcon @icon="edit" /> Edit
           </LinkTo>
 
           <button {{on "click" (fn this.delete model)}} class="btn btn-outline-danger">
-            {{fa-icon "trash"}} Delete
+            <FaIcon @icon="trash" /> Delete
           </button>
         </div>
       {{/if}}
