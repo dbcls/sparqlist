@@ -1,41 +1,40 @@
-import $ from 'jquery';
 import Component from '@ember/component';
+import fetch from 'fetch';
 import { computed } from '@ember/object';
-import { inject as service } from '@ember/service';
+
+function buildURL(path, params) {
+  const url = new URL(path, location.origin);
+
+  for (const [k, v] of Object.entries(params)) {
+    url.searchParams.append(k, v);
+  }
+
+  return url;
+}
 
 export default Component.extend({
-  ajax: service(),
-
   actions: {
     async execute() {
       this.set('isRunning', true);
 
       try {
-        const {jqXHR, payload} = await this.ajax.raw(this.traceModeApiPath, {
+        const res = await fetch(buildURL(this.traceModeApiPath, this.composedParams), {
           headers: {
             'Accept': 'text/html, application/json, */*; q=0.01'
-          },
-          data: this.composedParams
+          }
         });
 
+        const payload = await res.json();
+
         this.set('response', {
-          ok:          true,
-          status:      jqXHR.status,
-          statusText:  jqXHR.statusText,
+          ok:          res.ok,
+          status:      res.status,
+          statusText:  res.statusText,
           contentType: payload.contentType,
-          results:     payload.results,
+          results:     res.ok ? payload.results : payload,
           traces:      payload.traces,
+          error:       payload.error,
           elapsed:     payload.elapsed,
-        });
-      } catch ({jqXHR, payload}) {
-        this.set('response', {
-          ok:         false,
-          status:     jqXHR.status,
-          statusText: jqXHR.statusText,
-          results:    payload,
-          traces:     payload.traces,
-          error:      payload.error,
-          elapsed:    payload.elapsed,
         });
       } finally {
         this.set('isRunning', false);
@@ -55,13 +54,9 @@ export default Component.extend({
     }
   }),
 
-  actualPath: computed('composedParams', 'apiPath', {
+  actualUrl: computed('composedParams', 'apiPath', {
     get() {
-      if (Object.keys(this.composedParams).length === 0) {
-        return this.apiPath;
-      } else {
-        return `${this.apiPath}?${$.param(this.composedParams)}`;
-      }
+      return buildURL(this.apiPath, this.composedParams).toString();
     }
   }),
 
