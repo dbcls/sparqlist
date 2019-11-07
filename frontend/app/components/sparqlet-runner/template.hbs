@@ -52,7 +52,10 @@
 
           <div class="card-body">
             {{#if (type-is response.contentType (array "text/html"))}}
-              <ScriptableHtmlEmbedding @html={{response.results}} />
+              <div {{evaluate-scripts}}>
+                {{! template-lint-disable no-triple-curlies }}
+                {{{response.results}}}
+              </div>
             {{else if (type-is response.contentType (array "json" "+json"))}}
               <pre><code>{{to-json response.results}}</code></pre>
             {{else}}
