@@ -6,7 +6,7 @@
       {{#each actualParams as |param|}}
         <div class="form-group">
           <label><code>{{param.param.name}}</code> {{param.param.description}}</label>
-          {{input value=(mut param.value) class="form-control"}}
+          <Input @value={{mut param.value}} class="form-control" />
 
           {{#with param.param.example as |example|}}
             <small class="form-text text-muted">example: {{example}}</small>
@@ -52,7 +52,7 @@
 
           <div class="card-body">
             {{#if (type-is response.contentType (array "text/html"))}}
-              {{scriptable-html-embedding html=response.results}}
+              <ScriptableHtmlEmbedding @html={{response.results}} />
             {{else if (type-is response.contentType (array "json" "+json"))}}
               <pre><code>{{to-json response.results}}</code></pre>
             {{else}}

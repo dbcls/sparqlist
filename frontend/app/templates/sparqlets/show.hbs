@@ -9,7 +9,7 @@
   </div>
 {{/each}}
 
-{{sparqlet-runner apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
+<SparqletRunner @apiPath={{model.apiPath}} @traceModeApiPath={{model.traceModeApiPath}} @params={{model.params}} />
 
 <div class="card my-3">
   <div class="card-header">
@@ -25,9 +25,9 @@
             {{fa-icon "code-branch"}} Fork
           </button>
 
-          {{#link-to "sparqlets.edit" model class="btn btn-outline-primary" role="button"}}
+          <LinkTo @route="sparqlets.edit" @model={{model}} class="btn btn-outline-primary" @role="button">
             {{fa-icon "edit"}} Edit
-          {{/link-to}}
+          </LinkTo>
 
           <button {{action "delete" model}} class="btn btn-outline-danger">
             {{fa-icon "trash"}} Delete
@@ -47,7 +47,7 @@
   </div>
 
   <div class="card-body tab-content">
-    {{scriptable-html-embedding html=model.html class="tab-pane active" id="html"}}
+    <ScriptableHtmlEmbedding @html={{model.html}} @class="tab-pane active" @id="html" />
 
     <div class="tab-pane" id="markdown">
       <pre><code>{{model.src}}</code></pre>

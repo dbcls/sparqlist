@@ -8,7 +8,7 @@
           <div>{{mdPath}}</div>
         {{else}}
           <div class="form-inline">
-            {{input value=name class="form-control"}}.md
+            <Input @value={{name}} class="form-control" />.md
           </div>
         {{/if}}
       </div>
@@ -21,7 +21,7 @@
     </div>
 
     <div class="card-body">
-      {{ivy-codemirror value=code valueUpdated=(action "update") options=(hash lineNumbers=true mode="markdown" theme="base16-light")}}
+      <IvyCodemirror @value={{code}} @valueUpdated={{action "update"}} @options={{hash lineNumbers=true mode="markdown" theme="base16-light"}} />
     </div>
   </form>
 </div>
