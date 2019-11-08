@@ -1,0 +1,27 @@
+<div {{did-insert (fn this.updateBuffer @src)}} class="card mt-1">
+  <form {{on "submit" (prevent-default (fn @action this.buffer this.name))}}>
+    <div class="card-header d-flex align-items-center">
+      <div class="mr-auto">
+        <strong>API code document</strong>
+
+        {{#if @mdPath}}
+          <div>{{@mdPath}}</div>
+        {{else}}
+          <div class="form-inline">
+            <Input @value={{this.name}} class="form-control" />.md
+          </div>
+        {{/if}}
+      </div>
+
+      <div>
+        <button class="btn {{if (not-eq this.buffer @sparqlet.src) "btn-primary" "btn-outline-primary"}} float-right">
+          <FaIcon @icon="save" /> Save
+        </button>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <IvyCodemirror @value={{@src}} @valueUpdated={{this.updateBuffer}} @options={{hash lineNumbers=true mode="markdown" theme="base16-light"}} />
+    </div>
+  </form>
+</div>

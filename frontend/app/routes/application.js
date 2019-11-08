@@ -1,4 +1,7 @@
-import Route from '@ember/routing/route';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+import Route from '@ember/routing/route';
+import classic from 'ember-classic-decorator';
 
-export default Route.extend(ApplicationRouteMixin);
+@classic
+export default class ApplicationRoute extends Route.extend(ApplicationRouteMixin) {
+}

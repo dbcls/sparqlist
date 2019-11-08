@@ -9,7 +9,7 @@
   </div>
 {{/each}}
 
-{{sparqlet-runner apiPath=model.apiPath traceModeApiPath=model.traceModeApiPath params=model.params}}
+<SparqletRunner @apiPath={{model.apiPath}} @traceModeApiPath={{model.traceModeApiPath}} @params={{model.params}} />
 
 <div class="card my-3">
   <div class="card-header">
@@ -21,16 +21,16 @@
 
       {{#if session.isAuthenticated}}
         <div>
-          <button {{action "fork" model}} class="btn btn-outline-primary">
-            {{fa-icon "code-branch"}} Fork
+          <button {{on "click" (fn this.fork model)}} class="btn btn-outline-primary">
+            <FaIcon @icon="code-branch" /> Fork
           </button>
 
-          {{#link-to "sparqlets.edit" model class="btn btn-outline-primary" role="button"}}
-            {{fa-icon "edit"}} Edit
-          {{/link-to}}
+          <LinkTo @route="sparqlets.edit" @model={{model}} class="btn btn-outline-primary" @role="button">
+            <FaIcon @icon="edit" /> Edit
+          </LinkTo>
 
-          <button {{action "delete" model}} class="btn btn-outline-danger">
-            {{fa-icon "trash"}} Delete
+          <button {{on "click" (fn this.delete model)}} class="btn btn-outline-danger">
+            <FaIcon @icon="trash" /> Delete
           </button>
         </div>
       {{/if}}
@@ -47,7 +47,10 @@
   </div>
 
   <div class="card-body tab-content">
-    {{scriptable-html-embedding html=model.html class="tab-pane active" id="html"}}
+    <div {{evaluate-scripts}} id="html" class="tab-pane active">
+      {{! template-lint-disable no-triple-curlies }}
+      {{{model.html}}}
+    </div>
 
     <div class="tab-pane" id="markdown">
       <pre><code>{{model.src}}</code></pre>

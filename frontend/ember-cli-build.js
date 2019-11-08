@@ -22,6 +22,7 @@ module.exports = function(defaults) {
     }
   });
 
+  app.import('node_modules/jquery/dist/jquery.slim.js');
   app.import('node_modules/bootstrap/dist/js/bootstrap.bundle.js');
 
   return app.toTree();

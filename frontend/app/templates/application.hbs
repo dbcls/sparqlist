@@ -1,12 +1,12 @@
 <nav class="navbar navbar-expand-lg fixed-top {{if session.isAuthenticated "navbar-dark bg-dark" "navbar-light bg-light"}}">
-  {{#link-to "sparqlets" class="navbar-brand"}}SPARQList{{/link-to}}
+  <LinkTo @route="sparqlets" class="navbar-brand">SPARQList</LinkTo>
 
   <ul class="navbar-nav">
     <li class="nav-item">
       {{#if session.isAuthenticated}}
-        <a {{action "invalidateSession"}} href="#" class="nav-link">Logout</a>
+        <a {{on "click" this.logout}} href="#" class="nav-link">Logout</a>
       {{else}}
-        {{#link-to "login" class="nav-link"}}Login{{/link-to}}
+        <LinkTo @route="login" class="nav-link">Login</LinkTo>
       {{/if}}
     </li>
   </ul>
