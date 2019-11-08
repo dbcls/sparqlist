@@ -67,13 +67,9 @@ Path of root. If you want to deploy SPARQList under a subdirectory, specify the 
     $ cd sparqlist
     $ npm run watch
 
-Open http://localhost:3000 in your browser for backend development.
-
 ### Frontend
 
     $ cd sparqlist/frontend
-    $ npm start -- --proxy http://localhost:3000
+    $ npm run build -- --output ../public --watch
 
-Open http://localhost:4200 on your browser for frontend development.
-
-Note that some requests, such as `/api`, can't be processed on http://localhost:4200 because the `--proxy` option does not work for these paths. Try them on http://localhost:3000.
+Open http://localhost:3000 in your browser.
