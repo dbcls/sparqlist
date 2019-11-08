@@ -26,7 +26,8 @@ export default class ShowController extends Controller {
 
   @action
   fork(model) {
-    this.newSparqlet.set('src', model.src);
+    this.newSparqlet.src = model.src;
+
     this.transitionToRoute('sparqlets.new');
   }
 }

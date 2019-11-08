@@ -12,6 +12,8 @@ export default class NewRoute extends Route.extend(AuthenticatedRouteMixin) {
   @action
   willTransition() {
     this.controller.model.rollbackAttributes();
+
+    this.controller.src   = null;
     this.controller.error = null;
   }
 }
