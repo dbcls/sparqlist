@@ -1,4 +1,4 @@
-<div {{did-insert (fn (mut this.buffer @src))}} class="card mt-1">
+<div {{did-insert (fn this.updateBuffer @src)}} class="card mt-1">
   <form {{on "submit" (prevent-default (fn @action this.buffer this.name))}}>
     <div class="card-header d-flex align-items-center">
       <div class="mr-auto">
@@ -21,7 +21,7 @@
     </div>
 
     <div class="card-body">
-      <IvyCodemirror @value={{@src}} @valueUpdated={{action (mut this.buffer)}} @options={{hash lineNumbers=true mode="markdown" theme="base16-light"}} />
+      <IvyCodemirror @value={{@src}} @valueUpdated={{this.updateBuffer}} @options={{hash lineNumbers=true mode="markdown" theme="base16-light"}} />
     </div>
   </form>
 </div>

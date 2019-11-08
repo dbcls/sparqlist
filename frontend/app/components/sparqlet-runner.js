@@ -1,26 +1,44 @@
-import Component from '@ember/component';
-import classic from 'ember-classic-decorator';
+import Component from '@glimmer/component';
 import fetch from 'fetch';
-import { action, computed } from '@ember/object';
+import { action } from '@ember/object';
+import { set } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-function buildURL(path, params) {
+function buildURL(path, query) {
   const url = new URL(path, location.origin);
 
-  for (const [k, v] of Object.entries(params)) {
+  for (const [k, v] of Object.entries(query)) {
     url.searchParams.append(k, v);
   }
 
   return url;
 }
 
-@classic
 export default class SparqletRunner extends Component {
+  @tracked queryFields;
+  @tracked response = null;
+  @tracked isRunning = false;
+
+  constructor() {
+    super(...arguments);
+
+    this.queryFields = this.args.params.map(param => ({param, value: param.default}));
+  }
+
+  get constructedQuery() {
+    return this.queryFields.reduce((acc, {param: {name}, value}) => Object.assign(acc, {[name]: value}), {});
+  }
+
+  get constructedURL() {
+    return buildURL(this.args.apiPath, this.constructedQuery).toString();
+  }
+
   @action
   async execute() {
-    this.set('isRunning', true);
+    this.isRunning = true;
 
     try {
-      const res = await fetch(buildURL(this.traceModeApiPath, this.composedParams), {
+      const res = await fetch(buildURL(this.args.traceModeApiPath, this.constructedQuery), {
         headers: {
           'Accept': 'text/html, application/json, */*; q=0.01'
         }
@@ -28,7 +46,7 @@ export default class SparqletRunner extends Component {
 
       const payload = await res.json();
 
-      this.set('response', {
+      this.response = {
         ok:          res.ok,
         status:      res.status,
         statusText:  res.statusText,
@@ -37,25 +55,16 @@ export default class SparqletRunner extends Component {
         traces:      payload.traces,
         error:       payload.error,
         elapsed:     payload.elapsed,
-      });
+      };
     } finally {
-      this.set('isRunning', false);
+      this.isRunning = false;
     }
   }
 
-  init() {
-    super.init(...arguments);
+  @action
+  updateFieldValue(field, value) {
+    set(field, 'value', value);
 
-    this.set('actualParams', this.params.map(param => ({param, value: param.default})));
-  }
-
-  @computed('actualParams.@each.value')
-  get composedParams() {
-    return this.actualParams.reduce((acc, p) => Object.assign(acc, {[p.param.name]: p.value}), {});
-  }
-
-  @computed('composedParams', 'apiPath')
-  get actualUrl() {
-    return buildURL(this.apiPath, this.composedParams).toString();
+    this.queryFields = this.queryFields;
   }
 }

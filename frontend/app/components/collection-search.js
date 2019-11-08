@@ -1,21 +1,20 @@
-import Component from '@ember/component';
-import classic from 'ember-classic-decorator';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
-import { tagName } from '@ember-decorators/component';
+import { tracked } from '@glimmer/tracking';
 
-@classic
-@tagName('')
 export default class CollectionSearch extends Component {
-  init() {
-    super.init(...arguments);
+  @tracked result;
 
-    this.set('result', this.collection);
+  constructor() {
+    super(...arguments);
+
+    this.result = this.args.collection;
   }
 
   @action
   update(query) {
-    const {collection, keys} = this;
+    const {collection, keys} = this.args;
 
-    this.set('result', query ? collection.filter((obj) => keys.some((key) => obj.get(key).includes(query))) : collection);
+    this.result = query ? collection.filter((obj) => keys.some((key) => obj.get(key).includes(query))) : collection;
   }
 }

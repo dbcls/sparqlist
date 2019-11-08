@@ -1,6 +1,12 @@
-import Component from '@ember/component';
-import classic from 'ember-classic-decorator';
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-@classic
 export default class SparqletEditor extends Component {
+  @tracked buffer;
+
+  @action
+  updateBuffer(content) {
+    this.buffer = content;
+  }
 }

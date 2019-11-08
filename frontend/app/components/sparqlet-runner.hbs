@@ -3,33 +3,33 @@
     <h4 class="card-title mb-3">Run</h4>
 
     <form {{on "submit" (prevent-default this.execute)}}>
-      {{#each actualParams as |param|}}
+      {{#each this.queryFields as |field|}}
         <div class="form-group">
-          <label><code>{{param.param.name}}</code> {{param.param.description}}</label>
-          <Input @value={{mut param.value}} class="form-control" />
+          <label><code>{{field.param.name}}</code> {{field.param.description}}</label>
+          <input {{on "input" (action (fn this.updateFieldValue field) value="target.value")}} value={{field.value}} class="form-control">
 
-          {{#with param.param.example as |example|}}
+          {{#with field.param.example as |example|}}
             <small class="form-text text-muted">example: {{example}}</small>
           {{/with}}
         </div>
       {{/each}}
 
       <div>
-        <a href={{actualUrl}}>{{actualUrl}}</a>
+        <a href={{this.constructedURL}}>{{this.constructedURL}}</a>
       </div>
 
       <div class="d-flex align-items-center mt-3">
-        <button class="btn btn-primary mr-2" disabled={{isRunning}}>
+        <button class="btn btn-primary mr-2" disabled={{this.isRunning}}>
           <FaIcon @icon="rocket" /> Execute
         </button>
 
-        {{#if isRunning}}
+        {{#if this.isRunning}}
           <FaIcon @icon="spinner" @pulse={{true}} @size="lg" />
         {{/if}}
       </div>
     </form>
 
-    {{#if response}}
+    {{#with this.response as |response|}}
       <hr>
 
       {{#if response.ok}}
@@ -144,6 +144,6 @@
           {{/each}}
         </div>
       {{/if}}
-    {{/if}}
+    {{/with}}
   </div>
 </div>
