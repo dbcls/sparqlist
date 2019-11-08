@@ -1,7 +1,7 @@
 <form {{on "submit" (prevent-default this.authenticate)}} class="form-inline">
   <div class="mb-2 mr-sm-2 mb-sm-0">
     <label for="password" class="sr-only">Password</label>
-    <Input @id="password" placeholder="Enter Password" @type="password" @value={{password}} class="form-control" />
+    <input {{on "input" (action (mut this.password) value="target.value")}} type="password" value={{this.password}} placeholder="Enter Password" id="password" class="form-control">
   </div>
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
