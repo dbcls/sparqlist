@@ -1,39 +1,39 @@
 {
   "name": "sparqlist",
   "version": "0.0.0",
-  "main": "index.js",
-  "repository": {},
+  "private": true,
+  "type": "module",
+  "heroku-run-build-script": true,
+  "scripts": {
+    "start": "node --experimental-modules index.js",
+    "build": "cd frontend && npm install --production=false && npm run build -- --environment=production --output-path=../public",
+    "watch": "nodemon --exec npm start --ignore frontend/",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.2",
+    "@babel/plugin-transform-modules-commonjs": "^7.7.0",
+    "babel-jest": "^24.9.0",
+    "cypress": "^3.6.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4"
+  },
   "dependencies": {
     "accepts": "^1.3.3",
     "body-parser": "^1.16.0",
     "commonmark": "^0.29.0",
     "express": "^4.14.0",
     "express-promise-router": "^3.0.3",
-    "fontoxpath": "^3.4.0",
-    "form-data": "^2.1.2",
-    "fs-extra": "^8.1.0",
-    "handlebars": "^4.1.2",
+    "fontoxpath": "^3.9.0",
+    "handlebars": "^4.5.1",
     "morgan": "^1.7.0",
     "node-fetch": "^2.0.0",
-    "parse5": "^5.1.0",
-    "slimdom-sax-parser": "^1.1.3",
+    "parse5": "^5.1.1",
+    "slimdom-sax-parser": "^1.2.2",
     "type-is": "^1.6.14",
     "xmlserializer": "^0.6.1"
   },
-  "scripts": {
-    "start": "node index.js",
-    "build": "cd frontend && npm install --production=false && npm run build -- --environment=production --output-path=../public",
-    "watch": "nodemon --exec npm start --ignore frontend/",
-    "test": "jest"
-  },
   "engines": {
-    "node": "10.x"
-  },
-  "private": true,
-  "devDependencies": {
-    "cypress": "^3.4.1",
-    "jest": "^24.8.0",
-    "nodemon": "^1.19.1"
-  },
-  "heroku-run-build-script": true
+    "node": "12.x"
+  }
 }
