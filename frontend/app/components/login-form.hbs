@@ -1,0 +1,15 @@
+<form {{on "submit" (prevent-default this.authenticate)}} class="form-inline">
+  <div class="mb-2 mr-sm-2 mb-sm-0">
+    <label for="password" class="sr-only">Password</label>
+    <input {{on "input" (action (mut this.password) value="target.value")}} type="password" value={{this.password}} placeholder="Enter Password" id="password" class="form-control">
+  </div>
+
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
+
+{{#if this.errorMessage}}
+  {{! template-lint-disable no-inline-styles }}
+  <div class="alert alert-danger" role="alert" style="margin-top: 20px;">
+    {{this.errorMessage}}
+  </div>
+{{/if}}
