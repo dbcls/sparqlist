@@ -1,7 +1,6 @@
 import Component from '@glimmer/component';
 import fetch from 'fetch';
 import { action } from '@ember/object';
-import { set } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 function buildURL(path, query) {
@@ -14,15 +13,23 @@ function buildURL(path, query) {
   return url;
 }
 
+class QueryField {
+  @tracked value;
+
+  constructor(param) {
+    this.param = param;
+    this.value = param.default;
+  }
+}
+
 export default class SparqletRunner extends Component {
-  @tracked queryFields;
   @tracked response = null;
   @tracked isRunning = false;
 
   constructor() {
     super(...arguments);
 
-    this.queryFields = this.args.params.map(param => ({param, value: param.default}));
+    this.queryFields = this.args.params.map(param => new QueryField(param));
   }
 
   get constructedQuery() {
@@ -59,12 +66,5 @@ export default class SparqletRunner extends Component {
     } finally {
       this.isRunning = false;
     }
-  }
-
-  @action
-  updateFieldValue(field, value) {
-    set(field, 'value', value);
-
-    this.queryFields = this.queryFields;
   }
 }

@@ -6,9 +6,9 @@
   <button type="submit" class="btn btn-primary">Login</button>
 </form>
 
-{{#if errorMessage}}
+{{#if this.errorMessage}}
   {{! template-lint-disable no-inline-styles }}
   <div class="alert alert-danger" role="alert" style="margin-top: 20px;">
-    {{errorMessage}}
+    {{this.errorMessage}}
   </div>
 {{/if}}

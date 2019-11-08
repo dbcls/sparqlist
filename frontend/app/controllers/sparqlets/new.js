@@ -1,9 +1,10 @@
 import Controller from '@ember/controller';
-import classic from 'ember-classic-decorator';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
 
-@classic
 export default class NewController extends Controller {
+  @tracked error = null;
+
   @action
   async save(code, name) {
     this.model.set('name', name);
@@ -14,7 +15,7 @@ export default class NewController extends Controller {
 
       this.transitionToRoute('sparqlets.show', this.model);
     } catch (e) {
-      this.set('error', e);
+      this.error = e;
       // eslint-disable-next-line no-console
       console.error(e);
     }

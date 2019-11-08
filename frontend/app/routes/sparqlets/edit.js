@@ -8,6 +8,6 @@ export default class EditRoute extends Route.extend(AuthenticatedRouteMixin) {
   @action
   willTransition() {
     this.controller.model.rollbackAttributes();
-    this.controller.set('error', null);
+    this.controller.error = null;
   }
 }

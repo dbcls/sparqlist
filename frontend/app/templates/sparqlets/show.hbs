@@ -3,7 +3,7 @@
   <a href={{model.apiPath}}>{{path-to-url model.apiPath}}</a>
 </p>
 
-{{#each error.errors as |error|}}
+{{#each this.error.errors as |error|}}
   <div class="alert alert-danger">
     <strong>Error</strong> {{error.detail}}
   </div>
