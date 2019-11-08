@@ -1,0 +1,60 @@
+<div class="d-flex align-items-center mt-3 mb-1">
+  <h4 class="card-title mr-auto">Traces</h4>
+  <small><FaIcon @icon="clock" /> Total: {{@elapsed}} ms</small>
+</div>
+
+<div class="traces">
+  {{#each @traces as |trace i|}}
+    <div class="card mt-1 {{if trace.error "card-outline-danger"}}">
+      <a data-target="#trace_{{i}}" data-toggle="collapse" class="card-header pl-3 d-flex align-items-center collapsed {{if trace.error "card-danger card-inverse"}}">
+        <div>
+          <FaIcon @icon="chevron-right" @fixedWidth={{true}} />
+          <FaIcon @icon="chevron-down" @fixedWidth={{true}} />
+        </div>
+
+        <div class="mr-auto px-2">
+          {{#if trace.step.name}}
+            {{trace.step.name}}
+          {{else}}
+            <span class="font-italic">(no title)</span>
+          {{/if}}
+
+          <span class="text-muted">
+            <span class="mx-1">:</span>
+            <small class="text-monospace">{{trace.step.type}}</small>
+          </span>
+
+          {{#if trace.step.bindingName}}
+            <FaIcon @icon="arrow-right" @size="xs" class="mx-1" /> <code>{{trace.step.bindingName}}</code>
+          {{/if}}
+        </div>
+
+        <div>
+          <small><FaIcon @icon="clock" /> {{trace.elapsed}} ms</small>
+        </div>
+      </a>
+
+      <div class="collapse" id="trace_{{i}}">
+        <div class="card-body">
+          {{#each trace.logEntries as |logEntry|}}
+            <div class="badge badge-default">{{logEntry.type}}</div>
+            <pre><code>{{logEntry.message}}</code></pre>
+          {{/each}}
+
+          {{#if trace.error}}
+            <div class="badge badge-danger">Error</div>
+            <pre><code>{{trace.error}}</code></pre>
+          {{else if trace.results}}
+            <div class="badge badge-success">Results</div>
+
+            {{#if (type-is trace.contentType (array "json" "+json"))}}
+              <pre><code>{{to-json trace.results}}</code></pre>
+            {{else}}
+              <pre><code>{{trace.results}}</code></pre>
+            {{/if}}
+          {{/if}}
+        </div>
+      </div>
+    </div>
+  {{/each}}
+</div>

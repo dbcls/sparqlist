@@ -1,0 +1,47 @@
+{{#if @response.ok}}
+  <h4>
+    Response
+    <span class="badge badge-success align-top">{{@response.status}} {{@response.statusText}}</span>
+  </h4>
+
+  <div class="card mt-3">
+    <div class="card-header">
+      Output
+
+      {{#if @response.contentType}}
+        <span class="text-muted">
+          <span class="mx-1">:</span>
+          <small class="text-monospace">{{@response.contentType}}</small>
+        </span>
+      {{/if}}
+    </div>
+
+    <div class="card-body">
+      {{#if (type-is @response.contentType (array "text/html"))}}
+        <div {{evaluate-scripts}}>
+          {{! template-lint-disable no-triple-curlies }}
+          {{{@response.results}}}
+        </div>
+      {{else if (type-is @response.contentType (array "json" "+json"))}}
+        <pre><code>{{to-json @response.results}}</code></pre>
+      {{else}}
+        <pre><code>{{@response.results}}</code></pre>
+      {{/if}}
+    </div>
+  </div>
+{{else}}
+  <h4>
+    Response
+    <span class="badge badge-danger align-top">{{@response.status}} {{@response.statusText}}</span>
+  </h4>
+
+  <div class="card border-danger mt-3">
+    <div class="card-header">
+      Error
+    </div>
+
+    <div class="card-body">
+      <pre><code>{{or @response.error @response.results}}</code></pre>
+    </div>
+  </div>
+{{/if}}
