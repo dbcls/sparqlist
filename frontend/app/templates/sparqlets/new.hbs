@@ -1,7 +1,1 @@
-{{#each this.error.errors as |error|}}
-  <div class="alert alert-danger">
-    <strong>Error</strong> {{error.detail}}
-  </div>
-{{/each}}
-
-<SparqletEditor @src={{this.src}} @action={{this.save}} />
+<SparqletEditor @model={{model}} @onSave={{transition-to "sparqlets.show" model}} />

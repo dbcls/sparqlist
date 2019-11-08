@@ -1,13 +1,9 @@
-import Controller, { inject as controller } from '@ember/controller';
+import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
-import { tracked } from '@glimmer/tracking';
 
 export default class ShowController extends Controller {
   @service session;
-  @controller('sparqlets.new') newSparqlet;
-
-  @tracked error = null;
 
   @action
   async delete(model) {
@@ -18,16 +14,10 @@ export default class ShowController extends Controller {
 
       this.transitionToRoute('sparqlets');
     } catch (e) {
-      this.error = e;
+      alert(e.toString());
+
       // eslint-disable-next-line no-console
       console.error(e);
     }
-  }
-
-  @action
-  fork(model) {
-    this.newSparqlet.src = model.src;
-
-    this.transitionToRoute('sparqlets.new');
   }
 }

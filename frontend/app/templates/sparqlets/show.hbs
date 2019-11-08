@@ -19,11 +19,11 @@
         <div>{{model.mdPath}} <span class="text-muted">(version: {{model.mtime}})</span></div>
       </div>
 
-      {{#if session.isAuthenticated}}
+      {{#if this.session.isAuthenticated}}
         <div>
-          <button {{on "click" (fn this.fork model)}} class="btn btn-outline-primary">
+          <LinkTo @route="sparqlets.new" @query={{hash forkFrom=model.id}} class="btn btn-outline-primary" @role="button">
             <FaIcon @icon="code-branch" /> Fork
-          </button>
+          </LinkTo>
 
           <LinkTo @route="sparqlets.edit" @model={{model}} class="btn btn-outline-primary" @role="button">
             <FaIcon @icon="edit" /> Edit

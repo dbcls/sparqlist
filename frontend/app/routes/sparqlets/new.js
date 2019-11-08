@@ -1,19 +1,18 @@
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import Route from '@ember/routing/route';
 import classic from 'ember-classic-decorator';
-import { action } from '@ember/object';
 
 @classic
 export default class NewRoute extends Route.extend(AuthenticatedRouteMixin) {
-  model() {
-    return this.store.createRecord('sparqlet');
-  }
+  async model(params) {
+    const model = this.store.createRecord('sparqlet');
 
-  @action
-  willTransition() {
-    this.controller.model.rollbackAttributes();
+    if (params.forkFrom) {
+      const origin = await this.store.findRecord('sparqlet', params.forkFrom);
 
-    this.controller.src   = null;
-    this.controller.error = null;
+      model.set('src', origin.src);
+    }
+
+    return model;
   }
 }
