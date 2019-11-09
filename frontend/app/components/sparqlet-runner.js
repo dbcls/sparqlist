@@ -29,7 +29,7 @@ export default class SparqletRunner extends Component {
   constructor() {
     super(...arguments);
 
-    this.queryFields = this.args.params.map(param => new QueryField(param));
+    this.queryFields = this.args.model.params.map(param => new QueryField(param));
   }
 
   get constructedQuery() {
@@ -37,7 +37,7 @@ export default class SparqletRunner extends Component {
   }
 
   get constructedURL() {
-    return buildURL(this.args.apiPath, this.constructedQuery).toString();
+    return buildURL(this.args.model.apiPath, this.constructedQuery).toString();
   }
 
   @action
@@ -45,7 +45,7 @@ export default class SparqletRunner extends Component {
     this.isRunning = true;
 
     try {
-      const res = await fetch(buildURL(this.args.traceModeApiPath, this.constructedQuery), {
+      const res = await fetch(buildURL(this.args.model.traceModeApiPath, this.constructedQuery), {
         headers: {
           'Accept': 'text/html, application/json, */*; q=0.01'
         }
