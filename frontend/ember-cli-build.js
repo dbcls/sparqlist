@@ -10,7 +10,7 @@ module.exports = function(defaults) {
       ]
     },
     codemirror: {
-      modes: ['markdown'],
+      modes: ['markdown', 'javascript', 'sparql'],
       themes: ['base16-light'],
     },
     autoImport: {
