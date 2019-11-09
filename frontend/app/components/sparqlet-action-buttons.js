@@ -1,18 +1,19 @@
-import Controller from '@ember/controller';
+import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 
-export default class ShowController extends Controller {
+export default class SparqletActionButtonsComponent extends Component {
   @service session;
+  @service router;
 
   @action
-  async delete(model) {
+  async delete() {
     if (!confirm('Are you sure?')) { return; }
 
     try {
-      await model.destroyRecord();
+      await this.args.model.destroyRecord();
 
-      this.transitionToRoute('sparqlets');
+      this.router.transitionTo('sparqlets');
     } catch (e) {
       alert(e.toString());
 

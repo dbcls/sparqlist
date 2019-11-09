@@ -1,0 +1,15 @@
+{{#if this.session.isAuthenticated}}
+  <div>
+    <LinkTo @route="sparqlets.new" @query={{hash forkFrom=@model.id}} class="btn btn-outline-primary" @role="button">
+      <FaIcon @icon="code-branch" /> Fork
+    </LinkTo>
+
+    <LinkTo @route="sparqlets.edit" @model={{@model}} class="btn btn-outline-primary" @role="button">
+      <FaIcon @icon="edit" /> Edit
+    </LinkTo>
+
+    <button {{on "click" this.delete}} class="btn btn-outline-danger">
+      <FaIcon @icon="trash" /> Delete
+    </button>
+  </div>
+{{/if}}

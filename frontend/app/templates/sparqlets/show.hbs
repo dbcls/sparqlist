@@ -1,13 +1,8 @@
 <h1>{{if model.title model.title model.id}}</h1>
+
 <p>
   <a href={{model.apiPath}}>{{path-to-url model.apiPath}}</a>
 </p>
-
-{{#each this.error.errors as |error|}}
-  <div class="alert alert-danger">
-    <strong>Error</strong> {{error.detail}}
-  </div>
-{{/each}}
 
 <SparqletRunner @apiPath={{model.apiPath}} @traceModeApiPath={{model.traceModeApiPath}} @params={{model.params}} />
 
@@ -19,21 +14,7 @@
         <div>{{model.mdPath}} <span class="text-muted">(version: {{model.mtime}})</span></div>
       </div>
 
-      {{#if this.session.isAuthenticated}}
-        <div>
-          <LinkTo @route="sparqlets.new" @query={{hash forkFrom=model.id}} class="btn btn-outline-primary" @role="button">
-            <FaIcon @icon="code-branch" /> Fork
-          </LinkTo>
-
-          <LinkTo @route="sparqlets.edit" @model={{model}} class="btn btn-outline-primary" @role="button">
-            <FaIcon @icon="edit" /> Edit
-          </LinkTo>
-
-          <button {{on "click" (fn this.delete model)}} class="btn btn-outline-danger">
-            <FaIcon @icon="trash" /> Delete
-          </button>
-        </div>
-      {{/if}}
+      <SparqletActionButtons @model={{model}} />
     </div>
 
     <ul class="nav nav-tabs card-header-tabs mt-2">
