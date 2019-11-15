@@ -14,7 +14,7 @@
           <div>{{@model.mdPath}}</div>
         {{else}}
           <div class="form-inline">
-            <input {{on "input" (action (mut @model.name) value="target.value")}} value={{@model.name}} class="form-control">.md
+            <input {{on "input" (set @model.name (get _ "target.value"))}} value={{@model.name}} class="form-control">.md
           </div>
         {{/if}}
       </div>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="card-body">
-      <IvyCodemirror @value={{@model.src}} @valueUpdated={{action (mut @model.src)}} @options={{hash lineNumbers=true mode="markdown" theme="base16-light"}} />
+      <IvyCodemirror @value={{@model.src}} @valueUpdated={{set @model.src _}} @options={{hash lineNumbers=true mode="markdown" theme="base16-light"}} />
     </div>
   </form>
 </div>

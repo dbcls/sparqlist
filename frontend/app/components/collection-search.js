@@ -12,9 +12,9 @@ export default class CollectionSearch extends Component {
   }
 
   @action
-  update(query) {
+  update({target: {value}}) {
     const {collection, keys} = this.args;
 
-    this.result = query ? collection.filter((obj) => keys.some((key) => obj.get(key).includes(query))) : collection;
+    this.result = value ? collection.filter((obj) => keys.some((key) => obj.get(key).includes(value))) : collection;
   }
 }

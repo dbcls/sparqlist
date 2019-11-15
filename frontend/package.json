@@ -51,6 +51,7 @@
     "ember-modifier": "^1.0.2",
     "ember-qunit": "^4.6.0",
     "ember-resolver": "^5.3.0",
+    "ember-set-helper": "^0.1.1",
     "ember-simple-auth": "^2.1.0",
     "ember-source": "~3.14.1",
     "ember-truth-helpers": "^2.1.0",

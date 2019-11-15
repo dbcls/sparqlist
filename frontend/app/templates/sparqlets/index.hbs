@@ -5,7 +5,7 @@
         <FaIcon @icon="plus-circle" /> New SPARQLet
       </LinkTo>
 
-      <input {{on "input" (action search.update value="target.value")}} type="search" placeholder="Search" class="form-control">
+      <input {{on "input" search.update}} type="search" placeholder="Search" class="form-control">
     </div>
 
     <div class="list-group list-group-flush">
