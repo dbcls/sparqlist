@@ -1,20 +1,20 @@
-<h1>{{if model.title model.title model.id}}</h1>
+<h1>{{if @model.title @model.title @model.id}}</h1>
 
 <p>
-  <a href={{model.apiPath}}>{{path-to-url model.apiPath}}</a>
+  <a href={{@model.apiPath}}>{{path-to-url @model.apiPath}}</a>
 </p>
 
-<SparqletRunner @model={{model}} />
+<SparqletRunner @model={{@model}} />
 
 <div class="card my-3">
   <div class="card-header">
     <div class="d-flex align-items-center">
       <div class="mr-auto">
         <strong>API code document</strong>
-        <div>{{model.mdPath}} <span class="text-muted">(version: {{model.mtime}})</span></div>
+        <div>{{@model.mdPath}} <span class="text-muted">(version: {{@model.mtime}})</span></div>
       </div>
 
-      <SparqletActionButtons @model={{model}} />
+      <SparqletActionButtons @model={{@model}} />
     </div>
 
     <ul class="nav nav-tabs card-header-tabs mt-2">
@@ -30,11 +30,11 @@
   <div class="card-body tab-content">
     <div {{evaluate-scripts}} id="html" class="tab-pane active">
       {{! template-lint-disable no-triple-curlies }}
-      {{{model.html}}}
+      {{{@model.html}}}
     </div>
 
     <div class="tab-pane" id="markdown">
-      <pre><code>{{model.src}}</code></pre>
+      <pre><code>{{@model.src}}</code></pre>
     </div>
   </div>
 </div>

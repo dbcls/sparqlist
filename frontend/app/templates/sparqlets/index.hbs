@@ -1,5 +1,5 @@
 <div class="card">
-  <CollectionSearch @collection={{model}} @keys={{array "id" "src"}} as |search|>
+  <CollectionSearch @collection={{@model}} @keys={{array "id" "src"}} as |search|>
     <div class="card-header d-flex">
       <LinkTo @route="sparqlets.new" @query={{hash forkFrom=null}} class="btn btn-primary mr-auto">
         <FaIcon @icon="plus-circle" /> New SPARQLet
