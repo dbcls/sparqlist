@@ -1,11 +1,11 @@
 import EmberRouter from '@ember/routing/router';
-import classic from 'ember-classic-decorator';
 import config from './config/environment';
+import classic from 'ember-classic-decorator';
 
 @classic
-class Router extends EmberRouter {
+export default class Router extends EmberRouter {
   location = config.locationType;
-  rootURL  = config.rootURL;
+  rootURL = config.rootURL;
 }
 
 Router.map(function() {
@@ -17,5 +17,3 @@ Router.map(function() {
     this.route('edit', {path: '/:sparqlet_id/edit'});
   });
 });
-
-export default Router;
