@@ -22,9 +22,4 @@ export default class SparqletEditor extends Component {
       console.error(e);
     }
   }
-
-  @action
-  revertUnsavedChanges() {
-    this.args.model.rollbackAttributes();
-  }
 }
