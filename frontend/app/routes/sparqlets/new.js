@@ -1,9 +1,7 @@
 import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import Route from '@ember/routing/route';
-import classic from 'ember-classic-decorator';
 import { action } from '@ember/object';
 
-@classic
 export default class NewRoute extends Route.extend(AuthenticatedRouteMixin) {
   async model(params) {
     const model = this.store.createRecord('sparqlet');
