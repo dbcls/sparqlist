@@ -1,6 +1,6 @@
 import Component from '@glimmer/component';
 import fetch from 'fetch';
-import { action } from '@ember/object';
+import { dropTask } from 'ember-concurrency-decorators';
 import { tracked } from '@glimmer/tracking';
 
 function buildURL(path, query) {
@@ -23,9 +23,6 @@ class QueryField {
 }
 
 export default class SparqletRunner extends Component {
-  @tracked response = null;
-  @tracked isRunning = false;
-
   constructor() {
     super(...arguments);
 
@@ -40,31 +37,25 @@ export default class SparqletRunner extends Component {
     return buildURL(this.args.model.apiPath, this.constructedQuery).toString();
   }
 
-  @action
-  async execute() {
-    this.isRunning = true;
+  @dropTask
+  *execute() {
+    const res = yield fetch(buildURL(this.args.model.traceModeApiPath, this.constructedQuery), {
+      headers: {
+        'Accept': 'text/html, application/json, */*; q=0.01'
+      }
+    });
 
-    try {
-      const res = await fetch(buildURL(this.args.model.traceModeApiPath, this.constructedQuery), {
-        headers: {
-          'Accept': 'text/html, application/json, */*; q=0.01'
-        }
-      });
+    const payload = yield res.json();
 
-      const payload = await res.json();
-
-      this.response = {
-        ok:          res.ok,
-        status:      res.status,
-        statusText:  res.statusText,
-        contentType: payload.contentType,
-        results:     res.ok ? payload.results : payload,
-        traces:      payload.traces,
-        error:       payload.error,
-        elapsed:     payload.elapsed,
-      };
-    } finally {
-      this.isRunning = false;
-    }
+    return {
+      ok:          res.ok,
+      status:      res.status,
+      statusText:  res.statusText,
+      contentType: payload.contentType,
+      results:     res.ok ? payload.results : payload,
+      traces:      payload.traces,
+      error:       payload.error,
+      elapsed:     payload.elapsed,
+    };
   }
 }

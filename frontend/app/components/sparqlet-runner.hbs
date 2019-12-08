@@ -2,7 +2,7 @@
   <div class="card-body">
     <h4 class="card-title mb-3">Run</h4>
 
-    <form {{on "submit" (prevent-default this.execute)}}>
+    <form {{on "submit" (prevent-default (perform this.execute))}}>
       {{#each this.queryFields as |field|}}
         <div class="form-group">
           <label><code>{{field.param.name}}</code> {{field.param.description}}</label>
@@ -19,26 +19,26 @@
       </div>
 
       <div class="d-flex align-items-center mt-3">
-        <button class="btn btn-primary mr-2" disabled={{this.isRunning}}>
+        <button class="btn btn-primary mr-2" disabled={{this.execute.isRunning}}>
           <FaIcon @icon="rocket" /> Execute
         </button>
 
-        {{#if this.isRunning}}
+        {{#if this.execute.isRunning}}
           <FaIcon @icon="spinner" @pulse={{true}} @size="lg" />
         {{/if}}
       </div>
     </form>
 
-    {{#if this.response}}
+    {{#with this.execute.last.value as |response|}}
       <hr>
 
-      <SparqletRunner::Response @response={{this.response}} />
+      <SparqletRunner::Response @response={{response}} />
 
-      {{#if this.response.traces}}
+      {{#if response.traces}}
         <hr>
 
-        <SparqletRunner::Traces @elapsed={{this.response.elapsed}} @traces={{this.response.traces}} />
+        <SparqletRunner::Traces @elapsed={{response.elapsed}} @traces={{response.traces}} />
       {{/if}}
-    {{/if}}
+    {{/with}}
   </div>
 </div>
