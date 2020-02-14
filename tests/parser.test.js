@@ -1,4 +1,4 @@
-import SPARQLetParser from './parser.js';
+import SPARQLetParser from '../lib/parser.mjs';
 
 let parser;
 

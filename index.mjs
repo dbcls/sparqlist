@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import path from 'path';
 import url from 'url';
 
-import createRouter from './lib/create-router.js';
+import createRouter from './lib/create-router.mjs';
 
 const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
