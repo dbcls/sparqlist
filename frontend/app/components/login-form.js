@@ -6,7 +6,13 @@ import { tracked } from '@glimmer/tracking';
 export default class LoginFormComponent extends Component {
   @service session;
 
+  @tracked password     = '';
   @tracked errorMessage = null;
+
+  @action
+  setPassword({target: {value}}) {
+    this.password = value;
+  }
 
   @action
   async authenticate() {

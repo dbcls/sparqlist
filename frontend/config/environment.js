@@ -22,8 +22,11 @@ module.exports = function(environment) {
       // when it is created
     },
 
+    // https://github.com/simplabs/ember-simple-auth/pull/2215
     'ember-simple-auth': {
-      routeAfterAuthentication: 'sparqlets'
+      'ember-simple-auth': {
+        routeAfterAuthentication: 'sparqlets'
+      }
     },
 
     fontawesome: {

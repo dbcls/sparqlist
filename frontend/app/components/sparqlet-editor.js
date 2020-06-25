@@ -9,6 +9,16 @@ export default class SparqletEditor extends Component {
   @tracked error = null;
 
   @action
+  setName({target: {value}}) {
+    this.args.model.set('name', value);
+  }
+
+  @action
+  setSrc(value) {
+    this.args.model.set('src', value);
+  }
+
+  @action
   async save() {
     const {model} = this.args;
 

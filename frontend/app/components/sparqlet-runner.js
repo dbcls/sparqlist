@@ -1,7 +1,9 @@
 import Component from '@glimmer/component';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+
 import fetch from 'fetch';
 import { dropTask } from 'ember-concurrency-decorators';
-import { tracked } from '@glimmer/tracking';
 
 function buildURL(path, query) {
   const url = new URL(path, location.origin);
@@ -57,5 +59,10 @@ export default class SparqletRunner extends Component {
       error:       payload.error,
       elapsed:     payload.elapsed,
     };
+  }
+
+  @action
+  setFieldValue(field, {target: {value}}) {
+    field.value = value;
   }
 }

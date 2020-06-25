@@ -6,7 +6,7 @@
       {{#each this.queryFields as |field|}}
         <div class="form-group">
           <label><code>{{field.param.name}}</code> {{field.param.description}}</label>
-          <input {{on "input" (set field.value (get _ "target.value"))}} value={{field.value}} class="form-control">
+          <input {{on "input" (fn this.setFieldValue field)}} value={{field.value}} class="form-control">
 
           {{#with field.param.example as |example|}}
             <small class="form-text text-muted">example: {{example}}</small>

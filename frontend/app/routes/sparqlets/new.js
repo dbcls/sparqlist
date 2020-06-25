@@ -1,8 +1,14 @@
-import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 import Route from '@ember/routing/route';
 import { action } from '@ember/object';
+import { inject as service } from '@ember/service';
 
-export default class NewRoute extends Route.extend(AuthenticatedRouteMixin) {
+export default class NewRoute extends Route {
+  @service session;
+
+  beforeModel(transition) {
+    this.session.requireAuthentication(transition, 'login');
+  }
+
   async model(params) {
     const model = this.store.createRecord('sparqlet');
 
