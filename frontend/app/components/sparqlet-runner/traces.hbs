@@ -1,13 +1,16 @@
 <div class="d-flex align-items-center mt-3 mb-1">
   <h4 class="card-title mr-auto">Traces</h4>
-  <small><FaIcon @icon="clock" /> Total: {{@elapsed}} ms</small>
+
+  <small class="text-muted">
+    <FaIcon @icon="clock" /> Total: {{@elapsed}} ms
+  </small>
 </div>
 
 <div class="traces">
   {{#each @traces as |trace i|}}
     <div class="card mt-1 {{if trace.error "card-outline-danger"}}">
       {{! template-lint-disable link-href-attributes }}
-      <a data-target="#trace_{{i}}" data-toggle="collapse" class="card-header pl-3 d-flex align-items-center collapsed text-decoration-none {{if trace.error "card-danger card-inverse"}}">
+      <a data-target="#trace_{{i}}" data-toggle="collapse" class="card-header pl-3 d-flex align-items-center collapsed text-dark text-decoration-none {{if trace.error "card-danger card-inverse"}}">
         <div>
           <FaIcon @icon="chevron-right" @fixedWidth={{true}} />
           <FaIcon @icon="chevron-down" @fixedWidth={{true}} />
@@ -31,7 +34,9 @@
         </div>
 
         <div>
-          <small><FaIcon @icon="clock" /> {{trace.elapsed}} ms</small>
+          <small class="text-muted">
+            <FaIcon @icon="clock" /> {{trace.elapsed}} ms
+          </small>
         </div>
       </a>
 

@@ -27,24 +27,6 @@ module.exports = function(environment) {
       'ember-simple-auth': {
         routeAfterAuthentication: 'sparqlets'
       }
-    },
-
-    fontawesome: {
-      icons: {
-        'free-solid-svg-icons': [
-          'arrow-right',
-          'chevron-down',
-          'chevron-right',
-          'clock',
-          'code-branch',
-          'edit',
-          'plus-circle',
-          'rocket',
-          'save',
-          'spinner',
-          'trash',
-        ]
-      }
     }
   };
 
