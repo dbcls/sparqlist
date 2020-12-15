@@ -5,7 +5,7 @@
   "heroku-run-build-script": true,
   "scripts": {
     "start": "node --experimental-modules index.mjs",
-    "build": "cd frontend && npm install --production=false && npm run build -- --environment=production --output-path=../public",
+    "build": "cd frontend && npm ci --production=false && npm run build -- --environment=production --output-path=../public",
     "watch": "nodemon --exec npm start --ignore frontend/",
     "test": "jest"
   },
@@ -33,6 +33,6 @@
     "xmlserializer": "^0.6.1"
   },
   "engines": {
-    "node": "12.x"
+    "node": ">=14"
   }
 }

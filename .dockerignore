@@ -1,0 +1,8 @@
+cypress
+doc
+frontend/dist
+frontend/node_modules
+frontend/tests
+node_modules
+public
+tests

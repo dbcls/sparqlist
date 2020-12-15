@@ -1,17 +1,16 @@
 # Dockerfile for https://github.com/dbcls/sparqlist
 
-FROM node:12
+FROM node:14
 
 ENV PORT 3000
 ENV ADMIN_PASSWORD sparqlist
 ENV ROOT_PATH=/sparqlist/
 
-RUN useradd --create-home app
-RUN install --owner app --group app --directory /app
+RUN useradd --create-home --home-dir /app app
 
 USER app
 WORKDIR /app
+COPY --chown=app:app . .
 
-RUN git clone https://github.com/dbcls/sparqlist.git .
-RUN npm install && npm run build
+RUN npm ci --production && npm run build
 CMD npm start
