@@ -20,7 +20,9 @@ export default class LoginFormComponent extends Component {
       // NOTE identification is not used
       await this.session.authenticate('authenticator:oauth2', '', this.password);
     } catch (res) {
-      this.errorMessage = res.responseJSON.error;
+      if (res.ok !== false) { throw res; } // not a response object
+
+      this.errorMessage = res.responseJSON?.error || res.responseText;
     }
   }
 }
