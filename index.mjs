@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
   app.use(morgan('dev'));
 }
 
-app.use(bodyParser.json({type: 'application/vnd.api+json'}));
+app.use(bodyParser.json({type: 'application/vnd.api+json', limit: '10mb'}));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(pathPrefix, router);
