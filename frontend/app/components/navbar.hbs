@@ -1,13 +1,17 @@
 <nav class="navbar navbar-expand-lg fixed-top {{if this.session.isAuthenticated "navbar-dark bg-dark" "navbar-light bg-light"}}">
-  <LinkTo @route="sparqlets" class="navbar-brand">SPARQList</LinkTo>
+  <div class="container-fluid">
+    <LinkTo @route="sparqlets" class="navbar-brand">SPARQList</LinkTo>
 
-  <ul class="navbar-nav">
-    <li class="nav-item">
-      {{#if this.session.isAuthenticated}}
-        <a {{on "click" this.logout}} href="#" class="nav-link">Logout</a>
-      {{else}}
-        <LinkTo @route="login" class="nav-link">Login</LinkTo>
-      {{/if}}
-    </li>
-  </ul>
+    <div class="navbar-collapse">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+          {{#if this.session.isAuthenticated}}
+            <a {{on "click" this.logout}} href="#" class="nav-link">Logout</a>
+          {{else}}
+            <LinkTo @route="login" class="nav-link">Login</LinkTo>
+          {{/if}}
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
