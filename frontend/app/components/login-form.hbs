@@ -1,5 +1,5 @@
 <form {{on "submit" (prevent-default this.authenticate)}} class="form-inline">
-  <div class="mb-2 mr-sm-2 mb-sm-0">
+  <div class="mb-2 me-sm-2 mb-sm-0">
     <label for="password" class="sr-only">Password</label>
     <input {{on "input" this.setPassword}} type="password" value={{this.password}} placeholder="Enter Password" id="password" class="form-control">
   </div>
