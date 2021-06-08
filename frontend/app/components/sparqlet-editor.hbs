@@ -13,9 +13,14 @@
         {{#if @model.mdPath}}
           <div>{{@model.mdPath}}</div>
         {{else}}
-          <div class="form-inline">
-            <input {{on "input" this.setName}} value={{@model.name}} class="form-control">.md
-          </div>
+          <form class="row row-cols-lg-auto g-0 align-items-center">
+            <div class="col-auto">
+              <input {{on "input" this.setName}} value={{@model.name}} class="form-control">
+            </div>
+            <div class="col-auto">
+              <span>.md</span>
+            </div>
+          </form>
         {{/if}}
       </div>
 
