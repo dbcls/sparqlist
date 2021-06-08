@@ -10,7 +10,7 @@
   {{#each @traces as |trace i|}}
     <div class="card mt-1 {{if trace.error "card-outline-danger"}}">
       {{! template-lint-disable link-href-attributes }}
-      <a data-target="#trace_{{i}}" data-toggle="collapse" class="card-header pl-3 d-flex align-items-center collapsed text-dark text-decoration-none {{if trace.error "card-danger card-inverse"}}">
+      <a data-bs-target="#trace_{{i}}" data-bs-toggle="collapse" class="card-header pl-3 d-flex align-items-center collapsed text-dark text-decoration-none {{if trace.error "card-danger card-inverse"}}">
         <div>
           <FaIcon @icon="chevron-right" @fixedWidth={{true}} />
           <FaIcon @icon="chevron-down" @fixedWidth={{true}} />
