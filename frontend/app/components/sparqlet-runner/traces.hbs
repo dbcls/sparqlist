@@ -43,7 +43,7 @@
       <div class="collapse" id="trace_{{i}}">
         <div class="card-body">
           {{#each trace.logEntries as |logEntry|}}
-            <div class="badge bg-default">{{logEntry.type}}</div>
+            <div class="badge bg-light text-dark">{{logEntry.type}}</div>
             <pre><code>{{logEntry.message}}</code></pre>
           {{/each}}
 
