@@ -1,7 +1,7 @@
 {{#if @response.ok}}
   <h4>
     Response
-    <span class="badge badge-success align-top">{{@response.status}} {{@response.statusText}}</span>
+    <span class="badge bg-success align-top">{{@response.status}} {{@response.statusText}}</span>
   </h4>
 
   <div class="card mt-3">
@@ -32,7 +32,7 @@
 {{else}}
   <h4>
     Response
-    <span class="badge badge-danger align-top">{{@response.status}} {{@response.statusText}}</span>
+    <span class="badge bg-danger align-top">{{@response.status}} {{@response.statusText}}</span>
   </h4>
 
   <div class="card border-danger mt-3">

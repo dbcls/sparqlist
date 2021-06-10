@@ -1,10 +1,12 @@
-<form {{on "submit" (prevent-default this.authenticate)}} class="form-inline">
-  <div class="mb-2 mr-sm-2 mb-sm-0">
+<form {{on "submit" (prevent-default this.authenticate)}} class="row row-cols-xs-auto g-3">
+  <div class="col-12 mb-2 me-sm-2 mb-sm-0">
     <label for="password" class="sr-only">Password</label>
     <input {{on "input" this.setPassword}} type="password" value={{this.password}} placeholder="Enter Password" id="password" class="form-control">
   </div>
 
-  <button type="submit" class="btn btn-primary">Login</button>
+  <div class="col-12">
+    <button type="submit" class="btn btn-primary">Login</button>
+  </div>
 </form>
 
 {{#if this.errorMessage}}

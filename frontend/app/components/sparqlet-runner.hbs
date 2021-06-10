@@ -4,7 +4,7 @@
 
     <form {{on "submit" (prevent-default (perform this.execute))}}>
       {{#each this.queryFields as |field|}}
-        <div class="form-group">
+        <div class="form-group mt-3">
           <label><code>{{field.param.name}}</code> {{field.param.description}}</label>
           <input {{on "input" (fn this.setFieldValue field)}} value={{field.value}} class="form-control">
 
@@ -14,12 +14,12 @@
         </div>
       {{/each}}
 
-      <div>
+      <div class="mt-3">
         <a href={{this.constructedURL}}>{{this.constructedURL}}</a>
       </div>
 
       <div class="d-flex align-items-center mt-3">
-        <button type="submit" class="btn btn-primary mr-2" disabled={{this.execute.isRunning}}>
+        <button type="submit" class="btn btn-primary me-2" disabled={{this.execute.isRunning}}>
           <FaIcon @icon="rocket" /> Execute
         </button>
 
