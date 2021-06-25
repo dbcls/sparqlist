@@ -3,7 +3,7 @@ import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 
 import fetch from 'fetch';
-import { dropTask } from 'ember-concurrency-decorators';
+import { dropTask } from 'ember-concurrency';
 
 function buildURL(path, query) {
   const url = new URL(path, location.origin);
