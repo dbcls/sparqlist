@@ -12,6 +12,7 @@ const port           = process.env.PORT || 3000;
 const repositoryPath = process.env.REPOSITORY_PATH || './repository';
 const adminPassword  = process.env.ADMIN_PASSWORD || '';
 const pathPrefix     = process.env.ROOT_PATH || '/';
+const bodySizeLimit  = process.env.BODY_SIZE_LIMIT || '10mb';
 const router         = createRouter(repositoryPath, adminPassword, pathPrefix);
 
 const app = express();
@@ -25,8 +26,8 @@ if (process.env.NODE_ENV === 'production') {
   app.use(morgan('dev'));
 }
 
-app.use(bodyParser.json({type: 'application/vnd.api+json', limit: '10mb'}));
-app.use(bodyParser.urlencoded({extended: true, limit: '10mb'}));
+app.use(bodyParser.json({type: 'application/vnd.api+json', limit: bodySizeLimit}));
+app.use(bodyParser.urlencoded({extended: true, limit: bodySizeLimit}));
 
 app.use(pathPrefix, router);
 app.use(pathPrefix, express.static(__dirname + '/public'));

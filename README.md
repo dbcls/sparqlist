@@ -60,6 +60,12 @@ Admin password. If left empty, all administrative features are disabled.
 
 Path of root. If you want to deploy SPARQList under a subdirectory, specify the directory. Note that `ROOT_PATH` must end with `/`.
 
+### `BODY_SIZE_LIMIT`
+
+(default: '10mb')
+
+Limit of maximum request body size.
+
 ## Development
 
 ### Backend
