@@ -40,5 +40,8 @@
         <SparqletRunner::Traces @elapsed={{response.elapsed}} @traces={{response.traces}} />
       {{/if}}
     {{/with}}
+    {{#with this.execute.last.error as |error|}}
+      <div class="alert alert-danger mt-3">{{error}}</div>
+    {{/with}}
   </div>
 </div>

@@ -8,7 +8,7 @@ SPARQList is a REST API server which executes a SPARQL query, transform the resu
 
 ## Prerequisites
 
-* [Node.js](https://nodejs.org/) 14 or later
+- [Node.js](https://nodejs.org/) 14 or later
 
 ## Install and Run
 
@@ -21,7 +21,6 @@ Then, start SPARQList:
 
     $ PORT=3000 ADMIN_PASSWORD=changeme npm start
 
-
 ### Deploy under a subdirectory
 
 If you want to deploy SPARQList under a subdirectory (say, `/foo/`), pass the directory via `ROOT_PATH` to `npm run build` and `npm start`:
@@ -30,7 +29,6 @@ If you want to deploy SPARQList under a subdirectory (say, `/foo/`), pass the di
     $ ROOT_PATH=/foo/ PORT=3000 ADMIN_PASSWORD=changeme npm start
 
 (Note that `ROOT_PATH` must end with `/`.)
-
 
 ## Configuration
 
@@ -65,6 +63,12 @@ Path of root. If you want to deploy SPARQList under a subdirectory, specify the 
 (default: '10mb')
 
 Limit of maximum request body size.
+
+### `SERVER_TIMEOUT`
+
+(default: 0)
+
+Server timeout in milliseconds (0 means no timeout).
 
 ## Development
 
