@@ -12,3 +12,6 @@ jobs:
           node-version: '14'
       - run: npm ci
       - run: npm test
+      - uses: cypress-io/github-action@v2
+        with:
+          start: npm start
