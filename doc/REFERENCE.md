@@ -42,6 +42,10 @@ They are just treated as documentation.
   * default: default-value-of-bar
 ```
 
+## Environment variables
+
+If environment variables starting with `SPARQLIST_` are defined on the system hosting SPARQList, they can be referenced in the same way as parameters.
+
 ## SPARQL endpoint
 
 SPARQL endpoint is defined below `## Endpoint`. Example:
