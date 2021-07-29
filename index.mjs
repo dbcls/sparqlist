@@ -3,6 +3,7 @@ import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 import url from 'url';
+import timeout from 'connect-timeout';
 
 import createRouter from './lib/create-router.mjs';
 
@@ -13,10 +14,15 @@ const repositoryPath = process.env.REPOSITORY_PATH || './repository';
 const adminPassword = process.env.ADMIN_PASSWORD || '';
 const pathPrefix = process.env.ROOT_PATH || '/';
 const bodySizeLimit = process.env.BODY_SIZE_LIMIT || '10mb';
-const timeout = Number(process.env.SERVER_TIMEOUT || 0);
+const timeoutMillisec = Number(process.env.SERVER_TIMEOUT || 0);
 const router = createRouter(repositoryPath, adminPassword, pathPrefix);
 
 const app = express();
+
+if (timeoutMillisec > 0) {
+  console.log(`Enable timeout middleware(${timeoutMillisec} msec)`);
+  app.use(timeout(timeoutMillisec));
+}
 
 app.set('query parser', 'extended');
 app.set('json spaces', 2);
@@ -40,16 +46,20 @@ app.get('/*', async (req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  if (err.code === 'ENOENT') {
-    res.sendStatus(404);
+  if (req.timedout && !res.headerSent) {
+    console.log('TIMEOUT');
+    res.status(503).json({ error: 'request timeout' });
   } else {
-    console.log('ERROR', err);
+    if (err.code === 'ENOENT') {
+      res.sendStatus(404);
+    } else {
+      console.log('ERROR', err);
 
-    res.status(422).json({ errors: [{ status: 500, detail: err.message }] });
+      res.status(422).json({ errors: [{ status: 500, detail: err.message }] });
+    }
   }
 });
 
 const server = app.listen(port, () => {
   console.log(`listening on ${port}, repository is at ${repositoryPath}`);
 });
-server.timeout = timeout;
