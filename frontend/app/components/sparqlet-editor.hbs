@@ -34,5 +34,13 @@
     <div class="card-body">
       <IvyCodemirror @value={{@model.src}} @valueUpdated={{this.setSrc}} @options={{hash lineNumbers=true mode="markdown" theme="base16-light"}} />
     </div>
+
+    <div class="card-footer text-end">
+      <div>
+        <button type="submit" class="btn {{if @model.hasDirtyAttributes "btn-primary" "btn-outline-primary"}} float-right">
+          <FaIcon @icon="save" /> Save
+        </button>
+      </div>
+    </div>
   </form>
 </div>
