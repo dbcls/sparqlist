@@ -20,7 +20,6 @@ const router = createRouter(repositoryPath, adminPassword, pathPrefix);
 const app = express();
 
 if (timeoutMillisec > 0) {
-  console.log(`Enable timeout middleware(${timeoutMillisec} msec)`);
   app.use(timeout(timeoutMillisec));
 }
 
@@ -60,6 +59,12 @@ app.use((err, req, res, next) => {
   }
 });
 
-const server = app.listen(port, () => {
-  console.log(`listening on ${port}, repository is at ${repositoryPath}`);
+app.listen(port, () => {
+  const timeoutMessage = timeoutMillisec
+    ? `timeout in ${timeoutMillisec}ms`
+    : `no timeout`;
+
+  console.log(
+    `listening on ${port}, repository is at ${repositoryPath}, body size limit ${bodySizeLimit}, ${timeoutMessage}`
+  );
 });
