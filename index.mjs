@@ -46,7 +46,6 @@ app.get('/*', async (req, res) => {
 
 app.use((err, req, res, next) => {
   if (req.timedout && !res.headerSent) {
-    console.log('TIMEOUT');
     res.status(503).json({ error: 'request timeout' });
   } else {
     if (err.code === 'ENOENT') {
