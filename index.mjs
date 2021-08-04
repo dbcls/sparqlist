@@ -3,7 +3,6 @@ import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
 import url from 'url';
-import timeout from 'connect-timeout';
 
 import createRouter from './lib/create-router.mjs';
 
@@ -15,13 +14,14 @@ const adminPassword = process.env.ADMIN_PASSWORD || '';
 const pathPrefix = process.env.ROOT_PATH || '/';
 const bodySizeLimit = process.env.BODY_SIZE_LIMIT || '10mb';
 const timeoutMillisec = Number(process.env.SERVER_TIMEOUT || 0);
-const router = createRouter(repositoryPath, adminPassword, pathPrefix);
+const router = createRouter(
+  repositoryPath,
+  adminPassword,
+  pathPrefix,
+  timeoutMillisec
+);
 
 const app = express();
-
-if (timeoutMillisec > 0) {
-  app.use(timeout(timeoutMillisec));
-}
 
 app.set('query parser', 'extended');
 app.set('json spaces', 2);

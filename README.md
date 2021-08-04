@@ -68,7 +68,7 @@ Limit of maximum request body size.
 
 (default: 0)
 
-Server timeout in milliseconds (0 means no timeout).
+API timeout in milliseconds (0 means no timeout). Effective for '/api' and '/trace' paths only.
 
 ## Development
 
