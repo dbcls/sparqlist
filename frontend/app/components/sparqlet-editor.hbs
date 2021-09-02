@@ -32,7 +32,13 @@
     </div>
 
     <div class="card-body">
-      <IvyCodemirror @value={{@model.src}} @valueUpdated={{this.setSrc}} @options={{hash lineNumbers=true mode="markdown" theme="base16-light"}} />
+      <div
+        {{code-mirror
+          content=@model.src
+          onUpdate=this.setSrc
+          path=@model.mdPath
+        }}
+      ></div>
     </div>
 
     <div class="card-footer text-end">

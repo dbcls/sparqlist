@@ -7,10 +7,6 @@ module.exports = function (defaults) {
     sassOptions: {
       includePaths: ['node_modules'],
     },
-    codemirror: {
-      modes: ['markdown', 'javascript', 'sparql'],
-      themes: ['base16-light'],
-    },
     autoImport: {
       webpack: {
         resolve: {
@@ -22,6 +18,8 @@ module.exports = function (defaults) {
 
   app.import('node_modules/jquery/dist/jquery.slim.js');
   app.import('node_modules/bootstrap/dist/js/bootstrap.bundle.js');
+  app.import('node_modules/codemirror/lib/codemirror.css');
+  app.import('node_modules/codemirror/theme/base16-light.css');
 
   return app.toTree();
 };
