@@ -4,7 +4,7 @@ SPARQList is a REST API server which executes a SPARQL query, transform the resu
 
 ## Docker
 
-    $ docker run dbcls/sparqlist
+    $ docker run ghcr.io/dbcls/sparqlist
 
 ## Prerequisites
 
