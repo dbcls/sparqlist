@@ -26,7 +26,7 @@
     "fontoxpath": "^3.18.0",
     "handlebars": "^4.7.7",
     "morgan": "^1.10.0",
-    "node-fetch": "^2.6.1",
+    "node-fetch": "^3.1.1",
     "parse5": "^6.0.1",
     "slimdom-sax-parser": "^1.4.1",
     "type-is": "^1.6.14",
