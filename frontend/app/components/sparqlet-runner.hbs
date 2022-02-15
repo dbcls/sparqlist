@@ -8,9 +8,11 @@
           <label><code>{{field.param.name}}</code> {{field.param.description}}</label>
           <input {{on "input" (fn this.setFieldValue field)}} value={{field.value}} class="form-control">
 
-          {{#with field.param.example as |example|}}
-            <small class="form-text text-muted">example: {{example}}</small>
-          {{/with}}
+          {{#let field.param.example as |example|}}
+            {{#if example}}
+              <small class="form-text text-muted">example: {{example}}</small>
+            {{/if}}
+          {{/let}}
         </div>
       {{/each}}
 
@@ -29,19 +31,24 @@
       </div>
     </form>
 
-    {{#with this.execute.last.value as |response|}}
-      <hr>
-
-      <SparqletRunner::Response @response={{response}} />
-
-      {{#if response.traces}}
+    {{#let this.execute.last.value as |response|}}
+      {{#if response}}
         <hr>
 
-        <SparqletRunner::Traces @elapsed={{response.elapsed}} @traces={{response.traces}} />
+        <SparqletRunner::Response @response={{response}} />
+
+        {{#if response.traces}}
+          <hr>
+
+          <SparqletRunner::Traces @elapsed={{response.elapsed}} @traces={{response.traces}} />
+        {{/if}}
       {{/if}}
-    {{/with}}
-    {{#with this.execute.last.error as |error|}}
-      <div class="alert alert-danger mt-3">{{error}}</div>
-    {{/with}}
+    {{/let}}
+
+    {{#let this.execute.last.error as |error|}}
+      {{#if error}}
+        <div class="alert alert-danger mt-3">{{error}}</div>
+      {{/if}}
+    {{/let}}
   </div>
 </div>
