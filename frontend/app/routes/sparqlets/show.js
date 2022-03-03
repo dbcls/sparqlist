@@ -5,6 +5,6 @@ export default class SparqletsShowRoute extends Route {
   @service store;
 
   model(params) {
-    return this.store.findRecord('sparqlets', params.id);
+    return this.store.findRecord('sparqlet', params.sparqlet_id);
   }
 }
