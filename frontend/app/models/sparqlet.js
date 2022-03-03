@@ -6,7 +6,7 @@ export default class Sparqlet extends Model {
   @attr('string') html;
   @attr('string') apiPath;
   @attr('string') traceModeApiPath;
-  @attr()         params;
+  @attr() params;
   @attr('string') src;
   @attr('string') mdPath;
   @attr('string') mtime;

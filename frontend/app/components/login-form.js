@@ -6,11 +6,11 @@ import { tracked } from '@glimmer/tracking';
 export default class LoginFormComponent extends Component {
   @service session;
 
-  @tracked password     = '';
+  @tracked password = '';
   @tracked errorMessage = null;
 
   @action
-  setPassword({target: {value}}) {
+  setPassword({ target: { value } }) {
     this.password = value;
   }
 
@@ -18,9 +18,15 @@ export default class LoginFormComponent extends Component {
   async authenticate() {
     try {
       // NOTE identification is not used
-      await this.session.authenticate('authenticator:oauth2', '', this.password);
+      await this.session.authenticate(
+        'authenticator:oauth2',
+        '',
+        this.password
+      );
     } catch (res) {
-      if (res.ok !== false) { throw res; } // not a response object
+      if (res.ok !== false) {
+        throw res;
+      } // not a response object
 
       this.errorMessage = res.responseJSON?.error || res.responseText;
     }

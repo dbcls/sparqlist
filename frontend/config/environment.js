@@ -23,8 +23,8 @@ module.exports = function (environment) {
     },
 
     'ember-simple-auth': {
-      routeAfterAuthentication: 'sparqlets'
-    }
+      routeAfterAuthentication: 'sparqlets',
+    },
   };
 
   if (environment === 'development') {
