@@ -12,9 +12,13 @@ export default class CollectionSearch extends Component {
   }
 
   @action
-  update({target: {value}}) {
-    const {collection, keys} = this.args;
+  update({ target: { value } }) {
+    const { collection, keys } = this.args;
 
-    this.result = value ? collection.filter((obj) => keys.some((key) => obj.get(key).includes(value))) : collection;
+    this.result = value
+      ? collection.filter((obj) =>
+          keys.some((key) => obj.get(key).includes(value))
+        )
+      : collection;
   }
 }

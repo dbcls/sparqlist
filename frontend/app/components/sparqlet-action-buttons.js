@@ -8,7 +8,9 @@ export default class SparqletActionButtonsComponent extends Component {
 
   @action
   async delete() {
-    if (!confirm('Are you sure?')) { return; }
+    if (!confirm('Are you sure?')) {
+      return;
+    }
 
     try {
       await this.args.model.destroyRecord();

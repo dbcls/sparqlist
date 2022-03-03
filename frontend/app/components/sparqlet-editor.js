@@ -9,7 +9,7 @@ export default class SparqletEditor extends Component {
   @tracked error = null;
 
   @action
-  setName({target: {value}}) {
+  setName({ target: { value } }) {
     this.args.model.set('name', value);
   }
 
@@ -20,7 +20,7 @@ export default class SparqletEditor extends Component {
 
   @action
   async save() {
-    const {model} = this.args;
+    const { model } = this.args;
 
     try {
       await model.save();

@@ -1,4 +1,4 @@
-module.exports = function() {
+module.exports = function () {
   return {
     'free-solid-svg-icons': [
       'arrow-right',
@@ -12,6 +12,6 @@ module.exports = function() {
       'save',
       'spinner',
       'trash',
-    ]
+    ],
   };
 };

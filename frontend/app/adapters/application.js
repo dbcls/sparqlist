@@ -11,10 +11,12 @@ export default class Application extends JSONAPIAdapter {
 
   @computed('session.{isAuthenticated,data.authenticated.access_token}')
   get headers() {
-    if (!this.session.isAuthenticated) { return {}; }
+    if (!this.session.isAuthenticated) {
+      return {};
+    }
 
     return {
-      Authorization: `Bearer ${this.session.data.authenticated.access_token}`
+      Authorization: `Bearer ${this.session.data.authenticated.access_token}`,
     };
   }
 }

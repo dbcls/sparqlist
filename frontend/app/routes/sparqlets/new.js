@@ -4,6 +4,7 @@ import { inject as service } from '@ember/service';
 
 export default class NewRoute extends Route {
   @service session;
+  @service store;
 
   beforeModel(transition) {
     this.session.requireAuthentication(transition, 'login');
@@ -23,7 +24,7 @@ export default class NewRoute extends Route {
 
   @action
   willTransition() {
-    const {model} = this.controller;
+    const { model } = this.controller;
 
     if (model.isNew) {
       model.deleteRecord();

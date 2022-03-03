@@ -28,11 +28,17 @@ export default class SparqletRunner extends Component {
   constructor() {
     super(...arguments);
 
-    this.queryFields = this.args.model.params.map(param => new QueryField(param));
+    this.queryFields = this.args.model.params.map(
+      (param) => new QueryField(param)
+    );
   }
 
   get constructedQuery() {
-    return this.queryFields.reduce((acc, {param: {name}, value}) => Object.assign(acc, {[name]: value}), {});
+    return this.queryFields.reduce(
+      (acc, { param: { name }, value }) =>
+        Object.assign(acc, { [name]: value }),
+      {}
+    );
   }
 
   get constructedURL() {
@@ -41,28 +47,31 @@ export default class SparqletRunner extends Component {
 
   @dropTask
   *execute() {
-    const res = yield fetch(buildURL(this.args.model.traceModeApiPath, this.constructedQuery), {
-      headers: {
-        'Accept': 'text/html, application/json, */*; q=0.01'
+    const res = yield fetch(
+      buildURL(this.args.model.traceModeApiPath, this.constructedQuery),
+      {
+        headers: {
+          Accept: 'text/html, application/json, */*; q=0.01',
+        },
       }
-    });
+    );
 
     const payload = yield res.json();
 
     return {
-      ok:          res.ok,
-      status:      res.status,
-      statusText:  res.statusText,
+      ok: res.ok,
+      status: res.status,
+      statusText: res.statusText,
       contentType: payload.contentType,
-      results:     res.ok ? payload.results : payload,
-      traces:      payload.traces,
-      error:       payload.error,
-      elapsed:     payload.elapsed,
+      results: res.ok ? payload.results : payload,
+      traces: payload.traces,
+      error: payload.error,
+      elapsed: payload.elapsed,
     };
   }
 
   @action
-  setFieldValue(field, {target: {value}}) {
+  setFieldValue(field, { target: { value } }) {
     field.value = value;
   }
 }
