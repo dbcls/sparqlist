@@ -33,6 +33,6 @@
     "xmlserializer": "^0.6.1"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=20"
   }
 }
