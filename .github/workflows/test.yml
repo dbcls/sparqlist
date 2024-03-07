@@ -6,8 +6,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: '20'
       - name: Workaround for npm v7 bug. Reconfigure git to use HTTP authentication
@@ -17,6 +17,6 @@ jobs:
       - run: npm ci
       - run: npm run build
       - run: npm test
-      - uses: cypress-io/github-action@v2
+      - uses: cypress-io/github-action@v6
         with:
           start: npm start
