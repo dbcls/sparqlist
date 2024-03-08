@@ -14,6 +14,9 @@ module.exports = function (defaults) {
         },
       },
     },
+    'ember-simple-auth': {
+      useSessionSetupMethod: true,
+    },
   });
 
   app.import('node_modules/jquery/dist/jquery.slim.js');
