@@ -1,4 +1,5 @@
 cypress
+e2e
 doc
 frontend/dist
 frontend/node_modules
