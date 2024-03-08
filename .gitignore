@@ -2,3 +2,7 @@
 /cypress/videos/
 /node_modules/
 /public/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
