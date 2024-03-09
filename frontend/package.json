@@ -32,7 +32,7 @@
     "@ember/render-modifiers": "^1.0.2",
     "@ember/string": "^3.1.1",
     "@ember/test-helpers": "^3.3.0",
-    "@fortawesome/ember-fontawesome": "^0.3.2",
+    "@fortawesome/ember-fontawesome": "^1.0.0",
     "@fortawesome/free-solid-svg-icons": "^6.0.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
