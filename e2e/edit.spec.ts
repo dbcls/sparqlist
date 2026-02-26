@@ -10,9 +10,12 @@ test("create, edit and delete", async ({ page, baseURL }) => {
 
 	await page.fill("input[id=password]", "admin-password");
 	await page.getByRole("button", { name: "Login" }).click();
+	await expect(page).toHaveURL("/-new");
 
 	// create
-	await page.fill("input[class=form-control]", sparqletId);
+	const sparqletNameInput = page.locator(".card-header input.form-control").first();
+	await sparqletNameInput.fill(sparqletId);
+	await expect(sparqletNameInput).toHaveValue(sparqletId);
 
 	await page.locator(".CodeMirror textarea").fill("# Foo SPARQLet");
 	await page.click("text=Save");
