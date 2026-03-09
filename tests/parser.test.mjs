@@ -1,13 +1,14 @@
+import assert from 'node:assert/strict';
+import test from 'node:test';
+
 import SPARQLetParser from '../lib/parser.mjs';
 
-let parser;
-
-beforeEach(() => {
-  parser = new SPARQLetParser();
-});
+function parse(markdown) {
+  return new SPARQLetParser().parse(markdown);
+}
 
 test('empty', () => {
-  expect(parser.parse('')).toEqual({
+  assert.deepStrictEqual(parse(''), {
     title: '',
     params: [],
     procedures: []
@@ -15,10 +16,10 @@ test('empty', () => {
 });
 
 test('title only', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 # hi
 # ho
-  `)).toEqual({
+  `), {
     title: 'hi',
     params: [],
     procedures: []
@@ -26,7 +27,7 @@ test('title only', () => {
 });
 
 test('all', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 # hi
 
 ## parameters
@@ -56,7 +57,7 @@ select distinct * where { ?s ?p ?o . }
 \`\`\` javascript
 alert(2);
 \`\`\`
-  `)).toEqual({
+  `), {
     title: 'hi',
     params: [
       {
@@ -71,6 +72,7 @@ alert(2);
         bindingName: 'bar',
         name: 'bar procedure',
         data: 'alert(1);',
+        endpoint: undefined,
         type: 'javascript',
       },
       {
@@ -84,6 +86,7 @@ alert(2);
         bindingName: '',
         name: 'quux procedure',
         data: 'alert(2);',
+        endpoint: undefined,
         type: 'javascript',
       },
     ],
@@ -91,14 +94,14 @@ alert(2);
 });
 
 test('default contains underscores', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 # hi
 
 ## parameters
 
 - \`foo\`
   - default: 42_42_42
-  `)).toEqual({
+  `), {
     title: 'hi',
     params: [
       {
@@ -113,14 +116,14 @@ test('default contains underscores', () => {
 });
 
 test('default contains asterisks', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 # hi
 
 ## parameters
 
 - \`foo\`
   - default: 42*42*42
-  `)).toEqual({
+  `), {
     title: 'hi',
     params: [
       {
@@ -135,14 +138,14 @@ test('default contains asterisks', () => {
 });
 
 test('default contains inline code', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 # hi
 
 ## parameters
 
 - \`foo\`
   - default: \`42*42*42\`
-  `)).toEqual({
+  `), {
     title: 'hi',
     params: [
       {
@@ -157,7 +160,7 @@ test('default contains inline code', () => {
 });
 
 test('endpoint is blank', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 # hi
 
 ## endpoint
@@ -169,7 +172,7 @@ this is not an endpoint
 \`\`\` sparql
 select distinct * where { ?s ?p ?o . }
 \`\`\`
-  `)).toEqual({
+  `), {
     title: 'hi',
     params: [],
     procedures: [
@@ -185,11 +188,11 @@ select distinct * where { ?s ?p ?o . }
 });
 
 test('procedure without heading', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 \`\`\` js
 alert(1)
 \`\`\`
-  `)).toEqual({
+  `), {
     title: '',
     params: [],
     procedures: [
@@ -197,6 +200,7 @@ alert(1)
         bindingName: '',
         name: '',
         data: 'alert(1)',
+        endpoint: undefined,
         type: 'javascript'
       }
     ]
@@ -204,7 +208,7 @@ alert(1)
 });
 
 test('redefine endpoint', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 ## endpoint
 http://ep1
 
@@ -220,7 +224,7 @@ http://ep2
 \`\`\` sparql
 # query 2
 \`\`\`
-  `)).toEqual({
+  `), {
     title: '',
     params: [],
     procedures: [
@@ -243,7 +247,7 @@ http://ep2
 });
 
 test('html', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 <h1>Hi</h1>
 
 <h2>foo</h2>
@@ -251,7 +255,7 @@ test('html', () => {
 \`\`\` js
 alert(1)
 \`\`\`
-  `)).toEqual({
+  `), {
     title: 'Hi',
     params: [],
     procedures: [
@@ -259,6 +263,7 @@ alert(1)
         bindingName: '',
         name: 'foo',
         data: 'alert(1)',
+        endpoint: undefined,
         type: 'javascript'
       }
     ]
@@ -266,11 +271,11 @@ alert(1)
 });
 
 test('custom element', () => {
-  expect(parser.parse(`
+  assert.deepStrictEqual(parse(`
 # hi
 
 <foo-bar></foo-bar>
-  `)).toEqual({
+  `), {
     title: 'hi',
     params: [],
     procedures: []

@@ -7,12 +7,11 @@
     "build": "cd frontend && npm ci --production=false && npm run build -- --environment=production --output-path=../public",
     "watch": "node --watch --watch-path=. --watch-path=lib index.mjs",
     "test": "npm run test:unit && npm run test:e2e",
-    "test:unit": "node --experimental-vm-modules ./node_modules/jest/bin/jest.js --watchman=false",
+    "test:unit": "node --test tests/*.test.mjs",
     "test:e2e": "playwright test"
   },
   "devDependencies": {
-    "@types/node": "^25.3.5",
-    "jest": "^30.2.0"
+    "@types/node": "^25.3.5"
   },
   "dependencies": {
     "@playwright/test": "1.58.2",
