@@ -1,11 +1,10 @@
 import express from 'express';
 import morgan from 'morgan';
-import path from 'path';
-import url from 'url';
+import path from 'node:path';
 
 import createRouter from './lib/create-router.mjs';
 
-const __dirname = path.dirname(url.fileURLToPath(import.meta.url));
+const __dirname = import.meta.dirname;
 
 const port = process.env.PORT || 3000;
 const repositoryPath = process.env.REPOSITORY_PATH || './repository';
