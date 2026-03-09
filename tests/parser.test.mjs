@@ -243,17 +243,36 @@ http://ep2
 });
 
 test('html', () => {
-  expect(() => {
-    parser.parse(`
-<br>
-    `);
-  }).not.toThrow();
+  expect(parser.parse(`
+<h1>Hi</h1>
+
+<h2>foo</h2>
+
+\`\`\` js
+alert(1)
+\`\`\`
+  `)).toEqual({
+    title: 'Hi',
+    params: [],
+    procedures: [
+      {
+        bindingName: '',
+        name: 'foo',
+        data: 'alert(1)',
+        type: 'javascript'
+      }
+    ]
+  });
 });
 
 test('custom element', () => {
-  expect(() => {
-    parser.parse(`
-<x-foo></x-foo>
-    `);
-  }).not.toThrow();
+  expect(parser.parse(`
+# hi
+
+<foo-bar></foo-bar>
+  `)).toEqual({
+    title: 'hi',
+    params: [],
+    procedures: []
+  });
 });
