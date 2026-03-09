@@ -28,7 +28,6 @@
     "handlebars": "^4.7.8",
     "mime": "^4.1.0",
     "morgan": "^1.10.0",
-    "node-fetch": "^3.3.2",
     "parse5": "^8.0.0",
     "slimdom-sax-parser": "^1.5.3",
     "type-is": "^2.0.1",
