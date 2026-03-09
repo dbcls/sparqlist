@@ -3,9 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node --experimental-modules index.mjs",
+    "start": "node index.mjs",
     "build": "cd frontend && npm ci --production=false && npm run build -- --environment=production --output-path=../public",
-    "watch": "nodemon --exec npm start --ignore frontend/",
+    "watch": "node --watch --watch-path=. --watch-path=lib index.mjs",
     "test": "npm run test:unit && npm run test:e2e",
     "test:unit": "jest --watchman=false",
     "test:e2e": "playwright test"
@@ -15,8 +15,7 @@
     "@babel/preset-env": "^7.24.0",
     "@types/node": "^25.3.5",
     "babel-jest": "^30.2.0",
-    "jest": "^30.2.0",
-    "nodemon": "^3.1.0"
+    "jest": "^30.2.0"
   },
   "dependencies": {
     "@playwright/test": "1.58.2",
