@@ -1,4 +1,3 @@
-import bodyParser from 'body-parser';
 import express from 'express';
 import morgan from 'morgan';
 import path from 'path';
@@ -33,14 +32,14 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 app.use(
-  bodyParser.json({ type: 'application/vnd.api+json', limit: bodySizeLimit })
+  express.json({ type: 'application/vnd.api+json', limit: bodySizeLimit })
 );
-app.use(bodyParser.urlencoded({ extended: true, limit: bodySizeLimit }));
+app.use(express.urlencoded({ extended: true, limit: bodySizeLimit }));
 
 app.use(pathPrefix, router);
 app.use(pathPrefix, express.static(__dirname + '/public'));
 
-app.get('/*', async (req, res) => {
+app.get(/.*/, async (req, res) => {
   res.sendFile('index.html', { root: __dirname + '/public' });
 });
 
