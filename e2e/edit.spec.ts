@@ -17,7 +17,8 @@ test("create, edit and delete", async ({ page, baseURL }) => {
 	await sparqletNameInput.fill(sparqletId);
 	await expect(sparqletNameInput).toHaveValue(sparqletId);
 
-	await page.locator(".CodeMirror textarea").fill("# Foo SPARQLet");
+	await page.locator(".cm-content").click();
+	await page.keyboard.insertText("# Foo SPARQLet");
 	await page.click("text=Save");
 
 	// view
@@ -42,9 +43,9 @@ test("create, edit and delete", async ({ page, baseURL }) => {
 
 	// edit
 	await page.click("text=Edit");
-	await page.locator(".CodeMirror textarea").focus();
+	await page.locator(".cm-content").click();
 	await page.keyboard.press("Control+A");
-	await page.locator(".CodeMirror-code").pressSequentially("# Bar SPARQLet");
+	await page.keyboard.insertText("# Bar SPARQLet");
 	await page.click("text=Save");
 
 	await expect(page).toHaveURL(`/${sparqletId}`);
