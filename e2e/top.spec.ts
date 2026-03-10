@@ -18,20 +18,18 @@ test.describe("/", () => {
 	test("search", async ({ page }) => {
 		await page.goto("/");
 
-		await expect(
-			page.getByRole("link", { name: "gene_and_organism_annotation" }),
-		).toBeVisible();
-		await expect(
-			page.getByRole("link", { name: "adjacent_prefectures -" }),
-		).toBeVisible();
+		const items = page.locator(".list-group a.list-group-item");
+		const initialCount = await items.count();
+		expect(initialCount).toBeGreaterThan(1);
+		await expect(items.first()).toBeVisible();
+		const firstItemHref = await items.first().getAttribute("href");
+		const firstItemId = firstItemHref ? firstItemHref.replace(/^\//, "") : "";
+		expect(firstItemId).not.toBe("");
+		const searchText = firstItemId;
 
-		await page.fill("input[type=search]", "ge");
+		await page.fill("input[type=search]", searchText);
 
-		await expect(
-			page.getByRole("link", { name: "gene_and_organism_annotation" }),
-		).toBeVisible();
-		await expect(
-			page.getByRole("link", { name: "adjacent_prefectures -" }),
-		).not.toBeVisible();
+		await expect(items).toHaveCount(1);
+		await expect(items.first()).toHaveAttribute("href", `/${firstItemId}`);
 	});
 });

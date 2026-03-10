@@ -4,7 +4,7 @@
 
 * `tax_id` Taxonomy identifier
   * default: 9606
-* `gene_id` Gene identifier
+* `gene_id` Gene identifier?
   * default: BRCA1
 
 ## Endpoint
