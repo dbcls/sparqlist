@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import CodeEditor from './CodeEditor';
 
@@ -15,16 +15,26 @@ export default function SparqletEditor({
 }) {
   const buttonClass = dirty ? 'btn-primary' : 'btn-outline-primary';
 
+  useEffect(() => {
+    document.documentElement.classList.add('editor-scroll-lock');
+    document.body.classList.add('editor-scroll-lock');
+
+    return () => {
+      document.documentElement.classList.remove('editor-scroll-lock');
+      document.body.classList.remove('editor-scroll-lock');
+    };
+  }, []);
+
   return (
-    <>
+    <div className="editor-page">
       {errorList.map((error, index) => (
         <div className="alert alert-danger" key={`${error.detail}-${index}`}>
           <strong>Error</strong> {error.detail}
         </div>
       ))}
 
-      <div className="card mt-1">
-        <form onSubmit={onSave}>
+      <div className="card editor-card">
+        <form className="editor-form" onSubmit={onSave}>
           <div className="card-header d-flex align-items-center">
             <div className="me-auto">
               <strong>API code document</strong>
@@ -58,23 +68,11 @@ export default function SparqletEditor({
             </div>
           </div>
 
-          <div className="card-body">
+          <div className="card-body editor-card-body">
             <CodeEditor value={src} onChange={onSrcChange} />
-          </div>
-
-          <div className="card-footer text-end">
-            <div>
-              <button
-                type="submit"
-                className={`btn ${buttonClass} float-right`}
-                disabled={saving}
-              >
-                Save
-              </button>
-            </div>
           </div>
         </form>
       </div>
-    </>
+    </div>
   );
 }
