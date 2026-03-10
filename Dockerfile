@@ -2,8 +2,8 @@
 
 FROM node:24
 
-ENV PORT 3000
-ENV ADMIN_PASSWORD sparqlist
+ENV PORT=3000
+ENV ADMIN_PASSWORD=sparqlist
 ENV ROOT_PATH=/sparqlist/
 
 RUN npm -g install npm
@@ -13,5 +13,5 @@ USER app
 WORKDIR /app
 COPY --chown=app:app . .
 
-RUN npm ci --production && npm run build
-CMD npm start
+RUN npm ci && npm run build && npm prune --omit=dev
+CMD ["npm", "start"]
