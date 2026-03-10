@@ -9,6 +9,7 @@ import {
   StreamLanguage,
 } from '@codemirror/language';
 import { sparql } from '@codemirror/legacy-modes/mode/sparql';
+import { oneDark } from '@codemirror/theme-one-dark';
 import { basicSetup } from 'codemirror';
 
 const codeLanguages = [
@@ -44,12 +45,8 @@ export default function CodeEditor({ value, onChange }) {
       extensions: [
         basicSetup,
         markdown({ codeLanguages }),
+        oneDark,
         EditorView.lineWrapping,
-        EditorView.theme({
-          '&': {
-            fontSize: '14px',
-          },
-        }),
         EditorView.updateListener.of((update) => {
           if (!update.docChanged) {
             return;
