@@ -1,56 +1,31 @@
-# sparqlist
+# SPARQList frontend
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This frontend is a React application built with Vite.
 
-## Prerequisites
+## Development
 
-You will need the following things properly installed on your computer.
+Install dependencies and start the Vite dev server:
 
-* [Git](https://git-scm.com/)
-* [Node.js](https://nodejs.org/) (with npm)
-* [Ember CLI](https://cli.emberjs.com/release/)
-* [Google Chrome](https://google.com/chrome/)
+```sh
+npm install
+npm run dev
+```
 
-## Installation
+The backend still runs from the repository root:
 
-* `git clone <repository-url>` this repository
-* `cd sparqlist`
-* `npm install`
+```sh
+cd ..
+npm run watch
+```
 
-## Running / Development
+The Vite dev server proxies API requests to `http://127.0.0.1:3000`.
 
-* `npm run start`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
-* Visit your tests at [http://localhost:4200/tests](http://localhost:4200/tests).
+## Build
 
-### Code Generators
+Build static assets:
 
-Make use of the many generators for code, try `ember help generate` for more details
+```sh
+npm run build
+```
 
-### Running Tests
-
-* `npm run test`
-* `npm run test:ember -- --server`
-
-### Linting
-
-* `npm run lint`
-* `npm run lint:fix`
-
-### Building
-
-* `npm exec ember build` (development)
-* `npm run build` (production)
-
-### Deploying
-
-Specify what it takes to deploy your app.
-
-## Further Reading / Useful Links
-
-* [ember.js](https://emberjs.com/)
-* [ember-cli](https://cli.emberjs.com/release/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+The repository root uses `npm run build` to emit the frontend into `../public`.

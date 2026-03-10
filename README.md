@@ -80,6 +80,7 @@ API timeout in milliseconds (0 means no timeout). Effective for '/api' and '/tra
 ### Frontend
 
     $ cd sparqlist/frontend
-    $ npm run build -- --output ../public --watch
+    $ npm install
+    $ npm run dev
 
-Open http://localhost:3000 in your browser.
+Open http://localhost:5173 in your browser.
