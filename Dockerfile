@@ -1,6 +1,6 @@
 # Dockerfile for https://github.com/dbcls/sparqlist
 
-FROM node:24
+FROM node:24.22.1
 
 ENV PORT=3000
 ENV ADMIN_PASSWORD=sparqlist
